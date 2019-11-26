@@ -109,7 +109,7 @@ show()
 
 #### 图片
 
-![image-20191126094642323](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20191126094642323.png)
+![image-20191126094642323](assets\image-20191126094642323.png)
 
 #### 超链接
 
