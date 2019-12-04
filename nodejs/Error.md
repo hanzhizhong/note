@@ -20,3 +20,25 @@ form.parse(req,(err,fields,files)=>{
 })
 ~~~
 
+### express 中的路由报错
+
+> ![image-20191204100916427](assets/image-20191204100916427.png)
+>
+> + 解决的方法是： 
+>
+>   + ~~~javascript
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     ~~~
+>
+>   + 
+
+### art-template 
+
+> **js的模板引擎** 在模板中使用方法的传参方式
+>
+> + ![image-20191204144210536](assets/image-20191204144210536.png)
+>
+> + 解决方法
+>
+>   ![image-20191204144448506](assets/image-20191204144448506.png)
