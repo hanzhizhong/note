@@ -27,13 +27,17 @@ form.parse(req,(err,fields,files)=>{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    ~~~
->  ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     ~~~
+> ~~~
 > 
+> ~~~
+>
 >   + 
->  ~~~
+> ~~~
+> 
+> ~~~
 
 ### art-template 
 
@@ -69,58 +73,97 @@ form.parse(req,(err,fields,files)=>{
 
 >  数据查询语言DQL，数据操纵语言DML，数据定义语言DDL，数据控制语言DCL。 
 >
-> + DQL
+>  + DQL
 >
->   ~~~css
->   select
->   from
->   where
->   ~~~
+>  ~~~css
+>  select
+>  from
+>  where
+>  ~~~
 >
-> + DML
+>  + DML
 >
->   ~~~css 
->   insert
->   update
->   delete
->   ~~~
+>  ~~~css 
+>  insert
+>  update
+>  delete
+>  ~~~
 >
-> + DDL
+>  + DDL
 >
->   ~~~css 
->   创建数据库中的各种对象---表.视图
->   create table/view/index/syn/cluster 
->   		表  视图 索引 同义词 簇
->   ~~~
+>  ~~~css 
+>  创建数据库中的各种对象---表.视图
+>  create table/view/index/syn/cluster 
+>  		表  视图 索引 同义词 簇
+>  ~~~
 >
-> + database.run(sql,[param,...], [callback])
+>  + database.run(sql,[param,...], [callback])
 >
->   ~~~javascript
->   sql:要运行的sql字符串。sql类型是 DDL和DML, DQL不能使用这个命令。执行后返回值不包含任何结果，必须通过回调函数获取执行结果
->   ~~~
+>  ~~~javascript
+>  sql:要运行的sql字符串。sql类型是 DDL和DML, DQL不能使用这个命令。执行后返回值不包含任何结果，必须通过回调函数获取执行结果
+>  ~~~
 >
->   param,...: 当sql语句中包含（?）时，这里可以传入对应的参数
+>  param,...: 当sql语句中包含（?）时，这里可以传入对应的参数
 >
->   ~~~javascript
->   // 直接通过参数传值.
->   db.run("UPDATE tbl SET name = ? WHERE id = ?", "bar", 2);
->     
->   // 将值封装为一个数组传值.
->   db.run("UPDATE tbl SET name = ? WHERE id = ?", [ "bar", 2 ]);
+>  ~~~javascript
+>  // 直接通过参数传值.
+>  db.run("UPDATE tbl SET name = ? WHERE id = ?", "bar", 2);
 >   
->   // 使用一个json传值.参数的前缀可以是“:name”，“@name”和“$name”。推荐用“$name”形式
->   db.run("UPDATE tbl SET name = $name WHERE id = $id", {
->    $id: 2,
->    $name: "bar"
->   });
->   ~~~
+>  // 将值封装为一个数组传值.
+>  db.run("UPDATE tbl SET name = ? WHERE id = ?", [ "bar", 2 ]);
+>  
+>  // 使用一个json传值.参数的前缀可以是“:name”，“@name”和“$name”。推荐用“$name”形式
+>  db.run("UPDATE tbl SET name = $name WHERE id = $id", {
+>  $id: 2,
+>  $name: "bar"
+>  });
+>  ~~~
 >
->   callback: 如果执行成功，则第一个参数为null，否则就是出错。
+>  callback: 如果执行成功，则第一个参数为null，否则就是出错。
 >
->   ~~~javascript
->   callback（可选）：
->   
->   如果执行成功，上下文this包含两个属性：lastID和changes。lastID表示在执行INSERT命令语句时，最后一条数据的id；changes表示UPADTE命令和DELETE命令时候，影响的数据行数。
->   ~~~
+>  ~~~javascript
+>  callback（可选）：
+>  
+>  如果执行成功，上下文this包含两个属性：lastID和changes。lastID表示在执行INSERT命令语句时，最后一条数据的id；changes表示UPADTE命令和DELETE命令时候，影响的数据行数。
+>  ~~~
 >
->   
+>  Database
+>
+>  + 用法：new sqlite3.Database(filename,[mode],[callback])
+>  + 功能：返回数据库对象并且自动打开和链接数据库，他没有独立打开数据库的方法
+>
+>  close
+>
+>  + 用法：close([callback])
+>  + 功能：关闭和释放数据库对象
+>
+>  run 
+>
+>  + 用法：run(sql,[param,...],[callback])
+>  + 功能：运行指定的sql语句，完成之后调用回调函数
+>
+>  get
+>
+>  + 用法：get(sql,[param,...],[callback])
+>  + 功能：运行指定的sql语句，完成后调用回调函数，回调函数有两个参数，执行成功第一个为null,第二个参数为执行的结果
+>
+>  all 
+>
+>  + 用法： all(sql,[param,...],[callback])
+>  + 功能：运行指定sql语句，完成后调用回调函数。成功第一个参数为null，第二个参数为查询的结果集
+>
+>  prepare
+>
+>  + 用法：prepare(sql,[param,...],[callback])
+
+### sqlite3.close() 
+
++  警告:不回调而调用异步函数是不赞成的 
+
+![image-20191209111646079](assets/image-20191209111646079.png)
+
+### module.exports 
+
++ 导出class DB{} 类/构造函数时出错 **是自己将导入的文件名写错了**
+
++ ![image-20191209141236460](assets/image-20191209141236460.png)
