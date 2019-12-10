@@ -39,3 +39,18 @@ path.join(__dirname,'路径名次')//路径名称是相对路径的 返回的就
 path.resolve(__dirname,'路径名称')//不管路径名次是什么返回的都是绝对路径
 ~~~
 
+### user-select:none;
+
+> 禁止用户按下鼠标左键是选中文字的样式
+>
+> ![image-20191210154315953](assets/image-20191210154315953.png)
+
+### cursor: 
+
+> 改变鼠标指针的样式
+>
+> ![image-20191210154910192](assets/image-20191210154910192.png)
+
+### frame | transparent 在windows中不要一起用
+
+> 原因是： win.isMaximize()  方法返回的结果都是false
