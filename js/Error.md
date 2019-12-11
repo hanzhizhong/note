@@ -25,3 +25,36 @@ s=s>10?s:'0'+s
 >
 >     ![1575293580779](assets/1575293580779.png)
 
+### canvas
+
+#### 用来做擦除的方法
+
++ globalCompositeOperation
+
+  ~~~javascript
+  destination-out 新画的图型是用来擦除原有的图
+  destination-in
+  destination-over 
+  
+  xor
+  source-over 
+  ~~~
+
++ canvas.toDataURL()  返回的是一个带有图片格式的数据信息
+
+  ![image-20191211085242416](assets/image-20191211085242416.png)
+
+### navigator
+
+#### navigator.MediaStream.getUserDevices(constraints)
+
+> 获取媒体设备的能力 ，constraints是约束媒体流的
+>
+> ~~~javascript
+> let constraints={audio:true,video:{width:num,height:num}}
+> 
+> navigator.MediaStream.getUserDevices(constraints) 返回的是Promise对象
+> 直接使用 .then()的方法取值
+> ~~~
+>
+> 
