@@ -44,6 +44,12 @@ s=s>10?s:'0'+s
 
   ![image-20191211085242416](assets/image-20191211085242416.png)
 
++ closePath()
+
+  > cxt.fill() 不需要使用closePath()的封闭
+  >
+  > cxt.stroke() 是需要closePath()的封闭的顺序是 cxt.stroke() ; cxt.closePath()
+
 ### navigator
 
 #### navigator.MediaStream.getUserDevices(constraints)

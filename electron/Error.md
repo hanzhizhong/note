@@ -58,3 +58,10 @@ path.resolve(__dirname,'路径名称')//不管路径名次是什么返回的都�
 ### frame | transparent 在windows中不要一起用
 
 > 原因是： win.isMaximize()  方法返回的结果都是false
+
+### electron 使用import 模块化时报错的原因
+
++ [ 查看链接 ][http://www.itkeyword.com/doc/6155234927226421x791/es6-syntax-import-electron-require]
++ 需要使用第三方的模块
+
+![image-20191212100411642](assets/image-20191212100411642.png)
