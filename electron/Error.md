@@ -65,3 +65,14 @@ path.resolve(__dirname,'路径名称')//不管路径名次是什么返回的都�
 + 需要使用第三方的模块
 
 ![image-20191212100411642](assets/image-20191212100411642.png)
+
+### This is probably not a problem with npm. 
+
+~~~javascript	
+//解决方法
+rm -rf node_modules
+rm -rf package-lock.json
+npm cache clear --force
+npm install
+~~~
+
