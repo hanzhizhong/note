@@ -69,3 +69,10 @@ s=s>10?s:'0'+s
 > + 目前只能做到 把本地的文件在浏览器中修改后同步保存
 >   + 方法： add folder to workplace
 > + 服务器的文件暂时无法做到同步修改后保存到本地
+
+### async/await
+
+> ![image-20191225102103907](assets/image-20191225102103907.png)
+>
+> + promise.all 是并行执行异步操作  跑的慢的为结束标准
+> + promise.race 是并行执行异步操作   跑的快的为结束标准 结束后不在执行resolve 
