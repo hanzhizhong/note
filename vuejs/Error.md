@@ -63,3 +63,7 @@
 ![image-20191216170320434](assets/image-20191216170320434.png)
 
 + 解决方法为：使用import defaultImagePath from '...../.../' (相对或者绝对路径)
+
+### Unexpected token u in JSON at position 0
+
++  其实很简单，这个错误是**由于JSON.parse解析了undefined**。 
