@@ -148,3 +148,15 @@ npm install
   }
 ~~~
 
+### sqlite3 和electron-vue的结合使用方法
+
+~~~javascript	
+1.npm install gyp -S
+2.npm install node-pre-gyp -S
+3.npm install sqlite3 -S
+4.//在package.json中添加 
+	"postinstall":"install-app-deps"
+5.npm run postinstall
+
+~~~
+
