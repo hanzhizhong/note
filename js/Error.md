@@ -76,3 +76,8 @@ s=s>10?s:'0'+s
 >
 > + promise.all 是并行执行异步操作  跑的慢的为结束标准
 > + promise.race 是并行执行异步操作   跑的快的为结束标准 结束后不在执行resolve 
+
+###  **encodeURI() 函数可把字符串作为 URI 进行编码** 
+
++  encodeURI是对整个uri进行编码的，而encodeURIComponent是对uri中部分内容进行编码。 
++ ![image-20200102092853925](assets/image-20200102092853925.png)
