@@ -67,3 +67,21 @@
 ### Unexpected token u in JSON at position 0
 
 +  其实很简单，这个错误是**由于JSON.parse解析了undefined**。 
+
+### Failed to resolve directive: mode
+
++  未能解析指令：mode   => 有未识别的v-model  即有可能是将model单词平措了
+
+### filter 过滤器中转换html标签
+
+~~~javascript	
+<td v-html="$options.filters.turn2CurrentWord(item.isCurrent)"></td>
+Vue.filter('turn2CurrentWord',(val)=>{
+    return '<span>ddd</span>'
+})
+~~~
+
+###  Prop "allprogram" is passed to component  
+
++ 错误原因是 prop传值时的命名方法错误，如果传入的是allProgram="allProgram"就会报错，使用下面的方法就不会报错
++ ![image-20200108165705928](assets/image-20200108165705928.png)
