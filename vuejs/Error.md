@@ -85,3 +85,23 @@ Vue.filter('turn2CurrentWord',(val)=>{
 
 + 错误原因是 prop传值时的命名方法错误，如果传入的是allProgram="allProgram"就会报错，使用下面的方法就不会报错
 + ![image-20200108165705928](assets/image-20200108165705928.png)
+
+### 单击和双击的时间间隔设定为200ms
+
+### Duplicate keys detected: '0'.
+
+> 错误原因是在使用v-for的时候，都要加上一个唯一的key值，但是在这里写了两个for循环，尽管都加上了key值，但是又将key值写成一样的了，所以就会导致报错
+>
+> 解决方法
+>
+> + 修改其中的绑定的key值
+>
+>   ~~~html
+>   <div class="info" v-for="(item,index) in itemList" :key="'info1'+index"></div>
+>   <div class="info" v-for="(item,index) in itemList" :key="'info2'+index"></div>
+>   ~~~
+>
+>   
+>
+>   
+
