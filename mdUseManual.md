@@ -204,3 +204,8 @@ ___
 + cd 到当前的项目根目录下
 + tree /f > 文件名.txt
 
+### github的开源项目查找方法
+
++ 搜索栏中输入： in:name nodejs stars:>1000 
++ 搜索栏中输入：in:readme nodejs stars:>1000 
++ 搜索栏中输入：in description 微服务 language:javascript pushed:>2019-09-03

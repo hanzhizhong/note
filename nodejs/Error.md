@@ -27,14 +27,18 @@ form.parse(req,(err,fields,files)=>{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    ~~~
+>  ~~~
+> 
+>  ~~~
+>
 > ~~~
 > 
+>   + 
 > ~~~
 >
->   + 
 > ~~~
 > 
 > ~~~
@@ -167,3 +171,21 @@ form.parse(req,(err,fields,files)=>{
 + 导出class DB{} 类/构造函数时出错 **是自己将导入的文件名写错了**
 
 + ![image-20191209141236460](assets/image-20191209141236460.png)
+
+### nodejs支持的字符编码
+
++ 'ascii' - 仅支持 7 位 ASCII 数据。
+
+  'utf8' - 多字节编码的 Unicode 字符。
+
+  'utf16le' - 2 或 4 个字节，小端序编码的 Unicode 字符。支持代理对（U+10000 至 U+10FFFF）。
+
+  'ucs2' - 'utf16le' 的别名。
+
+  'base64' - Base64 编码。
+
+  'latin1' - 将 Buffer 编码成单字节编码的字符串。
+
+  'binary' - 'latin1' 的别名。
+
+  'hex' - 将每个字节编码成两个十六进制字符。
