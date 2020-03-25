@@ -81,3 +81,10 @@ s=s>10?s:'0'+s
 
 +  encodeURI是对整个uri进行编码的，而encodeURIComponent是对uri中部分内容进行编码。 
 + ![image-20200102092853925](assets/image-20200102092853925.png)
+
+### git  问题(Non-fast-forward)的出现原因是: git仓库中已有一部分代码, 它不允许你直接把你的代码覆盖上去。于是你有2个选择方式: 
+
+~~~javascript	
+
+~~~
+
