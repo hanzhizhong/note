@@ -27,14 +27,18 @@ form.parse(req,(err,fields,files)=>{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    ~~~
+>  ~~~
+> 
+>  ~~~
+>
 > ~~~
 > 
+>   + 
 > ~~~
 >
->   + 
 > ~~~
 > 
 > ~~~
@@ -167,3 +171,31 @@ form.parse(req,(err,fields,files)=>{
 + 导出class DB{} 类/构造函数时出错 **是自己将导入的文件名写错了**
 
 + ![image-20191209141236460](assets/image-20191209141236460.png)
+
+
+
+### 代码块的注释方法 （vscode和webstorm编辑器）快捷方法
+
+~~~javascript
+//vscode "/**"+'enter'
+//webstorm "/**"+enter
+~~~
+
+### bodyParser.urlencoded({extended:false/true})
+
+~~~css
+extended:false/true的区别
+bodyParser.urlencoded 用来解析 request 中 body的 urlencoded字符， 只支持utf-8的编码的字符,也支持自动的解析gzip和 zlib
+返回的对象是一个键值对，当extended为false的时候，键值对中的值就为'String'或'Array'形式，为true的时候，则可为任何数据类型。
+extended: false：表示使用系统模块querystring来处理，也是官方推荐的 默认的值为false
+extended: true：表示使用第三方模块qs来处理
+
+~~~
+
+### 用axios调用后台接口时,baseurl自己变成了localhost,怎么改呢
+
+~~~css
+不在后端设置完整的路径
+在前端调用时 baseURL+文件名称 可以解决baseURL变成localhost
+~~~
+
