@@ -173,24 +173,6 @@ ___
 
 
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #### 四级标题
@@ -203,4 +185,20 @@ ___
 
 + cd 到当前的项目根目录下
 + tree /f > 文件名.txt
+
+### nodejs express框架插件
+
+~~~css
+svg-captcha //图片验证码
+art-template/express-art-template //html的引擎
+body-parser
+express
+cros //跨域解决方案
+cherrio//正则插件
+nodemailer//邮箱插件
+
+
+~~~
+
+### nodejs koa框架 插件
 
