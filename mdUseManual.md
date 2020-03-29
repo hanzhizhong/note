@@ -173,24 +173,6 @@ ___
 
 
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #### 四级标题
@@ -209,3 +191,53 @@ ___
 + 搜索栏中输入： in:name nodejs stars:>1000 
 + 搜索栏中输入：in:readme nodejs stars:>1000 
 + 搜索栏中输入：in description 微服务 language:javascript pushed:>2019-09-03
+### nodejs express框架插件
+
+~~~css
+svg-captcha //图片验证码
+art-template/express-art-template //html的引擎
+body-parser
+express
+cros //跨域解决方案
+cherrio//正则插件
+nodemailer//邮箱插件
+
+
+~~~
+
+### nodejs koa框架 插件
+
+~~~css
+koa
+koa-static
+koa-router //require('koa-router')();app.use(router.routes());app.use(router.allowedMethods());
+art-template
+koa-art-template
+
+//static
+app.use(static(path.join(__dirname,'public')))
+//模板渲染
+render({
+    root:path.join(__dirname,'views'),
+    extname:'.html',//文件后缀名
+    debug:true||process.env.NODE_ENV!=='production'
+})
+
+~~~
+
+### electron 插件
+
+~~~css
+electron-rebuild //编译原生的模块 
+robot.js//智能自动化 控制鼠标、键盘、阅读屏幕
+vkey //根据键值找对应的键盘字母
+~~~
+
+### meta 键
+
+~~~css
+如果使用的是windows，那么meta键表示的就是键盘上的win键（及键盘上有窗口图案的键）
+
+如果使用的是苹果电脑，meta键表示的是Cmd键；
+~~~
+

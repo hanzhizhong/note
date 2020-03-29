@@ -172,6 +172,7 @@ form.parse(req,(err,fields,files)=>{
 
 + ![image-20191209141236460](assets/image-20191209141236460.png)
 
+<<<<<<< HEAD
 ### nodejs支持的字符编码
 
 + 'ascii' - 仅支持 7 位 ASCII 数据。
@@ -189,3 +190,32 @@ form.parse(req,(err,fields,files)=>{
   'binary' - 'latin1' 的别名。
 
   'hex' - 将每个字节编码成两个十六进制字符。
+=======
+
+
+### 代码块的注释方法 （vscode和webstorm编辑器）快捷方法
+
+~~~javascript
+//vscode "/**"+'enter'
+//webstorm "/**"+enter
+~~~
+
+### bodyParser.urlencoded({extended:false/true})
+
+~~~css
+extended:false/true的区别
+bodyParser.urlencoded 用来解析 request 中 body的 urlencoded字符， 只支持utf-8的编码的字符,也支持自动的解析gzip和 zlib
+返回的对象是一个键值对，当extended为false的时候，键值对中的值就为'String'或'Array'形式，为true的时候，则可为任何数据类型。
+extended: false：表示使用系统模块querystring来处理，也是官方推荐的 默认的值为false
+extended: true：表示使用第三方模块qs来处理
+
+~~~
+
+### 用axios调用后台接口时,baseurl自己变成了localhost,怎么改呢
+
+~~~css
+不在后端设置完整的路径
+在前端调用时 baseURL+文件名称 可以解决baseURL变成localhost
+~~~
+
+>>>>>>> b49122faeddd55b7bf7917eaabd9be8203c5bdb7
