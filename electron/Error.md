@@ -183,6 +183,7 @@ audio/ogg; codecs=vorbis
 包含Vorbis音轨的Ogg文件。
 
 video/webm; codecs="vp8, vorbis"
+video/webm;codecs="h264"//使用的方法为{mimeType:"video/webm;codecs:h264"}
 甲WebM的含有文件VP8视频和/或Vorbis的音频。
 
 video/mp4; codecs="avc1.4d002a"
