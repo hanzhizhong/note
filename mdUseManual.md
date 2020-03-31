@@ -210,7 +210,11 @@ nodemailer//邮箱插件
 ~~~css
 koa
 koa-static
-koa-router //require('koa-router')();app.use(router.routes());app.use(router.allowedMethods());
+koa-router 
+//router=require('koa-router'();
+//app.use(router.routes());启动路由
+//app.use(router.allowedMethods());allowedMethods处理的业务是当所有路由中间件执行完成之后,若ctx.status为空或者404的时候,丰富response对象的header头.
+
 art-template
 koa-art-template
 
@@ -222,6 +226,12 @@ render({
     extname:'.html',//文件后缀名
     debug:true||process.env.NODE_ENV!=='production'
 })
+
+koa-bodyparse
+//用法
+const bodyParser=require('koa-bodyparser')
+app.use(bodyParser()) 提前使用
+//post提交的信息存储在cxt.request.body中，空时body=｛｝
 
 ~~~
 
