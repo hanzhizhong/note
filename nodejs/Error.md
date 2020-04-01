@@ -27,21 +27,11 @@ form.parse(req,(err,fields,files)=>{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    ~~~
->  ~~~
+>        const express=require('express')
+>        const router=express.Router(); //注意是Router()
+>        ~~~
+>  
 > 
->  ~~~
->
-> ~~~
-> 
->   + 
-> ~~~
->
-> ~~~
-> 
-> ~~~
 
 ### art-template 
 
@@ -172,7 +162,7 @@ form.parse(req,(err,fields,files)=>{
 
 + ![image-20191209141236460](assets/image-20191209141236460.png)
 
-<<<<<<< HEAD
+
 ### nodejs支持的字符编码
 
 + 'ascii' - 仅支持 7 位 ASCII 数据。
@@ -190,7 +180,6 @@ form.parse(req,(err,fields,files)=>{
   'binary' - 'latin1' 的别名。
 
   'hex' - 将每个字节编码成两个十六进制字符。
-=======
 
 
 ### 代码块的注释方法 （vscode和webstorm编辑器）快捷方法
@@ -218,4 +207,9 @@ extended: true：表示使用第三方模块qs来处理
 在前端调用时 baseURL+文件名称 可以解决baseURL变成localhost
 ~~~
 
->>>>>>> b49122faeddd55b7bf7917eaabd9be8203c5bdb7
+### express中 重新定义html静态文件的文件夹名称
+
+~~~css
+app.set('views',path.join(__dirname,'src'))//views 是默认值 后面是修改值
+~~~
+
