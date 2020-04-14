@@ -97,3 +97,14 @@ s=s>=10?s:'0'+s
 $ git pull 
 ~~~
 
+### ES6 数组方法
+
+~~~javascript
+arr.forEach((item,index,arr)=>{})
+arr.map((item,index,arr)=>{ ...  return{}})//做映射改变原数据
+arr.filter((item,index,arr)=>{ return ....}) //
+arr.find((item,index,arr)=>{return })//返回最先符合条件的一个
+arr.findIndex()
+Array.from()
+~~~
+

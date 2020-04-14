@@ -213,3 +213,57 @@ extended: true：表示使用第三方模块qs来处理
 app.set('views',path.join(__dirname,'src'))//views 是默认值 后面是修改值
 ~~~
 
+### 数据库
+
+#### mysql
+
+##### 创建数据库的操作
+
+~~~css
+1.create database python3(这是数据库创建的名称，自己定义) charset=utf8;
+2.show databases;列出所有的database
+3.select database(); 当前的数据库名
+4.use python3(数据库名)； 切换数据库
+5.drop python3; 删除数据库
+~~~
+
+##### 数据库中表的操作
+
+~~~css
+1.create table students(
+	id int not null auto_increment primary key,
+	name varchar(18) not null,
+	gender bit default 0
+);
+2.alter table students add|drop|change （字段的类型和约束）；
+	alter table students add isDel bit default 0;
+3.drop table students(表名);删除表名
+4.desc students; 查看表结构
+5.rename table xxx(旧表名) to xxx(新表名)
+~~~
+
+##### 数据库中表的数据操作
+
+~~~css
+1.select * from xxx（表名）;
+~~~
+
+~~~css
+2.insert into xxx values();
+全列插入：insert into 表名 values(...)
+缺省插入：insert into 表名(列1,...) values(值1,...)
+同时插入多条数据：insert into 表名 values(...),(...)...;
+或insert into 表名(列1,...) values(值1,...),(值1,...)...;
+~~~
+
+~~~css
+3.update
+update xxx(表名) set 列1=值1,... where 条件
+~~~
+
+~~~css
+4.delete
+delete from 表名 where 条件 //物理删除
+update xxx set isDel=1 where...;
+~~~
+
