@@ -192,3 +192,15 @@ video/mp4; codecs="avc1.4d002a"
 与任何MIME类型参数一样，如果编解码器的任何属性使用特殊字符，则必须将codecs其更改为codecs*（请注意星号字符*），这些特殊字符必须按照RFC 2231第4节“ MIME参数值和编码”进行百分比编码词扩展。您可以使用JavaScript encodeURI()函数对参数列表进行编码。同样，您可以decodeURI()用来解码以前编码的参数列表。
 ~~~
 
+### 第三方库的使用方法问题
+
++ robotjs 控制鼠标和键盘  使用时是需要编译的
+
+  ~~~css
+  1.window 环境下
+  	npm install --global --production windows-build-tools 最好是以管理员运行cmd
+  	npm install electron-rebuild -D //当前的项目下
+  	npx electron-rebuild 自动编译
+  ~~~
+
+  
