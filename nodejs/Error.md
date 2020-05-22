@@ -256,3 +256,54 @@ $=cheerio.load(url,{decodeEntities:false})
 
 ~~~
 
+### nodejs 的优缺点
+
+~~~css
+优点：
+1、高并发
+2.异步
+3.事件驱动
+4.单线程
+缺点：
+1.大量的匿名函数，使得异常错误的解读困难
+2.try/catch只能捕获同步代码的异常，nodejs对异步代码的异常捕获较为困难
+~~~
+
+### 开发server端和前端的区别
+
+~~~css
+server服务端需要考虑的有：
+1.服务的稳定性
+	server端可能会遭受各种恶意攻击和误操作
+	单个客户端可以意外挂掉，但是服务端不能
+	node中用pm2做进程守候，一旦挂掉，自己会重启
+2.安全
+	server端要随时准备接收各种恶意攻击，前端则少很多
+	如越权操作，数据库攻击等
+	nodejs会登陆验证，防止越权操作。预防xss攻击和sql注入
+3.cpu和内存(优化和扩展)
+	客户端独占一个浏览器，内存和cpu都不是问题
+	server端要承载很多请求，cpu和内存都是稀缺资源
+	node用stream写日志，使用redis存session
+4.日志的管理=> 日志的写入、日志的分析、日志的管理
+    前端也会参与写日志，但只是日志的发起方，不关心后续
+    server端要记录日志，存储日志，分析日志，前端不关心
+    nodejs会有多种日志记录方式，以及如何分析日志
+5.集群和服务拆分
+	产品发展速度快，流量可能会迅速增加
+	如何通过扩展机器和服务拆分来承载大流量？
+	nodejs是单机器开发，但是从设计上支持服务拆分
+~~~
+
+### path内置模块
+
+~~~css 
+path.join(__dirname,'') //前面的__dirname和后面的路径进行拼接  当前文件的根路径和后面的输入路径拼接
+path.resolve(__dirname,'') //不管后面的路径是哪个，返回的都是 绝对路径
+
+let ret=path.resolve(__dirname,'E:\\download\\file\\01Nodejs+MongoDb')
+console.log(ret)//返回 E:\download\file\01Nodejs+MongoDb
+let ret2=path.join(__dirname,'E:\\download\\file\\01Nodejs+MongoDb')
+console.log(ret2)//G:\study\html5W2\d9\E:\download\file\01Nodejs+MongoDb
+~~~
+

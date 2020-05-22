@@ -105,3 +105,10 @@ Vue.filter('turn2CurrentWord',(val)=>{
 >
 >   
 
+###  在radio输入框中操作v-model的注意事项
+
+~~~css
+1.相同name类型的input type=radio中 v-model绑定的数据属性名称 相同
+2.注意 绑定的数据值是 字符串类型的 ，在遇到true 和false时是需要注意 值的类型转换，不然的话 在使用 v-if 对绑定的数据属性名称 进行判断时 是不会有 交互效果的
+~~~
+

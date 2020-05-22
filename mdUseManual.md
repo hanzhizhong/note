@@ -113,7 +113,9 @@ show()
 
 #### 超链接
 
-[百度][https://www.baidu.com]
+[百度][https://www.baidu.com] [http://www.baidu.com]
+
+
 
 `参考式链接`
 
