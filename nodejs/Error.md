@@ -267,3 +267,45 @@ delete from 表名 where 条件 //物理删除
 update xxx set isDel=1 where...;
 ~~~
 
+### Express 
+
+#### https和http协议的使用
+
+~~~css
+express=require('express')
+app=express()
+http=require('http').createServer(app)
+//https需要openssl生成ssl证书
+fs=require('fs')
+let credential={}
+credential.key=fs.readFileSync('private.pem')
+credential.cert=fs.readFileSync('file.crt')
+https=require('https').createServer(credential,app)
+~~~
+
++ openssl证书的生成的方法
+
+  ~~~css
+  //生成私钥key文件
+  1.openssl genrsa 1024 private.pem
+  //通过私钥生成CSR证书签名
+  2.openssl req -new -key private.pem -out csr.pem
+  //通过私钥文件和csr证书签名生成证书文件
+  3.openssl x509 -req -days 365 -in csr.pem -signkey private.pem -out file.crt
+  
+  private.pem 私钥
+  csr.pem		证书签名
+  file.crt	证书文件
+  ~~~
+
+  
+
+### cheerio 只能是对标签使用juqery的dom操作
+
+~~~css
+$=cheerio.load(url)
+//出现乱码的问题
+$=cheerio.load(url,{decodeEntities:false})
+
+~~~
+
