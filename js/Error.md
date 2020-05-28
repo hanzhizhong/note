@@ -59,7 +59,7 @@ s=s>=10?s:'0'+s
 > ~~~javascript
 > let constraints={audio:true,video:{width:num,height:num}}
 > 
-> navigator.MediaStream.getUserDevices(constraints) 返回的是Promise对象
+> navigator.mediaDevices.getUserDevices(constraints) 返回的是Promise对象
 > 直接使用 .then()的方法取值
 > ~~~
 >
@@ -96,4 +96,34 @@ s=s>=10?s:'0'+s
 
 $ git pull 
 ~~~
+
+### ECMA 语法
+
+#### switch case 使用范围的方法
+
+~~~css
+<script>
+    var x=10;
+switch(true){
+    case x>0&&x<10:   //条件必须分开书写
+    	console.log('sss')
+    	break;
+   	case x>10:
+    	console.log('bb')
+    	break;
+    case x===10:
+    	console.log('ccc')
+    	break;
+}
+</script>
+~~~
+
+#### requestFrameAnimation的停止方法
+
+~~~css
+this.stopID=window.requestFrameAnimation(函数名)调用后会返回一个唯一的ID值
+window.cancelFrameAnimation(this.stopID) 就会停止动画
+~~~
+
+
 
