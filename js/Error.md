@@ -97,6 +97,7 @@ s=s>=10?s:'0'+s
 $ git pull 
 ~~~
 
+
 ### ECMA 语法
 
 #### switch case 使用范围的方法
@@ -127,3 +128,13 @@ window.cancelFrameAnimation(this.stopID) 就会停止动画
 
 
 
+### ES6 数组方法
+
+~~~javascript
+arr.forEach((item,index,arr)=>{})
+arr.map((item,index,arr)=>{ ...  return{}})//做映射改变原数据
+arr.filter((item,index,arr)=>{ return ....}) //
+arr.find((item,index,arr)=>{return })//返回最先符合条件的一个
+arr.findIndex()
+Array.from()
+~~~

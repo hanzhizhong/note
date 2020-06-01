@@ -253,6 +253,24 @@ vkey //根据键值找对应的键盘字母
 如果使用的是苹果电脑，meta键表示的是Cmd键；
 ~~~
 
+### 虚拟机的操作
+
++ 在windows系统中使用FTPL连接 虚拟机 
+
+  ~~~css
+  1.安装vsftpd
+  2.配置vsftpd.conf
+  3.安装sudo apt install firewalld
+  4.开启firewalld的服务 sudo firewall-cmd --state
+  5.开启http服务 sudo firewall-cmd --add-service=http --permanent
+  5.开启20、21端口 sudo firewall-cmd --add-port=20/tcp --permanent
+  6.客户端使用 filezilla 软件 连接方式 ：
+  			加密：选择 普通的ftp(不安全)的
+  	在传输设置：传输协议 选择 主动模式
+  	
+  ~~~
+
+
 ### ftp win7系统服务器远程的链接方法
 
 ~~~css 
@@ -268,4 +286,3 @@ win7的 【控制面板】-【管理工具】中选择IIs中添加ftp服务器
 
 4. 在"入站规则"中, 在右侧点击"新建规则", 然后按照步骤一步一步操作, 开放端口21
 ~~~
-

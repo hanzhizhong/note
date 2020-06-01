@@ -201,9 +201,8 @@ video/mp4; codecs="avc1.4d002a"
   	npm install --global --production windows-build-tools 最好是以管理员运行cmd
   	npm install -g node-gyp
   	node-gyp rebuild
-  	npm install robotjs -S
-	npm install electron-rebuild -D //当前的项目下
+	npm install robotjs -S
+  	npm install electron-rebuild -D //当前的项目下
   	npx electron-rebuild 自动编译
   ~~~
-  
-  
+
