@@ -267,6 +267,24 @@ delete from 表名 where 条件 //物理删除
 update xxx set isDel=1 where...;
 ~~~
 
+##### mysql中的子查询
+
+~~~css
+**子查询中，程序先运行嵌套在最内层的语句，再运行外层的语句**
+
+子查询一共有三种方法
+1.where 中的子查询
+	select goods_id,goods_name,goods_price from goods where goods_id=(select max(goods_id) from goods)
+where 列=（内层sql）则内存sql返回的必须是单行单列 单个值
+where 列 in (内层sql) 则内层sql返回的必须是单列，但是可以是多行
+
+2.from 型子查询
+***查询结果在结构上可以当成表看，即可以再次查询
+
+~~~
+
+
+
 ### Express 
 
 #### https和http协议的使用
