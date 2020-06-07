@@ -138,3 +138,23 @@ arr.find((item,index,arr)=>{return })//返回最先符合条件的一个
 arr.findIndex()
 Array.from()
 ~~~
+
+### ES6中的目前只有静态方法没有静态属性
+
+~~~css
+即只支持 static 方法（）{}
+而类的静态属性
+~~~
+
+### webpack 的是使用
+
+~~~css
+1.在webpack中使用css-loader style-loader less-loader时 注意 加载导入的文件路径问题
+	文件路径一定要以（./.../.../）
+2.loader 使用规则：下载 使用（use）
+	要使用多个loader时 使用关键字 ‘use’
+	使用单个loader时 使用 loader:''
+3.plugins 使用规则：下载 引入 使用
+
+~~~
+
