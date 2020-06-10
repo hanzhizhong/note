@@ -286,3 +286,12 @@ win7的 【控制面板】-【管理工具】中选择IIs中添加ftp服务器
 
 4. 在"入站规则"中, 在右侧点击"新建规则", 然后按照步骤一步一步操作, 开放端口21
 ~~~
+
+### windows中重置 cmd的设置
+
+~~~css
+win+r 运行
+regedit 注册表打开
+HKEY_CURRENT_USER console =>删除带.cmd文件夹
+~~~
+

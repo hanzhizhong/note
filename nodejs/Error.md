@@ -316,7 +316,14 @@ https=require('https').createServer(credential,app)
   file.crt	证书文件
   ~~~
 
-  
+
+#### express 设置返回的状态值的方法
+
+~~~css
+res.status(204)
+~~~
+
+
 
 ### cheerio 只能是对标签使用juqery的dom操作
 
