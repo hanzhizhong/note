@@ -123,7 +123,7 @@ switch(true){
 
 ~~~css
 this.stopID=window.requestFrameAnimation(函数名)调用后会返回一个唯一的ID值
-window.cancelFrameAnimation(this.stopID) 就会停止动画
+window.cancelAnimationFrame(this.stopID) 就会停止动画
 ~~~
 
 
