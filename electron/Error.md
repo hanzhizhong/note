@@ -206,3 +206,157 @@ video/mp4; codecs="avc1.4d002a"
   	npx electron-rebuild 自动编译
   ~~~
 
+### FFmpeg的使用方法
+
+~~~css
+"ffplay播放没有声音SDL_OpenAudio (2 channels, 44100 Hz): WASAPI can't initialize audio client" 出现这种错误的解决方法
+
+1.打开系统环境变量
+2.点击新建环境变量
+3.‘变量名’：=》SDL_AUDIODRIVER
+4.‘变量值’:=》 directsound或winmm
+~~~
+
+### electron-builder安装和使用方法
+
+~~~css
+npm install -g --production windows-build-tools (用管理员启动cmd安装，windows中必备)
+1.npm install electron-builder -D 
+2.npm install cross-env -D //兼容不同平台的设置的环境变量
+在package.json中设置	cross-env NPM_CONFIG_ELECTRON_MIRROR='http://npm.taobao.org/mirrors/electron/' electron-builder build --mac
+	cross-env NPM_CONFIG_ELECTRON_MIRROR='http://npm.taobao.org/mirrors/electron/' electron-builder build --win --ia32
+3.如果先前下载了electron-rebuild 的插件需要先卸载它，因为 electron-builder 有c++ c 语言等编译插件 只要在package.json中加入 postinstall:钩子函数命令： “electron-builder install-app-deps”
+
+这是在基于electron-builder 打包的squirrel包 做更新时的需要的插件
+npm install electron-builder-squirrel-windows -D 
+
+**快速解决安装错误重新安装的方法
+npm install [name] --registry=https://registry.npm.taobao.org
+~~~
+
+#### electron-builder的公共配置项
+
+~~~css
+appId:'',应用名称 格式：‘com.example.app’
+productName:'' 应用的名称
+copyright:'' 版权信息
+asar:true/false 是否使用asar加密
+files:'',最终的需要打包的文件路径
+directories:
+extraFiles:[],在files中的需要打包的文件中有不要打包的文件路径名
+~~~
+
+### 软件的更新
+
+~~~css
+S3(simple storage service) 简单存储服务
+	S3理论上是一个全球存储区域网络 (SAN)，它表现为一个超大的硬盘，您可以在其中存储和检索数字资产
+~~~
+
+
+
+#### Mac
+
+~~~css 
+搭建的服务器中需要返回的数据：
+1.有更新时返回的数据格式
+{
+    url:'软件包的地址',
+    name:'这次发布的名名字如：1.1.0或者1.0.1'，
+    'notes':‘这次发布的文案’，
+    pub_date:'发布的时间'
+}
+没有更新时返回
+status 204 
+~~~
+
+#### window
+
+~~~css
+搭建的服务器返回的数据内容：
+1.路由 feedURL/RELEASES
+2.有更新返回RELEASES文件内容（打包时出现的 现在我打包会出错，在squirrel文件夹中没有这个文件），如
+‘BBC6F98A5CD32C675AAB6737A5F67176248B900C Mercurius-1.0.1-full.nupkg 62177782’
+3.redirect()重新定向到静态文件服务 中
+	req.redirect('/pbulic/.....nupkg')
+https://github.com/electron-userland/electron-builder/issues/359#issuecomment-21485113
+0
+~~~
+
+### 崩溃日志 crash
+
+~~~css 
+electron 的奔溃日志是 dump格式的 它不可读 （mac 和 window都是dump）
+需要搭建崩溃服务器
+
+收集到crash报告后 需要两个库 socorror 和 mini-breakpad-server 
+结合 electron symbol来做处理
+
+
+~~~
+
+
+
+### 集成C++能力
+
+~~~css
+N-API:nodejs 的一部分，独立于runtime v8,就是对同一个ABI无需重新编译
+以C的风格来提供稳定的ABI接口
+（ABI:应用程序二进制接口，描述了应用程序和操作系统之间，一个应用和它的库之间，或者应用的组成部分之间的低接口）
+（API:应用程序接口又叫应用编程接口）
+	本身是基于C的API
+	c++封装 node-addon-api
+
+
+windows-build-tools 是构建原生模块必备的工具
+node-gyp 创建项目的生成工具，解决来跨平台的一些问题
+gyp generate your project
+
+编写N-API
+bindings 是用来帮我们去查找路径用的
+N-API本质上是一个C的api 如果要用C++的话，要引入 node-addon-api
+*** 在 package.json中 增加 “gyp”:true ,别人在安装你的模块的时候会自动编译
+
+执行编译
+
+npx node-gyp rebuild
+~~~
+
+#### 集成动态链接库 (dll)
+
+~~~css 
+node-ffi 是一个javascript 加载和调用动态库的nodejs的扩展，他可以让我们在不编写任何c++代码的情况下创建于本地dll库的绑定，同时还负责javascript和C的类型转换
+
+和 node-addon-api相比 优点 
+	不需要源代码
+	不需要每次都重新编译
+	不需要写c的代码，只需要一定的c的了解即可
+缺点：
+	黑盒调用，调试困难
+
+
+mac 中有内置的脚本 applescript 
+直接通过 node_applescript 这个库然后去集成
+	1.npm install -S applescript 
+
+const applescript=require('applescript')
+const script='tell application "WeChat" to activate end'
+
+applescript.execString(script,(err,res)=>{
+    if(err){
+        console.log(err);
+        return 
+    }
+    console.log(res)
+})
+~~~
+
+
+
+### 在App 上挂载全局方法
+
+~~~css 
+app.fn=require('....').init()
+
+console.log(app.fn)
+~~~
