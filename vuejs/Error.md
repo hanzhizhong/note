@@ -112,3 +112,15 @@ Vue.filter('turn2CurrentWord',(val)=>{
 2.注意 绑定的数据值是 字符串类型的 ，在遇到true 和false时是需要注意 值的类型转换，不然的话 在使用 v-if 对绑定的数据属性名称 进行判断时 是不会有 交互效果的
 ~~~
 
+### vue-cli 
+
+#### public和assets的区别
+
+~~~css
+public中的文件是不会经过webpack的打包处理的
+assets 文件夹中的文件会经过webpack的打包处理
+
+public中的资源在引用是 **一定要使用绝对路径**,不然会找不到，报错
+
+~~~
+
