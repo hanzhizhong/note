@@ -1,5 +1,15 @@
 ### 秒转时分秒
 
+#### toUTCString() toGMTString() toString()
+
+~~~css 
+toUTCString()和toGMTString()
+由于目前UTC已经取代GMT作为新的世界时间标准，使用toGMTString()和toUTCString()两种方法返回字符串的格式和内容均相同
+toString() 返回的是 '中国标准时间'
+~~~
+
+
+
 ~~~javascript
 var itime=9045
 let h=Math.floor(itime/3600)
@@ -126,6 +136,24 @@ this.stopID=window.requestFrameAnimation(函数名)调用后会返回一个唯�
 window.cancelAnimationFrame(this.stopID) 就会停止动画
 ~~~
 
+#### new FormData()的使用方法
+
+~~~css
+//获得页面当中的form表单元素
+var form=document.querySelector("#form");
+//将获得的表单元素作为参数，对formData进行初始化
+var formdata=new FormData(form);
+
+使用 formdata.get('name') input中的name属性
+get(key) 获取
+set(key,value) 修改
+append(key,value) 末尾添加
+delete(key) 删除
+has(key) 判断
+~~~
+
+
+
 
 
 ### ES6 数组方法
@@ -157,4 +185,3 @@ Array.from()
 3.plugins 使用规则：下载 引入 使用
 
 ~~~
-

@@ -323,6 +323,26 @@ https=require('https').createServer(credential,app)
 res.status(204)
 ~~~
 
+#### express中动态路由的设置方法
+
+~~~css
+1.app.get('/user/:aid',(req,res)=>{}) 获取动态路由的参数方法为 req.params 返回的结果为：{aid:'你在路由user/后面中输入的字符串'}
+2.app.get('/user/*.png',(req,res)=>{}) 这也是一种动态的路由方式 获取它的参数的方法为 req.params 
+返回的结果为 {'0':'你在/user/后面输入的所有字符'} 如{'0':'1234'} {'0','324asdfa'} 都行
+req.params[0] 即可获取到值
+~~~
+
+#### cookie 的过期时间是世界时间
+
+~~~css 
+expires=date.toUTCString()
+
+在原生模块中设置 cookie的方式 为
+res.setHeader('Set-Cookie','key=value; key=value; path=/; expires=')
+注意的是：path expires 有默认值
+
+~~~
+
 
 
 ### cheerio 只能是对标签使用juqery的dom操作
