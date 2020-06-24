@@ -18,7 +18,34 @@ form.parse(req,(err,fields,files)=>{
     //fields为所有的表单中字段内容
     //files为上传的文件格式内容
 })
+
+特点：大而全 不需要body-parser等中间件了
 ~~~
+
+### multer 文件上传的又一个插件
+
+~~~css
+只针对 type="multipart/form-data"
+sigle
+array
+fields
+var storage=multer.diskStorage({
+    destination(req,file,cb){
+        cb(null,'/tmp/my-uploads')
+    },
+    filename(req,file,cb){
+        cb(null,file.fieldname+'-'+Date.now())
+    }
+})
+const upload=multer({storage:storage})
+上面的代码可以统一控制上传的文件路径和文件名
+
+limits:{
+    fileSize:'5MB' 是字符串，是上传文件大小加起来的大小进行限制
+}
+~~~
+
+
 
 ### express 中的路由报错
 
