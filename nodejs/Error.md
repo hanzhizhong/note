@@ -475,4 +475,92 @@ console.log(ret2)//G:\study\html5W2\d9\E:\download\file\01Nodejs+MongoDb
   
   ~~~
 
-  
+
+### nginx 部署问题
+
+~~~css
+nginx的目录
+/usr/local
+启动 注意是以root权限操作
+/usr/local/nginx/sbin   ./nginx 
+停止
+/usr/local/nginx/sbin   ./nginx -s stop
+重启
+/usr/local/nginx/sbin   ./nginx -s reload
+配置 
+/usr/local/nginx/conf    打开配置文件 nginx.conf 
+
+配置方法 
+1.反向代理 **反向代理时 proxy_pass 后面的路由路径需要 加上 http:协议**
+	输入 www.123.com 打开百度
+	a.先修改 本地 hosts 文件 添加 虚拟机IP地址（nginx所在的机器） 和www.123.com 绑定
+	b.nginx中 server块中 
+		｛
+			listen 80;
+			server_name 192.168.1.115;
+            location / {
+				proxy_pass http://www.baidu.com
+            }
+		｝
+** 如果配置报了 404的错误时 是因为 路径配置有错误
+ 默认会将location后带的URL添加到路径的最末尾
+    如：location ~ /edu/ {
+        root /html/;
+        index index.html;
+    }
+    web中真实匹配的路径为：url/html/edu/index.html
+        不是我以为的 url/edu/index.html
+~~~
+
+~~~css
+***相当重要的部分
+location [=|~|^~|~*] uri{}
+=:的意思是 uri中没有正则匹配
+~：uri中有正则匹配的规则,而且区分大小写
+^~:很少用暂不用理解
+~*：uri中有正则匹配的规则，而且不区分大小写
+~~~
+
+#### 负载均衡
+
+~~~css
+在server块的前面（不在server{}内,在http{}内）
+upstream [本次负载均衡服务的名称]{
+    **使用哪种方式 实现**;
+    server ip地址； 不加 http 
+    server ip地址；
+}
+location / {
+    proxy_pass http://my_servers;  *********重要的事件说三遍 加上http:// http:// http://
+    index index.html;
+}
+1.轮询
+每个请求按时间顺序逐一分配到不同的后端服务器，服务器挂掉一个，自动剔除；
+2.权重
+weight代表权重 默认为1；数值越大分配到的客户端越多
+3.ip_hash
+每个请求按访问IP的hash结果分配，这样每个访客固定访问一个服务器
+4.fair
+按照服务器的响应时间来分配请求，响应时间短的优先分配
+
+~~~
+
+####  invalid URL prefix
+
+~~~css
+这种错误多是 没有添加 http://协议
+~~~
+
+#### 动静分离
+
+~~~css
+设置两个location 
+一个配置 动态文件
+一个配置 静态资源文件
+
+静态资源的location /static/ {
+    root /html/;
+    autoindex on;*****重要的事情说三遍 audoindex on audoindex on autoindex on autoindex autoindex autoindex autoindex autoindex autoindex autoindex autoindex on 
+}
+~~~
+
