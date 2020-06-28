@@ -349,6 +349,10 @@ applescript.execString(script,(err,res)=>{
     }
     console.log(res)
 })
+
+ffi-napi 第三方集成c++能力
+安装完成后需要到node_modules的改模块下执行 node-gyp rebuild
+
 ~~~
 
 
@@ -360,3 +364,20 @@ app.fn=require('....').init()
 
 console.log(app.fn)
 ~~~
+
+### electron-builder 
+
+~~~css
+1.npm install --global --production windows-build-tools
+2.npm install -g node-gyp 
+3.注意在package.json 脚本中 
+sciprt:{
+    "pack:win":"electron-builder --win --ia32"
+}
+build:{
+    win:{
+        target:[nsis] //不需要再写 squirrel包了，自动更新使用 electron-updater第三方模块
+    }
+}
+~~~
+

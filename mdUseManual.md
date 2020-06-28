@@ -183,7 +183,7 @@ ___
 
 ###### 六级标题及
 
-## 生成项目的目录结构图方法
+### 生成项目的目录结构图方法
 
 + cd 到当前的项目根目录下
 + tree /f > 文件名.txt
@@ -293,5 +293,54 @@ win7的 【控制面板】-【管理工具】中选择IIs中添加ftp服务器
 win+r 运行
 regedit 注册表打开
 HKEY_CURRENT_USER console =>删除带.cmd文件夹
+~~~
+
+### 服务器ubuntu
+
+#### firewall-cmd的操作方法
+
+~~~css
+所有的操作是在 sudo 超级管理员权限下设置的
+1.添加 
+firewall-cmd --add-port=80/tcp --permanent
+2.删除
+firewall-cmd --remove-port=80/tcp --permanent 
+3.所有的有新操作时需要重新加载 reload
+firewall-cmd --reload 
+4.查看所有的开放的端口号
+firewall-cmd --list-all
+~~~
+
+### OpenSSL是一个开放源代码的软件包库
+
+~~~css
+应用程序可以使用这个包进行安全通信，避免窃听，同时确认另一端连接人的身份
+~~~
+
+#### 基本功能
+
+~~~css
+SSL协议库、应用程序以及密码算法库
+作为基于密码学的安全开发包，OpenSSL提供的功能相当强大和全面，攘括了主要的密码算法、常用的密码和证书管理功能以及SSL协议
+~~~
+
+#### 基本操作
+
+~~~css
+>openssl list -digest-algorithms 
+~~~
+
+#### 证书的形式
+
+~~~css
+1.带私钥的证书
+	包含了公钥和私钥的二进制格式的证书形式，以.pfx作为证书的后缀名
+2.二进制编码的证书
+	证书中没有私钥，DER编码二进制格式的证书文件，以cer作为证书文件后缀名
+3.Base64编码证书
+	证书中没有私钥，base64编码格式的证书文件，也以cer作为证书文件的后缀名
+
+pfx既可以导出pfx证书，也可以导出cer证书
+cer证书不能导出pfx证书
 ~~~
 

@@ -1,3 +1,15 @@
+### npm
+
+~~~css
+npm root -g 查看npm 全局安装目录
+设置python路径（根据自己的实际情况设置）
+npm config set python .....
+npm cache clean -f 删除缓存
+
+~~~
+
+
+
 ### formidable
 
 > [参考网址][https://www.cnblogs.com/abab301/p/9489000.html]
@@ -307,6 +319,28 @@ where 列 in (内层sql) 则内层sql返回的必须是单列，但是可以是�
 
 2.from 型子查询
 ***查询结果在结构上可以当成表看，即可以再次查询
+~~~
+
+##### mysql中的sql防止注入
+
+~~~css
+针对前端传输过来的数据 提取是使用 mysql.escape(username) mysql.escape(password)
+~~~
+
+
+
+
+
+### 原生模块
+
+~~~css
+cookie的注意事项：
+	1.httpOnly 定义在cookie中时 是在浏览器端脚本代码无法修改cookie值			（document.cookie='...'），但是在Application 存储的cookie值还是可以手动修改的
+	2.在解析cookie值的时候是没有获取到 path 和 expires 的值的，只是获取到了k=v 类型的值	
+~~~
+
+~~~css
+session值的注意事项
 
 ~~~
 
@@ -562,5 +596,68 @@ weight代表权重 默认为1；数值越大分配到的客户端越多
     root /html/;
     autoindex on;*****重要的事情说三遍 audoindex on audoindex on autoindex on autoindex autoindex autoindex autoindex autoindex autoindex autoindex autoindex on 
 }
+~~~
+
+### git 
+
+#### 修改和提交
+
+~~~css
+丢弃工作区的修改
+git checkout -- [file] 放弃工作区的修改内容，返回最近的一次commit
+添加到暂存区
+git add .
+暂存区到本地的版本库（贮存区）
+git commit -m ""
+重暂存区撤销到工作区
+git reset HEAD ..
+
+~~~
+
+#### 分支操作
+
+~~~css
+git branch  列出当前的所有分支
+git checkout -b [name] 创建一个新的分支,并且切换到新分支
+git checkout [name] 切换分支
+git merge [from name] 将name分支和当前所在的分支合并
+git branch -d [name] 删除name分支
+
+切换分支这个动作，用switch更科学。因此，最新版本的Git提供了新的git switch命令来切换分支：
+git switch -c [name] 创建新的分支
+git switch [name] 切换分支
+~~~
+
+#### 本地操作
+
+~~~css
+git add [name] 文件保存到暂存区
+git add . 所有文件保存到暂存区
+git commit -m "" 暂存区的文件保存到版本区
+git status 查看当前的状态
+git log 显示的是最近n次commit记录
+git reset --hard [commit_id] 版本回退、回滚
+
+查看 工作区和暂存区的区别
+git diff 
+查看 当前的版本库和工作区的区别
+git diff HEAD
+查看 当前版本库和暂存区的区别
+git diff --cached
+查看 当前版本库的不同版本的区别
+git diff [提交的id版本号] [提交的ID版本号2]
+
+删除工作区和暂存区的文件
+git rm [file]
+git checkout [file] 撤销掉所有的工作区修改
+git reset HEAD [file] 暂存区撤销掉
+git reflog 记录你所有的操作
+
+git remote 查看远程仓库
+
+**HEAD^ 上一个版本
+HEAD^^  上上个版本
+HEAD~n  到上n的版本
+
 ~~~
 
