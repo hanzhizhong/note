@@ -319,7 +319,8 @@ N-API本质上是一个C的api 如果要用C++的话，要引入 node-addon-api
 
 执行编译
 
-npx node-gyp rebuild
+npx node-gyp rebuild --arch=x64 
+npx node-gyp rebuild --arch=i32
 ~~~
 
 #### 集成动态链接库 (dll)
@@ -379,5 +380,21 @@ build:{
         target:[nsis] //不需要再写 squirrel包了，自动更新使用 electron-updater第三方模块
     }
 }
+~~~
+
+### electron-updater
+
+~~~css
+事件
+checking-for-update  audoUpdater.checkForUpdate()触发
+update-available 当有可用更新时发出
+update-downloaded 下载完成
+download-progress 下载进度
+
+方法
+autoUpdater.downloadUpdate()发起更新，开始下载
+autoUpdater.quitAndInstall()
+autoUpdater.checkForUpdate()
+audoUpdater.setFeedURL()
 ~~~
 

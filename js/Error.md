@@ -150,6 +150,18 @@ set(key,value) 修改
 append(key,value) 末尾添加
 delete(key) 删除
 has(key) 判断
+
+遍历的方法为 for(let temp of formdata){}
+~~~
+
+#### DOMContentLoaded事件和loaded区别
+
+~~~css
+DOMContentLoaded是在html解析完文档时触发：
+	1.如果文档中没有脚步，那么就在解析完dom树和css样式后触发
+	2.如果文档中有脚步，那么会脚步出阻塞，在解析完脚步和css dom后触发
+DOMContentLoaded是不需要等待图片等其他资源的加载完成
+loaded 不一样，是在所有资源加载完成后触发，页面上所有的资源（图片，音频，视频等）被加载以后才会触发load事件，简单来说，页面的load事件会在DOMContentLoaded被触发之后才触发。
 ~~~
 
 
