@@ -661,3 +661,58 @@ HEAD~n  到上n的版本
 
 ~~~
 
+### child_process子进程模块
+
+~~~css
+spawn('cmd命令',[参数或者需要执行文件的路径]) 返回一个childProcess对象，所以可以获取stdin,stdout,stderr
+exec('直接写cmd命令+参数或者需要执行文件的路径') 和spawn 主要区别是有大小限制
+execFile('cmd命令',[参数或者需要执行文件的路径])
+fork('./test.js') 参数为文件名，意味使用 fork 方法创建了一个子进程实例 ，并且指定了子进程的的运行目录为 child.js
+是 spawn 方法的变形的一种形式，也是用来创建进程。二者最大的不同之处在于：fork 方法会创建一个内置的通信信道，允许消息在父进程和子进程之间来回传递
+
+process.exit()//直接结束当前进程
+结束子进程的方法为 subchild.kill(process.pid,'终止的信号') signal：具体查看 process的信号事件
+process.kill(process.pid,siganl)
+~~~
+
+#### parent.js
+
+~~~css
+const {fork}=require('child_process')
+
+let sp=fork('./test3.js')
+sp.send('hello')
+
+process.on('message',msg=>{
+    console.log('接收到了子进程的结果',msg)
+})
+
+setTimeout(()=>{
+    sp.send('close')
+},4000)
+
+sp.on('close',(code,signal)=>{
+    console.log(code)
+    console.log('singal',signal)
+})
+
+~~~
+
+#### test3.js
+
+~~~css
+process.on('message',msg=>{
+    if(msg==='close'){
+        process.exit()
+    }else{
+        console.log('接收到的消息为:',msg)
+    }
+})
+
+count=0;
+setInterval(()=>{
+    count+=1;
+    console.log(count)
+},1000)
+~~~
+
