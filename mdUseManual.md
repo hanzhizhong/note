@@ -327,7 +327,7 @@ SSL协议库、应用程序以及密码算法库
 #### 基本操作
 
 ~~~css
->openssl list -digest-algorithms 
+>openssl list -digest-algorithms 显示所有的加密算法
 ~~~
 
 #### 证书的形式
