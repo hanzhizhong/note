@@ -1,14 +1,3 @@
-### child-process
-
->核心模块的名称为： child_process 不是child-process
->
->~~~javascript
->//常用的方法
->exec('shell 命令',(err,stdout,stderr)=>{})
->//还有三种方法，需要查资料
->~~~
->
-
 ### nativeImage 是NativeImage的实例
 
 > + 使用的方法
@@ -39,7 +28,7 @@ path.join(__dirname,'路径名次')//路径名称是相对路径的 返回的就
 path.resolve(__dirname,'路径名称')//不管路径名次是什么返回的都是绝对路径
 ~~~
 
-### user-select:none;
+### user-select:none;input\textarea中的还是可以选中的
 
 > 禁止用户按下鼠标左键是选中文字的样式
 >

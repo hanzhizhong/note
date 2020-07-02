@@ -6,6 +6,8 @@ npm root -g 查看npm 全局安装目录
 npm config set python .....
 npm cache clean -f 删除缓存
 
+清除所有的npm配置项
+C:\Users\Administrator 找到.npmrc，打开删除文本内容
 ~~~
 
 
@@ -66,11 +68,15 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->        const express=require('express')
->        const router=express.Router(); //注意是Router()
->        ~~~
->  
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
 > 
+> 
+>  ~~~
 
 ### art-template 
 
