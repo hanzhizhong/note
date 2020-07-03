@@ -172,7 +172,7 @@ audio/ogg; codecs=vorbis
 包含Vorbis音轨的Ogg文件。
 
 video/webm; codecs="vp8, vorbis"
-video/webm;codecs="h264"//使用的方法为{mimeType:"video/webm;codecs:h264"}
+video/webm;codecs="h264"//使用的方法为{mimeType:"video/webm;codecs=‘h264’"}
 甲WebM的含有文件VP8视频和/或Vorbis的音频。
 
 video/mp4; codecs="avc1.4d002a"
@@ -204,6 +204,9 @@ video/mp4; codecs="avc1.4d002a"
 2.点击新建环境变量
 3.‘变量名’：=》SDL_AUDIODRIVER
 4.‘变量值’:=》 directsound或winmm
+
+将webm转成MP4的方法
+ffmpeg -i default.webm -vcodec copy default.mp4
 ~~~
 
 ### electron-builder安装和使用方法

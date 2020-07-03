@@ -62,14 +62,14 @@ s=s>=10?s:'0'+s
 
 ### navigator
 
-#### navigator.MediaStream.getUserDevices(constraints)
+#### navigator.mediaDevices.getUserMedia(constraints)
 
 > 获取媒体设备的能力 ，constraints是约束媒体流的
 >
 > ~~~javascript
 > let constraints={audio:true,video:{width:num,height:num}}
 > 
-> navigator.mediaDevices.getUserDevices(constraints) 返回的是Promise对象
+> navigator.mediaDevices.getUserMedia(constraints) 返回的是Promise对象
 > 直接使用 .then()的方法取值
 > ~~~
 >
