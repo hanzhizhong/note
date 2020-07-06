@@ -164,6 +164,46 @@ DOMContentLoaded是不需要等待图片等其他资源的加载完成
 loaded 不一样，是在所有资源加载完成后触发，页面上所有的资源（图片，音频，视频等）被加载以后才会触发load事件，简单来说，页面的load事件会在DOMContentLoaded被触发之后才触发。
 ~~~
 
+#### 内存泄漏
+
+~~~css
+内存泄露的意思是：动态分配的堆内存由于某种原因程序未释放或者无法释放，导致内存的浪费，而导致程序运行速度的减慢甚至系统的崩溃等严重后果
+~~~
+
+### jsonp的使用方法
+
+~~~css
+第一种  创建标签的使用方法
+function createJSONP(wd){
+    let script=document.createElement('script')
+    srcipt.src=`http://suggestion.baidu.com/su?wd=${wd}`
+    document.body.appendChild(script)
+    script.addEventListener('load',(ret)=>{
+        document.body.removeChild(script)
+    })
+}
+function callback(ret){
+    console.log(ret)
+}
+
+第二种 jquery 和ajax配合使用
+$.ajax({
+    url:'http://suggestion.baidu.com/su?',
+        data:{wd:''}//传入的参数
+    type:'get',
+    dataType:"jsonp",//服务器返回的数据类型为 jsonp 有回调函数的名称,
+    jsonp:'callback的函数名==》在前端本地的自己定义的函数名称'//window.baidu.sug
+    jsonpCallback:"window.baidu.sug"
+})
+//在使用$.ajax的请求方式时，error和success是使用不到的
+
+window.baidu={
+    sug:function(ret){
+        console.log(ret)
+    }
+}
+~~~
+
 
 
 

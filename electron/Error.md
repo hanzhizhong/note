@@ -194,6 +194,32 @@ video/mp4; codecs="avc1.4d002a"
   	npm install electron-rebuild -D //当前的项目下
   	npx electron-rebuild 自动编译
   ~~~
+  
++ 上面是一种方法还有一种方法
+
+  ~~~css
+  卸载掉所有的 npm uninstall -g windows-build-tools
+  npm uninstall -g node-gyp 
+  在c://user/appdata/roming/ 删除 npm 
+  删除 目录下的.electron.gyp
+  删除 .node-gyp
+  删除 .window-build-tools 
+  清理软件清一下垃圾
+  重新启动电脑
+  
+  清理一下环境变量
+  下载并安装python2.7的环境,环境变量中添加工作路基
+  下载vs2017的安装工具
+  安装2017的社区版 选则 工作负载为 c++的桌面开发
+  
+  npm config set --global python 环境变量的路径
+  npm config set --global msvs_version 2017
+  
+  下面就可以下载c++等库了
+  
+  ~~~
+
+  
 
 ### FFmpeg的使用方法
 
