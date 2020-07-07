@@ -226,6 +226,25 @@ Array.from()
 而类的静态属性
 ~~~
 
+### 延时执行的方法
+
+~~~css
+function sleep(time){
+    return new Promise(resolve=>{
+        console.log('222')
+        setTimeout(resolve,time)
+    })
+}
+
+(async function(){
+    console.log('111')
+    await sleep(2000);
+    console.log('333')
+})();
+~~~
+
+
+
 ### webpack 的是使用
 
 ~~~css
