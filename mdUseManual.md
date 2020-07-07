@@ -293,7 +293,13 @@ win7的 【控制面板】-【管理工具】中选择IIs中添加ftp服务器
 win+r 运行
 regedit 注册表打开
 HKEY_CURRENT_USER console =>删除带.cmd文件夹
+
+设置cmd 显示中文乱码的问题
+regedit 
+如下图
 ~~~
+
+![image-20200707165214192](assets/image-20200707165214192.png)
 
 ### 服务器ubuntu
 
@@ -309,6 +315,7 @@ firewall-cmd --remove-port=80/tcp --permanent
 firewall-cmd --reload 
 4.查看所有的开放的端口号
 firewall-cmd --list-all
+
 ~~~
 
 ### OpenSSL是一个开放源代码的软件包库
