@@ -121,7 +121,7 @@ public中的文件是不会经过webpack的打包处理的
 assets 文件夹中的文件会经过webpack的打包处理
 
 public中的资源在引用是 **一定要使用绝对路径**,不然会找不到，报错
-
+使用方式为：/img/filename.jpg      不需要加上public /public/img/filename.jpg 这是不对的
 ~~~
 
 #### nextTick
