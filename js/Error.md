@@ -242,6 +242,30 @@ Array.from()
 而类的静态属性
 ~~~
 
+### ES6的module加载实现
+
+~~~css
+传统浏览器支持脚步的异步加载
+<script src="./jquery.min.js" defer></script>
+<script src="./jquery.min.js" async></script>
+这两种的区别是：下载完成后的执行时间不同
+defer:执行时间是 在DOMContentLoaded之后执行：即在DOM结构渲染和其他同步执行的脚步加载完成后执行
+async:执行时间是 在下载完成后立即执行
+
+ES6的模块加载方式是
+外联的方式是
+<script type="module" src="./jquery.min.js"></script>
+内联的方式是
+<script type="module">
+	import './jquery.min.js'
+</script>
+type="module" 也是异步的加载 效果等同于 defer
+<script type="module" src="./jquery.min.js" defer></script>
+<script type="module" src="./jquery.min.js" async></script>
+~~~
+
+
+
 ### webpack 的是使用
 
 ~~~css

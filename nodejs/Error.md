@@ -68,15 +68,19 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->  ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
+> ~~~
 > 
+> ~~~
+>
+>
+> ~~~
 > 
->  ~~~
+> ~~~
 
 ### art-template 
 
@@ -664,6 +668,20 @@ git remote 查看远程仓库
 **HEAD^ 上一个版本
 HEAD^^  上上个版本
 HEAD~n  到上n的版本
+
+打包 tag 一定要先将本地的代码提交到远程仓库先
+Git tag 查看当前的标签号 
+git tag <版本号> -m "本次tag的说明"
+	git tag v1.0.0 -m "first tag"
+提交打标签 到远程仓库
+git push origin v1.0.0
+将本地的所有tag都提交到远程仓库
+git push origin --tag 
+
+本地的标签tag删除
+git tag -d <版本号>
+远程仓库端删除
+git push origin :refs/tags/<版本号>
 
 ~~~
 
