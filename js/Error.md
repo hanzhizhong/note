@@ -242,6 +242,25 @@ Array.from()
 而类的静态属性
 ~~~
 
+### 延时执行的方法
+
+~~~css
+function sleep(time){
+    return new Promise(resolve=>{
+        console.log('222')
+        setTimeout(resolve,time)
+    })
+}
+
+(async function(){
+    console.log('111')
+    await sleep(2000);
+    console.log('333')
+})();
+~~~
+
+
+
 ### ES6的module加载实现
 
 ~~~css
@@ -262,6 +281,8 @@ ES6的模块加载方式是
 type="module" 也是异步的加载 效果等同于 defer
 <script type="module" src="./jquery.min.js" defer></script>
 <script type="module" src="./jquery.min.js" async></script>
+
+
 ~~~
 
 
