@@ -76,17 +76,21 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->  ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
+> ~~~
 > 
->  ~~~
+> ~~~
 >
 > ~~~
 > 
+> ~~~
+>
+>
+> ~~~
 > 
 > ~~~
 >
@@ -423,6 +427,70 @@ expires=date.toUTCString()
 在原生模块中设置 cookie的方式 为
 res.setHeader('Set-Cookie','key=value; key=value; path=/; expires=')
 注意的是：path expires 有默认值
+
+~~~
+
+#### 短信验证码
+
+~~~css
+leanCloud 
+npm install -S leanClound-storage 
+let sms=requrie('leanClound-storage');
+sms.init({
+    appId:'',
+    appKey:'',
+    serverURL:''
+})
+//向第三方请求验证码
+sms.Cloud.requestSmsCode({
+    mobilePhoneNumber: '17511694655', // 目标手机号
+    name: 'test',      // 控制台预设的模板名称
+    code:'验证码',                  // 控制台预设的短信签名
+    ttl:1,
+    op:'nothing seek,nothing find'
+}).then(ret=>{
+    //成功
+}).catch(err=>{
+    //失败
+})
+//向第三方发送验证验证码
+sms.Cloud.verifySmsCode([前端发来的参数]).then().catch()
+~~~
+
+#### 邮箱验证码
+
+~~~css
+const nodemailer = require("nodemailer");
+
+//发送方的邮箱host查找：node_modules=>nodemailer=>lib=>well-known=>services.json
+
+//创建邮件的发送对象
+let transporter = nodemailer.createTransport({
+    host: "smtp.qq.com",//发送方的邮箱 qq等
+    port: 465,
+    secure: true, // true for 465, false for other ports
+    auth: {
+        user: '1084266319@qq.com', // 发送方的邮箱地址
+        pass: '**********', // smtp的验证码 【用手机号码发送验证码后动态获取的】各人不同
+    },
+});
+
+//邮件信息
+let mailobj = {
+    from: '"Fred Foo 👻" <1084266319@qq.com>', // sender address
+    to: "1084266319@qq.com", // list of receivers
+    subject: "Hello ✔", // Subject line
+    text: "Hello world?", // plain text body
+    html: "<b>您的验证码是1234567</b>", // html body
+};
+
+//发送邮件
+transporter.sendMail(mailobj)// 异步的函数
+异步的函数 会有回调函数
+transporter.sendMain(mailobj,(err,data)=>{
+    if(err){console.log(err);return }
+    console.log('success:',data)
+})
 
 ~~~
 
