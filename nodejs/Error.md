@@ -8,6 +8,14 @@ npm cache clean -f 删除缓存
 
 清除所有的npm配置项
 C:\Users\Administrator 找到.npmrc，打开删除文本内容
+本地用户  C:\Users\Administrator 找到 .npmrc 
+	添加
+	registry=https://registry.npm.taobao.org/
+	ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/
+系统用户 C:\Users\han\AppData\Roaming\npm\etc  下找到 .npmrc
+	全局变量 npm config --global 的配置
+
+
 ~~~
 
 
@@ -68,15 +76,19 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
+> 
+>  ~~~
+>
 > ~~~
 > 
+> 
 > ~~~
->
 >
 > ~~~
 > 
