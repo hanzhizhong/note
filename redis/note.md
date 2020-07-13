@@ -13,6 +13,11 @@ del [key]
 type [key]
 6.设置key的有效期限
 expire [key] seconds
+
+7.设置键值
+set key value 
+8.设置键值及过期时间，以秒为单位
+setex key seconds value
 ~~~
 
 ### 插件 redis的应用注意点

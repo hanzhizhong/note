@@ -116,7 +116,7 @@ $ git pull
 <script>
     var x=10;
 switch(true){
-    case x>0&&x<10:   //条件必须分开书写
+    case x>0&&x<10:   //条件必须分开书写 不能写成 0<x<10
     	console.log('sss')
     	break;
    	case x>10:
