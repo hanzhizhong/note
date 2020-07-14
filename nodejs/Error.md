@@ -76,19 +76,23 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
-> ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
 > 
-> ~~~
+>  ~~~
 >
 > ~~~
 > 
 > ~~~
 >
+> ~~~
+> 
+> 
+> ~~~
 >
 > ~~~
 > 
@@ -496,7 +500,7 @@ transporter.sendMain(mailobj,(err,data)=>{
 
 
 
-### cheerio 只能是对标签使用juqery的dom操作
+### cheerio 只能是对标签使用jquery的dom操作
 
 ~~~css
 $=cheerio.load(url)
