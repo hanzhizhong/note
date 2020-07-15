@@ -132,3 +132,98 @@ nextTick的回调函数，在下一次DOM更新后立即执行
 因此 调用$nextTick() 函数 可以得到在 需要在下一次DOM更新后的新值
 ~~~
 
+### Vue.js知识点
+
+~~~css
+new Vue({
+    选择对象：data\props\propsData\computed\watch\methods
+})
+注意点：只有在实例对象创建时已经在data对象中的属性才是 响应式的 响应式 响应式
+
+计算属性：是基于它们的响应式依赖进行缓存的 就是说data中的属性值变成才能引起计算属性的变化
+
+class 和style 绑定
+方式除了 有字符串外 还有 对象绑定 数组绑定的方式 
+:class="{active:isActive,color-style:isGray}" 常用来启用动态的样式切换
+对象中可以是多键值对的形式
+动态的绑定的class 不仅仅是可以存放在内联样式内，还可以放在 data的对象中
+:class="classObject"
+data(){
+    return {
+        classObject:{
+            active:true,
+            'color-style':false
+        }
+    }
+}
+
+class 放在数组中的方式 [active,error]这需要 data对象的关联
+
+:style样式绑定 
+1.内联的对象方式绑定 :style="{color:data对象中的属性名}"
+2.在data对象中直接使用 属性对象绑定 styleobject:{color:'',fontSize:'23px'}注意一定要使用 驼峰的命名方式
+3.数组的绑定方式
+
+~~~
+
+#### 条件渲染
+
+~~~css
+使用template 元素当做一个不可见的包裹元素 v-if 条件渲染后浏览器不会显示template
+注意点 v-if="loginType==='username'"
+	  v-else
+	这里的loginType 将不会清除 用户已经输入的内容，如果应为两个模板使用了相同的元素input 那么input 不会被替换掉，只是替换了placeholder的提示信息 用户的输入内容是一应的 如下图所示
+
+解决方式： 这两个元素完全独立，不要复用它们
+	在条件编译v-if的容器中在相同的元素标签中 加上 key属性 
+	如：<input placeholder="your name please" key="username">
+	   <input placeholder="your email" key="email">
+
+
+~~~
+
+![](assets/image-20200715102031563.png)
+
+![image-20200715102052545](assets/image-20200715102052545.png)
+
+~~~css
+v-if 和v-show的区别是：
+v-show是始终都会存在DOM的结构树中的，只是简单切换元素的display
+~~~
+
+#### 遍历渲染
+
+~~~css
+可以使用of 替代in
+v-for="(item,index) in list"
+v-for="(item,index) of list"
+
+v-for 遍历对象 object:{name:'jane',title:'nothing seek,nothing find'}
+v-for="(v,k) in object" :key=k
+
+~~~
+
+#### vue不能检测数组和对象的变化,回避方式有如下：
+
+~~~css
+对象：vue无法检测property 的添加或者移除
+var vm=new Vue({
+    data(){
+        //data中没有someobject 属性 
+    }
+});
+
+Vue.set(vm.someobject,'b',2) 就会有响应式的根级别的属性someobject 
+或者
+this.$set(this.someobject,'b',2)
+
+对于已经存在的对象 添加新的属性时，使用Object.assign()方式
+this.someObject=Object.assign({},this.someobject,{a:1,b:2})
+
+数组不响应的地方有
+	利用数组索引直接改变一个数组项 不响应
+	修改数组的长度时 不响应 
+对于第一个问题的解决方案 是使用 this.$set(items,'索引值',newVaule)
+对于第二个问题的解决方案 是使用 this.items.splice(index,1)
+~~~
+

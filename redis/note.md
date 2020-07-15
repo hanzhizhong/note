@@ -61,3 +61,14 @@ firewall-cmd --reload
 127.0.0.1:6379> config set stop-writes-on-bgsave-error no
 ~~~
 
+### 在windows环境下配置自启动的方法
+
+~~~css
+计算机=》管理=>服务=》查看有没有 redis 服务
+没有的话添加 新的服务
+	在redis的安装目录下
+	1.D:\redis>redis-server --service-install redis.windows.conf --loglevel notice --s
+ervice-name Redis
+	2.D:\redis>redis-server --service-start
+~~~
+
