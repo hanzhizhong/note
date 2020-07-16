@@ -76,21 +76,25 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->  ~~~
-> 
->  ~~~
->
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
 > ~~~
 > 
 > ~~~
 >
 > ~~~
 > 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+>
+> ~~~
 > 
 > ~~~
 >
@@ -496,6 +500,34 @@ transporter.sendMain(mailobj,(err,data)=>{
     console.log('success:',data)
 })
 
+~~~
+
+#### jsonwebtoken的验证方式
+
+~~~css
+const jwt=require('jsonwebtoken')
+
+module.exports={
+    encrypt(data,time){
+        //data 对象 中一定要有当前用户的id字段，这个verify时 然后到数据库中查找对应的user有用
+        //secret string 本次的混合加密的字符串，默认的加密算法为SHA-256 HS256
+        return jwt.sign(data,secret,{expiresIn:time})
+    }
+    decrypt(token){
+        try{
+            let data=jwt.verify(token,secret)
+            return {
+                msg:true,
+                id:data.id
+            }
+        }catch(err){
+            return {
+                msg:false,
+                error:err
+            }
+        }
+    }
+}
 ~~~
 
 

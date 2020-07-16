@@ -21,6 +21,21 @@
 
 > ![image-20191126152343142](assets/image-20191126152343142.png)
 
+#### Component template should contain exactly one root element.
+
+~~~css
+解决的方式是 template中使用一个大标签,包裹住所有的子标签
+~~~
+
+#### Avoid mutating a prop directly since the value will be overwritten whenever the parent component re-renders
+
+~~~css
+大概的意思是：通过props传递给子组件的 属性值，不能在子组件内部修改props中的 属性值。
+需要通过 this.$emit的方式 事件触发机制，让父组件自己改变 属性值
+~~~
+
+
+
 ### filters 
 
 #### Error in render: "TypeError: Cannot read property
@@ -225,5 +240,62 @@ this.someObject=Object.assign({},this.someobject,{a:1,b:2})
 	修改数组的长度时 不响应 
 对于第一个问题的解决方案 是使用 this.$set(items,'索引值',newVaule)
 对于第二个问题的解决方案 是使用 this.items.splice(index,1)
+~~~
+
+#### 事件处理
+
+~~~css
+事件修饰符：
+stop\prevent\once\capture\self\passive
+<a :click.stop="doThis"></a>
+<form :submit.prevent="onSubmit"></form>
+once事件只会触发一次
+capture:使用事件捕获模式，即内部触发的事件现在此处理，然后才交给内部元素处理
+self:只有当event.target时当前的元素自身时才会触发处理函数，即内部元素不会触发
+
+按键修饰符
+enter\tab\delete\esc\space\up\down\left\right
+
+系统修饰符
+ctrl\alt\shift\meta
+
+.exact 精确的系统修饰符
+:click.exact="onClick" 没有其他的修饰符下，按下才能触发
+:click.ctrl.exact="onCtrlClick"
+
+鼠标修饰符
+right
+left
+middle
+~~~
+
+#### 表单输入绑定
+
+~~~css
+使用v-model指令 创建双向数据绑定 语法糖
+有效的标签元素 select input textarea
+
+**v-model 会忽略 表单元素的的value checked selected 的初始值， 而是将vue实例中的根数据当做数据来源
+
+text/textarea使用 value 绑定 触发 input事件
+checkbox radio 使用checked 绑定 触发change事件
+select 使用value绑定 触发change事件
+
+** <textarea>{{text}}</textarea> 这是错误的解析模式
+应该使用 v-model
+
+v-model的修饰符
+	v-model.lazy 数据不会立即双向改变，需要通过事件change事件之后触发
+
+	v-model.number 数据转成number类型的
+	v-model.trim 过滤掉收尾的空白字符
+
+~~~
+
+#### 注册组件
+
+~~~css
+组件名的命名规范：字母全小写且必须包含一个连字符
+***重要的事情说三遍 组件名：字母全部小写，必须包含连字符
 ~~~
 

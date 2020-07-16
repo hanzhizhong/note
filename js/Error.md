@@ -1,3 +1,20 @@
+
+
+### Octal literals are not allowed in strict mode
+
+~~~css
+JS严格模式禁止使用八进制字面量，在我的数组中id使用了0，老的八进制（0前缀）
+arr=[
+{id:01,name:'aaa',age:23},
+{id:02,name:'aaa',age:23},
+{id:03,name:'aaa',age:23}
+]
+去掉0
+
+~~~
+
+
+
 ### 秒转时分秒
 
 #### toUTCString() toGMTString() toString()
