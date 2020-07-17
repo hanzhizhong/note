@@ -201,6 +201,23 @@ str.replace(/[<>&]*/gi,function(match){
 })
 ~~~
 
+#### prop和attr的属性区别
+
+~~~css
+prop使用时针对html标签固有的属性 如 title value 等
+attr使用时针对 html的自定义的属性名 
+具有true/false的属性值 的属性名如 disabled checked selected 时使用 prop
+
+<input type="text" name="username">
+使用原生js在input发生变化后获取值的 结果
+input.value='你输入的当前值'
+input.getAttrbuite('value') 为null
+
+在使用jquery时
+$('input').prop('value')显示的是发生变化的值
+$('input').attr('value')显示的是undefined 
+~~~
+
 
 
 ### jsonp的使用方法

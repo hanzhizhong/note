@@ -297,5 +297,49 @@ v-model的修饰符
 ~~~css
 组件名的命名规范：字母全小写且必须包含一个连字符
 ***重要的事情说三遍 组件名：字母全部小写，必须包含连字符
+
+动态组件
+使用 keeep-alive将动态组件包裹起来，会将失活的组件状态缓存起来
+<keep-alive>
+	动态组件标签  <component :is="自定义的组件名"></component>
+</keep-alive>
+
+异步的组件加载
+局部
+componets:{
+    '组件名'：()=>{
+        return import('./ComponentA.js')
+    }
+}
+全局
+Vue.component('组件名',()=>{
+    return import('./componentA.js')
+})
+
+Props
+出字符串外
+Boolean,Array,Number,Object
+即使是静态的属性，我们也要用v-bind告诉Vue
+
+所有的prop使得父子之间形成了一个单向下行绑定
+父级prop的更新会向下更新子组件的数据，但是反过来不行
+这意味着你不应该在一个子组件内部改变 prop。如果你这样做了，Vue 会在浏览器的控制台中发出警告。
+
+有两种情况是例外的
+props:['initialCounter'],
+data(){
+    return {
+        count:this.initialCounter//prop 用来传递一个初始值；这个子组件接下来希望将其作为一个本地的 prop 数据来使用
+    }
+}
+
+2.
+props:['size'],
+computed:{
+    normalizedSize(){
+        return this.size.trim().toLowerCase()// prop 以一种原始的值传入且需要进行转换
+    }
+}
+
 ~~~
 
