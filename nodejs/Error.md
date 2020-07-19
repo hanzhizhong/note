@@ -93,6 +93,14 @@ limits:{
 > 
 > ~~~
 >
+> ~~~
+> 
+> ~~~
+>
+>
+> ~~~
+> 
+> ~~~
 >
 > ~~~
 > 
@@ -505,6 +513,14 @@ transporter.sendMain(mailobj,(err,data)=>{
 #### jsonwebtoken的验证方式
 
 ~~~css
+RFC 7519开放标准
+定义了一种紧凑且独立的方式，可以将各方的信息作为json对象进行安全传输
+改信息可以验证和信任，因为是经过数字签名的
+~~~
+
+
+
+~~~css
 const jwt=require('jsonwebtoken')
 
 module.exports={
@@ -528,6 +544,47 @@ module.exports={
         }
     }
 }
+~~~
+
+#### postman中自动设置token的全局脚本
+
+~~~css
+选择Tests的标签页
+var jsonData=pm.response.json();
+pm.globals.set('token',jsonData.token)
+
+后面就可以在 鉴权 Authorization标签页中
+选择Type:Bear Token选项
+Token中填入 {{token}}
+~~~
+
+
+
+#### session 和jwt的比较 ：认证和授权方式
+
+~~~css
+session相比于JWT,最大的优势在于服务器可以主动清除session
+session保存在服务器端，相对安全
+session结合cookie使用,较为灵活，兼容性好
+
+劣势：
+cookie+session 在跨域场景下表现不好
+分布式的部署，需要做多机共享session
+基于cookie的机制很容易被CSRF
+查询session信息可能会有数据库的查询操作
+
+比较：
+可拓展性：jwt
+安全性：都会遇到攻击
+	csrf 
+	xss
+	中间人攻击 https预防
+session 不符合 restful api的架构限制
+性能：各有利弊
+时效性：jwt只有在过期后自动销毁
+		session 可以被删除
+
+
 ~~~
 
 
@@ -854,5 +911,58 @@ setInterval(()=>{
     count+=1;
     console.log(count)
 },1000)
+~~~
+
+### Koa
+
+~~~css
+cxt 上下文环境
+next是异步函数 返回的是promise类型
+await next() 才能执行下一步
+~~~
+
+#### koa使用到的中间件
+
+~~~css
+koa-router
+koa-bodyparser
+koa-json-error  处理错误中间件
+error=require("koa-json-eror") //检验 404，500，412等系统错误
+app.use(error({
+    postFormat:(e,{stack,...rest})=>{
+        process.env.NODE_ENV==='production'?rest:{stack,...rest}
+    }
+})) 
+
+koa-parameter 校验参数
+app.use(parameter(app))
+ctx.verifyParams({//不符合会返回422错误代码
+    name:{type:'string',required:true}
+})
+
+koa-jwt 
+koa-body 替换 koa-bodyparser
+koa-bodyparser只支持body\form不支持文件
+app.use(koaBody({
+    multipart:true,
+        formidable:{
+            uploadDir:'上传的路径',
+            keepExtentsions:true,//保留拓展名.jpg,.png...
+    }
+}))
+//获取文件
+ctx.request.files.file
+
+koa-static 生成静态服务
+app.use(koaStatic(path.join(__dirname,'public')))
+
+path.basename('文件的绝对路径')//这就得到了
+ctx.origin 得到当前的host name 
+
+<input accept="image/png,image/jpg,image/jpeg">
+
+
+    ctx.state 约定俗成的：放置一些用户信息
+    ctx.state.user=user 
 ~~~
 

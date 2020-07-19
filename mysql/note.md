@@ -124,3 +124,82 @@ module.exports=pool
 
 ~~~
 
+### Sequelize 
+
+~~~Css
+ORM 
+	对象关系映射模型
+	通过对象来映射和操作数据库
+模型
+	用来表示（描述）数据库字段信息的对象，每个模型对象表示数据库中的一个表，后续对数据库的操作都是通过对对应的模型对象来完成的
+
+~~~
+
+#### 操作
+
+~~~css
+const sequelize=new Sequelize('数据库名','用户名'，‘密码’，{其他配置
+,
+    dialect:数据库类型，必填项，‘mysql’
+    host:'',
+    port:'',
+    timezone:'+08:00'
+});
+sequelize.authenticate() //连接测试
+
+sequelize依赖了mysql2 库，需要自己手动安装mysql2
+
+数据库连接完成后，需要确定操作的表
+使用orm，不需要通过sql来操作表，而是通过对象来操作
+给每个操作的表定义一个对象，  模型model
+
+const userModel=sequelize.define("User",{
+    //描述表中对应的字段信息
+    //对象的key默认对应着表的column，字段
+    key:{
+        type,
+        allowNull,
+        defaultValue,
+        unique,
+        primaryKey,
+        field,数据库中字段的实际名称
+        autoIncrement
+    }
+},{
+    //描述表的其他信息
+    get,
+    set,
+    validate,
+    timestamps,是否为每条数据添加createdAt和updatedAt字段，并在添加新数据和更新数据的时候自动设置这两个字段的值，默认为true
+    paranoid:设置deletedAt字段，当删除一条记录的时候，并不是真的销毁记录，而是通过该字段来表示，即保留数据，进行假删除，默认为false
+    freezeTableName:禁用修改表名，默认情况下，sequelize将自动将所有传递的模型名称(defined的第一个参数)转成复数，User=>Users，默认为false
+        indexes:[//添加索引
+        	{
+                name:'uname',
+                field:['username']//对用数据库的column名称
+            }
+        ]
+})
+
+模型类=》表
+模型创建出来的对象=》表中某条记录
+let Kimoo=new UesrModel()//创建了一个user的记录 一行数据
+或者使用一个静态方法
+let kimoo=UserModel.build({
+    username:'',
+    age:30,
+    gender：‘男’
+})
+通过new或者build出来的对象不会立即同步添加到数据库中，需要后续的方法来同步
+await kimoo.save()
+
+kimoo.update({
+    
+})==kimoo.set()+kimoo.save()
+kimoo.get()
+删除
+kimoo.destroy()
+
+
+~~~
+
