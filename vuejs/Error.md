@@ -340,6 +340,12 @@ computed:{
         return this.size.trim().toLowerCase()// prop 以一种原始的值传入且需要进行转换
     }
 }
+Html中的attribute名是大小写不敏感的，所以浏览器会将所有的大写字符解释为小写字符。这意味着当你使用DOM中的模板时，camelCase(驼峰命名法)的prop名称需要使用等价的kebab-case（短横线分隔命名）
 
 ~~~
 
+![image-20200720103017204](assets/image-20200720103017204.png)
+
+#### 组件上使用v-model
+
+![image-20200720105815757](assets/image-20200720105815757.png)

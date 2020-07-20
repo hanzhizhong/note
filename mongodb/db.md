@@ -18,7 +18,7 @@ mongoose.connection.on('error',()=>console.error('error'))
 ~~~css 
 用户模型 schema
 const mongoose=require('mongoose')
-const {schema}=mongoose;
+const {schema,model}=mongoose;
 
 const userSchema=new schema({
     __v:{type:Number,select:false}

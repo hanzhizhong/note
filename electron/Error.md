@@ -147,6 +147,8 @@ npm install
 	"postinstall":"install-app-deps"
 5.npm run postinstall
 
+还有一个插件 better-sqlite3说是比sqlite3好用
+
 ~~~
 
 ### tray托盘的使用时一定要定义全局变量 
@@ -414,5 +416,12 @@ autoUpdater.downloadUpdate()发起更新，开始下载
 autoUpdater.quitAndInstall()
 autoUpdater.checkForUpdate()
 audoUpdater.setFeedURL()
+~~~
+
+### electron 中的global顶级全局变量
+
+~~~css
+在主进程中 global.setWinId={curWin:win.id}
+在渲染进程中 使用remote.getGlobal('setWinId').curWin
 ~~~
 
