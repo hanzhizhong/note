@@ -203,3 +203,29 @@ kimoo.destroy()
 
 ~~~
 
+#### 数据库迁移
+
+~~~css 
+sequelize-cli 
+npm install -D sequelize-cli
+npm install -S sequelize 
+npm install -S mysql2 
+
+使用sequelize-cli 的迁移操作
+	./node_modules/.bin/sequelize
+	列出所有的操作命令
+
+node_modules/.bin/sequelize init 
+自动创建几个目录
+	config/config.json 与数据有关的配置信息
+	models 包含项目的所有模型
+	migrations 包含所有的迁移文件  结构
+	seeders 包含所有的种子文件  测试数据
+~~~
+
+#### 配置环境变量
+
+~~~css
+set NODE_ENV=home;
+~~~
+
