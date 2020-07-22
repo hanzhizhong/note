@@ -349,3 +349,42 @@ Html中的attribute名是大小写不敏感的，所以浏览器会将所有的�
 #### 组件上使用v-model
 
 ![image-20200720105815757](assets/image-20200720105815757.png)
+
+#### this.$emit('自定义的事件名')
+
+~~~css
+自定义的事件名一定是 'my-event'的短横线的形式，或者 myevent的形式，不可使用 驼峰的命名方式
+如果是 this.$emit('myEvent')的方式
+<my-component @myEvent="doSomething"></my-component> 这种方式的监听是不会触发doSomething的函数方法 就算是改成 @myevent时，也不行，所以得是将 this.$emit('my-event') @my-event 这样子才行
+~~~
+
+#### slot插槽
+
+~~~css
+<slot name="..."></slot> 定义在自定义的组件中
+在需要插入自定义组件的模块中 使用
+<template v-slot:[name]>
+	【这里的所有东西都会被放入slot的内容中】
+</template>
+
+**v-slot 只能添加在 <template>**
+
+插槽属性prop的传值
+在父组件中
+<parent-layout>
+	<template v-slot:default="父组件中data中的属性名">
+		{{父组件中data中的属性名}}
+	</template>
+</parent-layout>
+在parent-layout的模板中
+<div>
+	<slot></slot>
+</div>
+v-slot:[slot的名称]的缩写 #[slot的名称]
+
+插槽作用域的理解：就是在子组件中的跟属性 值的修改可以在 父组件中修改，父组件中修改的值还是子组件提供的
+~~~
+
+![image-20200722113238075](assets/image-20200722113238075.png)
+
+![image-20200722113256497](assets/image-20200722113256497.png)
