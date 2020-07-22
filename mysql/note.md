@@ -226,9 +226,16 @@ npm install -S mysql2
 node_modules/.bin/sequelize init 
 自动创建几个目录
 	config/config.json 与数据有关的配置信息
-	models 包含项目的所有模型
-	migrations 包含所有的迁移文件  结构
+	models 包含项目的所有模型 给程序用的
+	migrations 包含所有的迁移文件  变更结构
 	seeders 包含所有的种子文件  测试数据
+
+migrations 结构：
+	up:
+	down
+
+执行迁移文件:
+	db:migrate
 ~~~
 
 #### 配置环境变量
