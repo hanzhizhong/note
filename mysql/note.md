@@ -238,6 +238,33 @@ migrations 结构：
 	db:migrate
 ~~~
 
+#### 各个数据库的不同配置
+
+~~~css
+dialects:方言 配置数据库类型
+
+1.mysql
+new Sequlize('数据库名'，'用户名','密码',{host:'',dialects:'mysql'})
+2.sqlite
+new Sequelize('数据库名','用户名','密码',{host:'',dialects:"sqlite",storage:'path/to/数据库名.sqlite'})
+
+
+~~~
+
+#### 数据检索/查找器
+
+~~~css
+find 
+Project.findByPK()
+Project.findOne({})
+Project.findOrCreate({where:{},defaults:{}}) 返回的是数组[{},bool]
+	如果是新建的bool为true,否则为false
+	已经存在的数据不会被修改
+
+~~~
+
+
+
 #### 配置环境变量
 
 ~~~css
