@@ -138,7 +138,65 @@ ORM
 #### 要点
 
 ~~~css
-1.数据库名一定是已经创建好的，不然会报错
+1.数据库名一定是已经创建好的，不然会报错 
+
+2.钩子(Hooks)
+生命周期事件 执行sequelize中，调用之前和之后调用的函数。
+不能讲钩子函数与实例一起使用，而是与模型一起使用 
+
+本地钩子总是在全局钩子之前运行
+User.beforeCreate(user=>{
+    //user就是需要录入数据的数据，可以根据它判断权限的问题
+})
+
+仅查询部分属性（字段）时，可以通过 attributes选项来指定。
+	attributes:['foo','id']
+	属性可以通过数组嵌套的方式来重命名
+	attributes:['foo',['bar','baz']] 将bar重命名为baz，返回的数据字段显示的名称为baz
+	[[sequelize.fn('COUNT',sequelize.col('hats')),'no_hats']]
+select count(hats) as no_hats ...
+
+[Op.ne]:null	!=null
+[Op.eq]:3		=3
+[Op.is]:null	is null
+[Op.not]:true	is not true
+[Op.between]:[6,10]		between 6 and 10
+[Op.in]:[1,3]
+[Op.notIn]:[1,2]
+[Op.like]:'%hat'
+[Op.notLike]:'%hat'
+[Op.startsWith]:'hat'	'hat%'
+[Op.endsWith]:'hat'		'%hat'
+[Op.substring]:'hat'	'%hat%'
+
+
+let temp=Model.build({....}) 返回未保存的对象
+如果需要保存到数据库中使用
+temp.save().then().catch(err)
+
+Model.update({....},{fields:['title']}).then()
+只更新fields 数组中的字段数据
+
+
+User.create({...}).then(user=>{
+    return user.destroy()//强制删除 user.destroy({force:true}) paranoid=true时
+恢复软删除的实例 
+}).then(user=>{
+    return user.restore()
+})
+
+sequelize中四种可用的关联类型
+BelongsTo BelongsTo BelongsTo 
+HasMany HasMany HasMany 
+HasOne HasOne HasOne 
+HasOne 
+BelongsToMany 
+BelongsToMany 
+BelongsTo 
+HasOne 
+HasMany 
+BelongsToMany 
+
 ~~~
 
 
