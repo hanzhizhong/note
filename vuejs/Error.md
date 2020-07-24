@@ -433,3 +433,79 @@ v-slot:[slot的名称]的缩写 #[slot的名称]
 ![image-20200722113238075](assets/image-20200722113238075.png)
 
 ![image-20200722113256497](assets/image-20200722113256497.png)
+
+#### 全局配置
+
+~~~css
+在入口文件main.js中配置
+Vue.config.silent=true	取消vue所有的日志和警告
+Vue.config.devtools=true/false 	是否允许vue-devtools检查代码 开发dev true, 生产pro为false
+
+Vue.config.keyCodes={
+    v:86,
+    f1:112,
+    "media-play-pause":179,不能使用驼峰命名的方式
+    up:[38,87]
+    
+}
+给v-on 自定义键位别名
+<input @keyup.media-play-pause="method的方法名">
+    
+Vue.config.productionTip=true/false    false时阻止vue在启动时生产生产提示
+~~~
+
+#### 全局api
+
+~~~css
+Vue.extend() 创建一个子类
+<div id="box"></div>
+
+const Container=Vue.extend({
+    template:``,
+    data(){
+        return{
+            
+        }   
+    }
+})
+new Container().$mount('#box')
+
+Vue.nextTick()
+Vue.set(target,propName,value)
+Vue.delete(target,propName)
+Vue.use(插件) 安装插件
+Vue.version 这是属性 console.log(Vue.version)
+~~~
+
+#### 选项/数据
+
+~~~css
+props:{
+    username:{
+        type:String,
+        default:'',默认值
+        required:true/false 
+        validator:function(val){
+           //验证函数
+            return val>0
+        }
+        
+    }
+}
+~~~
+
+### vue-cli
+
+#### 缓存和并行处理
+
+~~~css
+cache-loader 会默认为Vue编译开启，文件缓存在node_modules/.cache中，如果遇到了编译的问题，记得先删除掉缓存目录之后再试试看
+
+~~~
+
+#### 相对路径导入
+
+~~~css
+js,css或.vue文件中使用相对路径(必须以.开头)引用一个静态资源，该资源会被webpack加入依赖包
+~~~
+

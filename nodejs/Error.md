@@ -15,6 +15,9 @@ C:\Users\Administrator 找到.npmrc，打开删除文本内容
 系统用户 C:\Users\han\AppData\Roaming\npm\etc  下找到 .npmrc
 	全局变量 npm config --global 的配置
 
+**和npx的区别**
+npm 是一个node包管理工具
+npx会先检查本地有没有安装某个package，如果没有就去registry找，找到的话就直接使用，不用下载到本地node_modules包里，优化本地项目的大小，避免安装package到全局
 
 ~~~
 
@@ -76,14 +79,14 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
-> ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
 > 
-> ~~~
+>  ~~~
 >
 > ~~~
 > 
@@ -97,6 +100,10 @@ limits:{
 > 
 > ~~~
 >
+> ~~~
+> 
+> 
+> ~~~
 >
 > ~~~
 > 
@@ -965,4 +972,20 @@ ctx.origin 得到当前的host name
     ctx.state 约定俗成的：放置一些用户信息
     ctx.state.user=user 
 ~~~
+
+### REST ful API
+
+~~~css
+http请求 options方法返回的信息
+	1.在 allow 的字段中会显示 当前URI支持的请求方式 如HEAD GET POST DELETE
+	2.返回405（没有实现的方法）或者501(不允许，当前框架没有或不认识这种请求方法)
+
+不同请求方法返回的数据信息和格式  （在成功的情况下）
+	GET：返回相应的请求数据信息 
+	POST:返回当前提交的数据信息
+	PUT/PATCH:patch是部分编辑修改 返回的数据是当前编辑和修改的数据
+	DELETE:返回的是 status=204 表示本次操作成功
+~~~
+
+
 

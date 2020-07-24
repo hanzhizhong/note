@@ -28,7 +28,7 @@ setex key seconds value
 
 ~~~css
 const redis=require('redis')
-const client=redis.createConnect()//https://github.com/noderedis/node-redis/ 详细配置
+const client=redis.createClient()//https://github.com/noderedis/node-redis/ 详细配置
 
 事件
 on('error',callback)

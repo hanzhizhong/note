@@ -197,6 +197,31 @@ HasOne
 HasMany 
 BelongsToMany 
 
+
+目标键（target key）
+目标模型上的列，是源模型外键列所指向的列
+HasOne是目标模型
+源键（Source key）
+是目标模型上的外键属性，指向源模型上的属性。
+
+在sequelize中关联两个模型是，可以将他们称为 源和目标模型对
+
+Class Player extends Model{}
+Player.init({...},{sequelize,modelName:'player'})
+class Team extends Model{}
+Team.init({...},{sequelize,modelName:'team'})
+
+//player作为源，team作为目标
+Player.BelongsTo(Team) 
+或者
+Player.HasOne(Team) 
+
+hasOne会在目标模型中插入外键
+belongsTo会在源模型上插入外键
+
+当源模型上有关联的信息时，就用belongsTo
+当目标原型上有关联信息时，就用hanOne 
+
 ~~~
 
 
