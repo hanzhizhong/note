@@ -356,10 +356,12 @@ Project.findOrCreate({where:{},defaults:{}}) 返回的是数组[{},bool]
 
 ~~~css
 npx sequelize-cli init 生成下面的文件夹
-config：包含配置文件，告诉cli怎么连接数据库
-models：包含项目中所有的模型
+config：包含配置文件，告诉cli怎么连接数据库 
+models：包含项目中所有的模型  ***这是给程序员用的 可以在这里修改表结构
 migrations:包含所有的迁移文件
 seeders:包含所有的种子文件
+
+migrations和seeders是给sequelize-cli用的
 ~~~
 
 ~~~css
@@ -374,6 +376,8 @@ npx sequelize-cli db:migrate
 
 撤销迁移
 npx sequelize-cli db:migrate:undo
+
+npx seequelize-cli db:migrate:undo --name migrations文件夹中的一个文件名
 
 撤销所有的迁移
 npx sequelize-cli db:migrate:undo:all
@@ -399,7 +403,9 @@ npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data
 撤销所有的种子
 npx sequelize-cli db:seed:undo:all 
 
+npx sequelize-cli db:migrate:status =》up/down两种状态
 
+sequelizeMeta中记录和保存的是迁移的文件 XXX.js
 ~~~
 
 
@@ -407,6 +413,12 @@ npx sequelize-cli db:seed:undo:all
 #### 配置环境变量
 
 ~~~css
-set NODE_ENV=home;
+window环境下设置环境变量的方式
+set NODE_ENV=home;//当前的cmd窗口有效（局部有效）
+查看 环境变量
+set 回车
+echo %NODE_ENV% 回车
+
+
 ~~~
 

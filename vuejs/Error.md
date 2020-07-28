@@ -509,3 +509,23 @@ cache-loader 会默认为Vue编译开启，文件缓存在node_modules/.cache中
 js,css或.vue文件中使用相对路径(必须以.开头)引用一个静态资源，该资源会被webpack加入依赖包
 ~~~
 
+#### vue.config.js
+
+~~~css
+devServer:{
+    proxy:{
+        '/api':{
+           	target:url,
+            ws:true/false,// 代理websocket
+            changeOrigin:true/false  //请求头中host仍然是浏览器发送过来的host
+            pathRewrite:{
+            	'要修改的地方':'修改后的'        
+            }
+        },
+        '/blog':{
+            target:url
+        }
+    }
+}
+~~~
+
