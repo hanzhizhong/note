@@ -79,47 +79,19 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->  ~~~
-> 
->  ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
+
+### 关于axios请求报错ECONNRESET
+
+~~~css
+axios({})在请求中加上timeout的时间限制  延长>1000（默认值）
+~~~
+
+
 
 ### art-template 
 
@@ -985,6 +957,87 @@ http请求 options方法返回的信息
 	POST:返回当前提交的数据信息
 	PUT/PATCH:patch是部分编辑修改 返回的数据是当前编辑和修改的数据
 	DELETE:返回的是 status=204 表示本次操作成功
+~~~
+
+### OAuth 2.0是目前最流行的授权机制，用来授权第三方应用，获取用户数据
+
+~~~css
+数据的所有者告诉系统，同意授权第三方应用进入系统，获取这些数据。系统从而产生一个短期的进入令牌，用来替代密码，供第三方应用使用
+
+1.令牌是短期的，到期后自动失效，用户自己无法修改
+2.令牌可以被数据所有者撤销，会立即失效
+3.令牌有权限范围
+
+令牌的发布方式：四种，适用不同的互联网场景
+
+~~~
+
+#### 四种授权方式
+
+~~~css
+01授权码
+最流行，安全性最高的，适用于有后端的web应用
+第一步：A 请求B
+https://b.com/oauth/authorize?response_type=code&client_id=CLIENT_ID&redirect_uri=CALLBACK_URL&scope=read
+
+response_type 返回授权码code 
+client_id 让B网站知道是谁在请求
+redirect_uri B网站接受或拒绝后跳转的网址
+socpe表示要求的授权范围
+
+第二步
+https://a.com/callback?code=AUTHORIZATION_CODE
+	返回的就是code授权码
+第三步
+A网站拿到授权码后，向B网站请求 令牌
+https://b.com/oauth/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&code=AUTHORIZATION_CODE&redirect_uri=CALLBACK_URL
+第四步
+B网站收到请求后，就会颁发令牌，向redirect_uri指定的网址，发送一段json数据
+{
+    "access_token":"ACCSSS_TOKEN",
+    "token_type":"bearer",
+    "expires_in":2592000,
+    "refresh_token":"REFRESH_TOKEN",//refresh_token,
+    "socpe":"read",
+    "uid":10001,
+    "info":{
+        ....
+    }
+}
+
+02隐藏式
+纯前端的应用，没有后端。这就需要隐藏式， 直接向前端发令牌。没有授权的中间步骤
+
+1第一步
+A提供链接到B网站，B网站授权用户数据给A网站使用
+https://b.com/oauth/authorize?response_type=token&client_id=CLIENT_ID&redirect_uri=CALLBACK_URL&scope=read
+
+response_type要求直接返回toke令牌
+
+2.第二步
+用户跳转到B网站，登录后同意给予A网站授权
+http://a.com/callback#token=ACCESS_TOKEN
+
+03密码式
+高度信任某个应用，直接把B网站的密码和用户名在A网站输入,A网站拿到密码和用户名直接请求B网站的令牌
+1.第一步：
+https://oauth.b.com/token?grant_type=password&username=USERNAME&password=PASSWORD&client_id=CLIENT_ID
+2.第二步
+A网站拿到JSON数据
+
+04客户端凭证
+第一步
+https://oauth.b.com/token?
+  grant_type=client_credentials&
+  client_id=CLIENT_ID&
+  client_secret=CLIENT_SECRET
+
+上面 URL 中，grant_type参数等于client_credentials表示采用凭证式，client_id和client_secret用来让 B 确认 A 的身份。
+
+第二步，B 网站验证通过以后，直接返回令牌。
+
+这种方式给出的令牌，是针对第三方应用的，而不是针对用户的，即有可能多个用户共享同一个令牌。
+**不管哪种授权方式，第三方应用申请令牌前，都必须到系统进行备案，说明自己的身份,然后拿到 两个识别码 (客户端ID [client ID]) 客户端秘钥(client secret)** 防止令牌被滥用，没有备案过的第三方应用，是不会拿到令牌的的
 ~~~
 
 

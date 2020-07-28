@@ -348,6 +348,62 @@ Project.findOrCreate({where:{},defaults:{}}) 返回的是数组[{},bool]
 
 
 
+#### sequelize-cli的命令
+
+~~~css
+通过迁移功能，你可以将现有数据库转移到另一个状态，反之亦然。进行迁移时，状态转换会被保存到迁移文件中，这些文件描述了如何进入新状态以及如何恢复更改以恢复到旧状态。
+~~~
+
+~~~css
+npx sequelize-cli init 生成下面的文件夹
+config：包含配置文件，告诉cli怎么连接数据库
+models：包含项目中所有的模型
+migrations:包含所有的迁移文件
+seeders:包含所有的种子文件
+~~~
+
+~~~css
+npx sequelize-cli model:generate 创建一个模型
+
+npx sequelize-cli model:generate --name User --attributes firstname:string,email:string
+~~~
+
+~~~css
+执行迁移
+npx sequelize-cli db:migrate
+
+撤销迁移
+npx sequelize-cli db:migrate:undo
+
+撤销所有的迁移
+npx sequelize-cli db:migrate:undo:all
+
+恢复到指定文件的迁移
+npx sequelize-cli db:migrate:undo:all --to xxxxxxx-create-posts.js
+~~~
+
+~~~css
+seeders文件表示数据的一些变化，可用于使用样本数据或测试数据填充数据库
+
+npx sequelize-cli seed:generate --name demo-user 创建一个种子文件，然后编辑这个文件
+执行种子
+npx sequelize-cli db:seed:all
+提交到数据库中
+
+撤销种子
+npx sequelize-cli db:seed:undo 
+
+撤销到指定的种子
+npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data 
+
+撤销所有的种子
+npx sequelize-cli db:seed:undo:all 
+
+
+~~~
+
+
+
 #### 配置环境变量
 
 ~~~css

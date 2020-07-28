@@ -74,3 +74,16 @@ User.findById(cxt.params.id).select('+educations')
 User.findById(cxt.params.id).select('+following').populate('following')
 ~~~
 
+#### schemaTypes类型有
+
+~~~css
+String,
+Number,
+Date,
+Buffer,
+Boolean,
+Mixed,
+ObjectId,
+Array 
+~~~
+
