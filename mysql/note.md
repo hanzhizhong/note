@@ -406,6 +406,10 @@ npx sequelize-cli db:seed:undo:all
 npx sequelize-cli db:migrate:status =》up/down两种状态
 
 sequelizeMeta中记录和保存的是迁移的文件 XXX.js
+
+生成迁移文件的结构
+npx sequelize-cli migration:generate --name xxxxx...
+
 ~~~
 
 
@@ -419,6 +423,69 @@ set NODE_ENV=home;//当前的cmd窗口有效（局部有效）
 set 回车
 echo %NODE_ENV% 回车
 
+npx sequelize-cli model:generate --name Userinfo --attributes sex:enum,age:integer,qg:string,job:string,birthday:date,path:string
+~~~
 
+#### undescored:false
+
+~~~css
+1.蛇形法 蛇形法是全由小写字母和下划线组成,在两个单词之间用下滑线连接即可, 例如:first_name、last_name。
+2.驼峰法 骆驼式命名法就是当变量名或函式名是由一个或多个单词连结在一起,而构成的唯一识别字时, 第一个单词以小写字母开始;第二个单词的首字母大写或每一个单词的首字母都采用大写字母,
+
+// 自动设置字段为蛇型命名规则
+  // 不会覆盖已定义的字段选项属性
+  underscored: true,
+~~~
+
+
+
+### RBAC 
+
+~~~css
+RBAC:基于角色的访问控制 (roles-based access control) who what how 三元组之间的关系
+who 权限的拥有者或主体
+what 操作或对象
+how 具体的权限 （正向授权和负向授权）
+who对what进行how的操作
+
+~~~
+
+#### 鉴权管理 即权限判断逻辑
+
+~~~css
+1.最基本的权限管理就是 菜单管理
+2.功能权限管理。B/S系统的功能体现为URL访问的管理
+	如：访问【添加用户】的功能(url)时，有没有授权的提示
+3.行级权限管理：A能管理论坛【新闻模块】,不能管理论坛【技术交流】模块箱
+4.列级权限：除销售人员外，其他用户不能看到客户的联系方式
+5.组织机构/部门级数据权限管理：销售一部不能看到销售二部的订单信息，但是销售经理可以同时看到
+6.范围型业务数据权限管理：大卖场销售人员在下订单时，要选择相应的产品所在仓库信息，不能看到【广州仓库】
+~~~
+
+#### 授权管理 即权限分配的过程
+
+~~~css
+鉴权管理的所有内容都要通过系统的授权功能来分配具体的用户
+1.直接对用户授权
+2.对用户所属岗位授权
+3.用户所有权限授权
+4.角色直接关联具体的功能权限(URL),也可以关联负权限，即此角色关联的权限不能使使用负权限功能
+5.分级授权，系统管理员可以将自己的权限信息授权给其他用户。
+~~~
+
+#### 权限的类型
+
+~~~css
+数据权限：账号能查看多少数据
+功能权限：大致菜单权限和按钮权限
+~~~
+
+#### RBAC的种类
+
+~~~css
+RBAC0 是rbac的核心思想，权限的最低需求
+RBAC1 基于rbac0，但是增加了角色分级的概念，一个角色可以从另一个角色继承许可权
+RBAC2 基于rbac0,增加了一些限制，强调在rbac的不同组件中在配置方面的一些限制
+RBAC3 统一模型，包含了 rbac1和rbac2，
 ~~~
 

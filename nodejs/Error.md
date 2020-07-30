@@ -17,11 +17,9 @@ C:\Users\Administrator 找到.npmrc，打开删除文本内容
 
 **和npx的区别**
 npm 是一个node包管理工具
-npx会先检查本地有没有安装某个package，如果没有就去registry找，找到的话就直接使用，不用下载到本地node_modules包里，优化本地项目的大小，避免安装package到全局
+npx会先检查本地有没有安装某个package，如果没有就去registry找，找到的话就直接使用，不用下载到本地node_modules包里，优化本地项目的大小避免安装package到全局
 
 ~~~
-
-
 
 ### formidable
 
@@ -84,10 +82,18 @@ limits:{
 >     //在中间件中使用的时候是不需要立即调用的
 >     app.use('/api',userRouter)//userRouter不需要加（）立即调用
 >     ~~~
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 
 ### 关于axios请求报错ECONNRESET
 
 ~~~css
+econnreset
 axios({})在请求中加上timeout的时间限制  延长>1000（默认值）
 ~~~
 
@@ -424,6 +430,29 @@ res.setHeader('Set-Cookie','key=value; key=value; path=/; expires=')
 注意的是：path expires 有默认值
 
 ~~~
+
+#### csrf
+
+~~~css
+使用的库: csurf({cookie:false/true})
+cookie
+确定用户的令牌秘密是否存在cookie或 req.session 中.
+cookie默认值为false
+当cookie设置成 true , 然后模块会改变行为并不在使用 req.session。意味着不需要使用session中间件。相反，在此组件之前，只需使用 cookie-parser 中间件
+{cookie:{key:'_csrf',path:'/'}}
+key - 用于存储令牌的cookie名称（默认：_csrf）
+
+path - cookie的路径（默认：/）
+
+其他选项参考 res.cookie
+
+不需要验证csrf的路由放在 app.use(csrf({cookie:true}))之前
+
+~~~
+
+
+
+
 
 #### 短信验证码
 
@@ -836,6 +865,26 @@ git tag -d <版本号>
 git push origin :refs/tags/<版本号>
 
 ~~~
+
+#### 初始化本地已有的项目
+
+~~~css
+本地操作
+1.初始化本地仓库
+	git init 
+2.remote 
+	git remote add origin 仓库地址（需要远程仓库已经创建好的地址）
+3.从远程分支拉取master分支并与本地的master分支合并
+	git pull origin master:master
+4.提交本地分支到远程分支
+	git push -u origin master 
+5.将现有项目添加并提交上传
+	git add .
+	git commit -m ""
+	git push origin master
+~~~
+
+
 
 ### child_process子进程模块
 

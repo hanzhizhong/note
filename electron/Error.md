@@ -425,3 +425,105 @@ audoUpdater.setFeedURL()
 在渲染进程中 使用remote.getGlobal('setWinId').curWin
 ~~~
 
+### 模块
+
+~~~css
+electron-notification-state检测是否允许发送通知
+~~~
+
+### 知识点
+
+#### 任务栏
+
+~~~css
+闪烁提示
+win=new BrowserWindow()
+win.on('focus',()=>{win.flashFrame(false)})
+win.flashFrame(true)
+
+叠加型的任务栏
+win=new BrowserWindow()
+win.setOverlayIcon()
+
+//缩略图工具栏
+win.setThumbarButtons([])
+win.setThumbarButtons()
+
+弹出列表 弹出列表 弹出列表弹出列表 弹出列表 
+弹出列表
+app.setUserTasks()
+~~~
+
+#### 快捷键
+
+~~~css
+本地快捷键 必须指定 accelerator 2.app必须是处于焦点状态
+cosnt {Menu,MenuItem}=require('electron')
+const menu=new Menu()
+
+menu.append(new MenuItem({
+    label:"Print",
+        accelerator:"CmdOrCtrl+P",
+        click:()=>{console.log('time to print ')}
+}))
+
+全局快捷键 globalShortcut 
+const {app,globalShortcut}=require('electron')
+app.whenReady().then(()=>{
+    globalShortcut.register('CommandOrControl+X',()=>{
+        console.log('CommandOrControl+X is pressed')
+    })
+})
+
+浏览器窗口中的快捷键
+window.addEventListener('keyup',()=>{},true)
+注意第三个参数 true，这意味着当前监听器总是在其他监听器之前接收按键，以避免其它监听器调用 stopPropagation()
+
+mousetrap() 库 高级的按键检测库
+~~~
+
+#### 离线或者在线 online and offline
+
+~~~css
+使用 html5自带的api 
+navigator.onLine =>true/false
+~~~
+
+#### 原生文件拖放事件
+
+~~~css
+在渲染进程中接收 ondragstart事件，并发消息给主进程
+document.querySelector('#drag').ondragstart=(e)=>{
+    e.preventDefault()
+    ipcRenderer.send('drag-start','....path路径')
+}
+~~~
+
+#### 在electron中嵌入第三方的web内容
+
+~~~css
+<iframe> 和常规的浏览器中的iframe一样
+<webview>是一个自定义元素（<webview>），仅在Electron内部起作用，加载和与第三方内容进行通信以及处理各种事件方面提供了更大的控制权
+<BrowserViews>它们是在主流程中创建并由其控制的，它们只是现有窗口之上的另一层Web内容，这意味着它们与您自己的BrowserWindow内容完全分开，并且它们的位置不受DOM或CSS的控制，而是通过在主过程中设置界限来控制的
+
+~~~
+
+#### ws/wss的区别
+
+~~~css
+websocket(ws)是html5的新协议。浏览器和服务器的全双工通信
+http的url使用"http://或者https://"开头；而websocket使用"ws://"开头
+wss是ws的加密版本
+~~~
+
+#### 安全
+
+~~~css
+仅加载安全内容 https wss ftps
+不为远程内容启用Node.js集成
+~~~
+
+
+
+
+
