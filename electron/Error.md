@@ -523,6 +523,81 @@ wss是ws的加密版本
 不为远程内容启用Node.js集成
 ~~~
 
+#### 部分不明插件的作用介绍
+
+~~~css
+Widevine CDM 是google推出的一种DRM，支持从google指定的服务器上，下载经google加密的版权文件，如视频、应用等。
+Pepper flash
+~~~
+
+#### 术语
+
+~~~css
+asar (atom shell archive format)atom shell归档格式 ,一个asar就是一个简单的tar包
+ASAR格式的创建主要是为了提高Windows上的性能
+
+crt:CRT
+c运行时库
+
+dmg:DMG
+指macOS上使用的苹果系统的磁盘镜像打包格式
+
+ime:IME
+输入法编辑器
+
+idl:IDL
+接口描述语言，编写函数签名和数据类型的格式，用于生成java,c++,javascript等接口
+
+ipc:IPC
+进程间通信。主进程和渲染进程之间发送序列化的json数据
+
+mas:MAS
+苹果的Mac应用程序商店的首字母缩写
+
+mojo:MOJO
+一种用于进程内部或进程间通信的ipc系统
+
+native modules
+原生模块(nodejs中叫做addons) 是一些使用 C or C++ 编写的能够在 Node.js 中加载或者在 Electron 中使用 require() 方法来加载的模块，它使用起来就如同 Node.js 的模块。 它主要用于桥接在 JavaScript 上运行 Node.js 和 C/C++ 的库
+
+nsis:NSIS
+是一个微软 Windows 平台上的脚本驱动的安装制作工具
+
+osr:OSR
+OSR(屏幕外渲染)可以用于在后台加载重载页面，然后在后台显示它(这样会快得多)。它允许你渲染页面而不显示在屏幕上。
+
+userland 用户层/用户空间
+Userland 让用户能够创造和分享一些工具来提额外的功能在这个能够使用的 "core（核心）"之上。
+
+webview
+webview标签用于集成guest内容(如外部网页)在你的electron应用内。它们类似于iframe,但是不同的是每个webview运行在独立的进程中。作为页面它拥有不一样的权限并且所有的嵌入内容和你应用之间的交互都将是异步的。这将保证你的应用对于嵌入的内容的安全性
+~~~
+
+#### 命令行开关
+
+~~~css
+检查主进程
+electron --inspect=5858 【主进程的入口文件】
+
+或者在package.json中
+"dev":"electron --inspect=5858 ."
+~~~
+
+#### webContents
+
+~~~css
+调用event.preventDefault()事件，可以阻止Electron自动创建新的BrowserWindow实例.调用event.preventDefault()事件后，你还可以手动创建新的BrowserWindow实例,不过接下来你必须使用event.newGuest=win(手动创建的BrowserWindow实例)方法引用BrowserWindow.如果不这样做会产生异常
+~~~
+
+#### webPreferences中的启用项说明
+
+~~~css
+nodeIntegration:true	启用nodejs集成功能
+nativeWindowOpen:true 	允许启用window.open(url,framename,features)
+features 类型为字符串 字符串遵循标准浏览器的格式 如：'width=300 height=200 modal=true'
+enableRemoteModule:true		允许启用remote模块
+~~~
+
 
 
 

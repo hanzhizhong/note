@@ -377,7 +377,6 @@ npx sequelize-cli db:migrate
 撤销迁移
 npx sequelize-cli db:migrate:undo
 
-npx seequelize-cli db:migrate:undo --name migrations文件夹中的一个文件名
 
 撤销所有的迁移
 npx sequelize-cli db:migrate:undo:all

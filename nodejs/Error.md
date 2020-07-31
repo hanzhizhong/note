@@ -77,11 +77,15 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
+> 
+>  ~~~
+>
 > ~~~
 > 
 > ~~~
@@ -445,9 +449,15 @@ key - 用于存储令牌的cookie名称（默认：_csrf）
 path - cookie的路径（默认：/）
 
 其他选项参考 res.cookie
+在路由或控制器中获取token的方法为：req.crsfToken()
 
 不需要验证csrf的路由放在 app.use(csrf({cookie:true}))之前
 
+
+如果csurf()为空的时候，就需要express-session的中间件配合了
+获取token的方法为 req.session.csrfSecret属性
+
+crsf的错误捕获 err.code==='EBADCSRFTOKEN'
 ~~~
 
 
