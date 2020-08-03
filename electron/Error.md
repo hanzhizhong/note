@@ -598,6 +598,22 @@ features 类型为字符串 字符串遵循标准浏览器的格式 如：'width
 enableRemoteModule:true		允许启用remote模块
 ~~~
 
+####  `NSUserActivity`  
+
+~~~css
+Handoff的基本思想就是：用户在一个应用里所做的任何操作都包含着一个activity，一个activity可以和一个特定用户的多台设备关联起来。用行话来说，抽象出这种activity的类叫做NSUserActivity，大部分时间我们都会和这个类打交道。
+~~~
+
+#### 硬件加速
+
+~~~css
+硬件加速是指：利用硬件模块来替代软件算法以充分利用硬件所固有的快速特性
+
+app.disableHardwareAcceleration() 禁用硬件加速
+只能在ready()之前调用
+
+~~~
+
 
 
 ### UML 统一建模语言
