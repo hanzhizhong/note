@@ -77,14 +77,18 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->  ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
+> ~~~
 > 
->  ~~~
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 >
 > ~~~
 > 
@@ -1001,8 +1005,18 @@ ctx.origin 得到当前的host name
 
 
     ctx.state 约定俗成的：放置一些用户信息
-    ctx.state.user=user 
+    ctx.state.user=user
 ~~~
+
+#### koa-onerror
+
+~~~css
+const onerror=require('koa-onerror')
+onerror(app)
+这里的会有详细的错误信息
+~~~
+
+
 
 ### REST ful API
 
