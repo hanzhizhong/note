@@ -197,6 +197,7 @@ HasOne
 HasMany 
 BelongsToMany 
 
+这和你需要查询的表(源键)有关
 
 目标键（target key）
 目标模型上的列，是源模型外键列所指向的列

@@ -581,6 +581,8 @@ electron --inspect=5858 【主进程的入口文件】
 
 或者在package.json中
 "dev":"electron --inspect=5858 ."
+
+app.commandLine.append
 ~~~
 
 #### webContents

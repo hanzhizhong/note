@@ -41,6 +41,9 @@ client.end(true) 强制关闭与Redis服务器的连接
 client.get('',callback)
 client.set('',callback)
 client.print()
+
+client.setex(name,seconds,value)
+
 ~~~
 
 #### 注意redis无法连接上的原因
