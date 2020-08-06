@@ -529,3 +529,31 @@ devServer:{
 }
 ~~~
 
+#### 自定义的组件中template的模板可以分开写
+
+~~~css
+方法1
+const MyComponent={
+    template:``,
+        data(){
+            return {}
+    }
+}
+方法2
+在html结构中
+<body>
+	如下插入script
+	<script id="[模板的ID标识符]" type="text/x-template">
+		<div id="root-componet"></div>
+	</script>
+</body>
+注意：script需要放在vue.min.js之下
+const MyComponent={
+    template:'[模板的id标识符]',
+        data(){
+            return {}
+    }
+}
+
+~~~
+

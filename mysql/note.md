@@ -197,7 +197,7 @@ HasOne
 HasMany 
 BelongsToMany 
 
-这和你需要查询的表(源键)有关
+这四种关联类型的“使用方法”和你需要查询的表(源键)有关
 
 目标键（target key）
 目标模型上的列，是源模型外键列所指向的列
@@ -435,6 +435,19 @@ npx sequelize-cli model:generate --name Userinfo --attributes sex:enum,age:integ
 // 自动设置字段为蛇型命名规则
   // 不会覆盖已定义的字段选项属性
   underscored: true,
+~~~
+
+#### .sequelizerc配置文件
+
+~~~css
+在npx sequelize-cli init 时自动触发
+.sequelizerc的作用是配置 {config,models,migrations,seeders}的路径或者文件名
+{
+    'config':resolve(__dirname,'config/mysql.json'),
+   "models-path":
+    "seeders-path":
+    "migrations-path":
+}
 ~~~
 
 

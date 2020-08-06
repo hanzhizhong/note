@@ -582,7 +582,7 @@ electron --inspect=5858 【主进程的入口文件】
 或者在package.json中
 "dev":"electron --inspect=5858 ."
 
-app.commandLine.append
+app.commandLine.appendSwitch()
 ~~~
 
 #### webContents
@@ -613,6 +613,88 @@ Handoff的基本思想就是：用户在一个应用里所做的任何操作都�
 
 app.disableHardwareAcceleration() 禁用硬件加速
 只能在ready()之前调用
+
+~~~
+
+#### 不常用到的electron API说明
+
+~~~css
+contentTracing:从Chromium收集跟踪数据，以查找性能瓶颈和缓慢的操作
+inAppPurchase:Mac App Store中的应用内购买
+
+~~~
+
+#### 知识点
+
+~~~css
+prevent-app-suspension:防止应用程序被挂起。使系统保持活动状态，但允许关闭屏幕。用例示例：下载文件或播放音频。
+应用程序挂起：操作系统中可以定义为暂时被淘汰出内存的进程，机器的资源是有限的，在资源不足的情况下，操作系统对在内存中的程序进行合理的安排，其中有的进程被暂时调离出内存，当条件允许的时候，会被操作系统再次调回内存，重新进入等待被执行的状态即就绪态，
+
+prevent-display-sleep:防止显示器进入睡眠状态。使系统和屏幕保持活动状态。用例示例：播放视频。
+
+~~~
+
+#### BrowserWindow中的注意点
+
+~~~css
+autoHideMenuBar:true时 按Alt键将显示切换menubar
+BrowserWindow的实例中 removeMenu()将删除窗口的菜单栏
+~~~
+
+#### dialog
+
+~~~css
+dialog.showOpenDialog([browserWindow,]options)
+browserWindow的参数是将当前的对话框附加到 browserWindow(父窗口),当前的对话框作为父窗口的模态框
+~~~
+
+#### Menu和MenuItem
+
+~~~css
+创建原生应用菜单和上下文菜单
+
+静态方法
+Menu.setApplicationMenu(menu)//将菜单设置为macOS上的应用程序菜单。在Windows和Linux上，菜单将设置为每个窗口的顶部菜单。
+
+Menu.setApplicationMenu(null) 传递null将取消默认菜单。在Windows和Linux上，这具有从窗口中删除菜单栏的附加效果。
+
+Menu.getApplicatioMenu()//如果有设置, 则返回应用程序菜单， 如果没设置，则返回 null  返回的Menu实例不支持动态添加或删除菜单项。
+
+Menu.buildFromTemplate(template)
+
+menu.popup(options)//此菜单将作为browserwindow中的上下文菜单弹出
+menu.closePopup([browserWindow]) 关闭上下文菜单
+menu.append(menuitem) 追加到菜单
+menu.getMenuItemById(id) 返回具有指定id项的menuItem
+menu.insert(pos,menuItem) pos:Integer, 菜单插入指定pos 
+
+实例的属性
+menu.items =>返回 包含菜单项的MenuItem[]数组
+
+MenuItem(options)
+click:function
+role:string,
+type:normal,separator submenu,checkbox,radio//当前菜单项的类型
+
+~~~
+
+#### tray.displayBalloon(options)
+
+~~~css
+托盘气球提示：为托盘程序提供了一种非打扰式的方法通知用户发生了某件事。
+~~~
+
+#### showMessageBox
+
+~~~js
+dialog.showMessageBox({
+    type:'question',
+    buttons:['leave','stay'],
+    title:"Do you want ro leave this site?",
+    message:"changes you made may not be saved",
+    defaultId:0,
+    cancelId:1
+})
 
 ~~~
 
