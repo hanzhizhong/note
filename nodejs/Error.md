@@ -77,11 +77,15 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
+> 
+>  ~~~
+>
 > ~~~
 > 
 > ~~~
@@ -985,7 +989,10 @@ app.use(koaBody({
 ctx.request.files.file
 
 koa-static 生成静态服务
-app.use(koaStatic(path.join(__dirname,'public')))
+	//访问的路径中没有 public
+	app.use(koaStatic(path.join(__dirname,'public')))
+	//访问的路径中带有 public
+	app.use(KoaStatic(__dirname,'public'))
 
 path.basename('文件的绝对路径')//这就得到了
 ctx.origin 得到当前的host name 
@@ -995,6 +1002,13 @@ ctx.origin 得到当前的host name
 
     ctx.state 约定俗成的：放置一些用户信息
     ctx.state.user=user
+
+cxt.query  =>得到{ name: 'han', password: '1234' }
+cxt.querystring => 得到 name=han&password=1234
+cxt.params =>动态路由
+cxt.request.body=>
+	application/x-www-form-urlencoded 数据格式为：{ name: 'han', password: '1234' }
+	application/json   数据格式为：{ name: 'John', password: '1234' }
 ~~~
 
 #### koa-onerror
@@ -1010,7 +1024,11 @@ onerror(app)
 ### REST ful API
 
 ~~~css
-http请求 options方法返回的信息
+http的options的方法作用：
+	检测服务器所支持的请求方法
+	cors中的预检请求
+
+router.allowedMethod()的作用：
 	1.在 allow 的字段中会显示 当前URI支持的请求方式 如HEAD GET POST DELETE
 	2.返回405（没有实现的方法）或者501(不允许，当前框架没有或不认识这种请求方法)
 
@@ -1019,7 +1037,104 @@ http请求 options方法返回的信息
 	POST:返回当前提交的数据信息
 	PUT/PATCH:patch是部分编辑修改 返回的数据是当前编辑和修改的数据
 	DELETE:返回的是 status=204 表示本次操作成功
+
+
+常见的异常状况
+	运行时错误（500服务器本身）
+	逻辑错，找不到(404) 先决条件失败（412）
 ~~~
+
+#### 软件架构的风格
+
+~~~css
+representational state 			transfer
+表述/表达			当前状态或数据   数据传输
+
+~~~
+
+#### 六个限制
+
+##### 1.css架构
+
+~~~css
+关注点分离
+服务端：专注数据存储
+客户端：用户界面、可移植性
+~~~
+
+##### 2.无状态
+
+~~~css
+所有用户会话信息都保存在客户端
+每次请求必须包含所有信息，不能依赖上下文信息
+服务端不用保存会话信息，提升了简单性、可靠性、可见性
+~~~
+
+##### 3.缓存cache:减少前后端交互提高交互性能
+
+~~~css
+所有服务端响应都要被标为可缓存或不可缓存
+减少前后端交互，提升性能
+~~~
+
+##### 4.统一接口==>最重要的限制
+
+~~~css
+接口设计尽可能统一通用，提升简单性、可靠性、可见性
+接口实现解耦，使前后端可以独立开发迭代
+
+a.资源标识：
+	可以命名的事物叫资源
+	每个资源可以通过URI被唯一标识
+b.通过表述来操作资源
+c.自描述信息
+	请求和响应必须提供足够的信息让接受者理解
+	媒体类型（application/json|application/xml）
+	HTTP方法（get/post/patch/put/delete）
+	是否缓存 cache-control
+d.超媒体作为应用状态引擎
+	超媒体：带文字的连接
+	应用状态：一个网页
+	引擎：驱动、跳转
+	加起来的理解为：点击连接跳转到另一个页面
+~~~
+
+##### 5.分层系统
+
+~~~css
+每层只知道相邻的一层，后面影藏的就不知道了
+客户端不知道是和代理还是真实服务器通信
+其他分层：安全层、负载均衡、缓存层
+~~~
+
+##### 6.按需代码
+
+~~~css
+客户端可以下载运行服务端传来的代码
+通过减少一些功能，简化客户端
+~~~
+
+#### 请求的设计规范
+
+~~~css
+尽量使用名词
+使用嵌套表示关联关系 如：/users/:id/repos  用户为ID下的仓库
+使用正确的http方法
+不符合CRUD的情况 使用post/action[动词]/子资源
+~~~
+
+#### 安全
+
+~~~css
+https
+鉴权
+限流 
+	在请求头中加入 X-RateLimit-limit:60		每小时允许的最大请求数
+				X-RateLimit-remaining:56	当前速率限制窗口中剩余的请求数
+				X-RateLimit-Reset:			当前速率限制窗口重置时间，以UTC秒为单位
+~~~
+
+
 
 ### OAuth 2.0是目前最流行的授权机制，用来授权第三方应用，获取用户数据
 
