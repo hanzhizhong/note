@@ -360,3 +360,16 @@ type="module" 也是异步的加载 效果等同于 defer
 3.plugins 使用规则：下载 引入 使用
 
 ~~~
+
+### blob:javascript的对象类型
+
+~~~css
+Blob对象表示一个不可变、原始数据的类文件对象
+创建方式：
+	new Blob(array,options)
+如：new Blob(['<a>ssss</a>'],{type:"text/html"})
+返回的数据:Blob(25){size: 25, type: "text/html"}
+
+可以使用 FileReader 借口从 blob 读取数据，也可以使用 URL.createObjectURL() 从 blob 创建一个新的 URL 对象
+~~~
+

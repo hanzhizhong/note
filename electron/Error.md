@@ -492,6 +492,8 @@ navigator.onLine =>true/false
 #### 原生文件拖放事件
 
 ~~~css
+效果就是拖拽页面中的元素时鼠标按住时显示的效果样式
+
 在渲染进程中接收 ondragstart事件，并发消息给主进程
 document.querySelector('#drag').ondragstart=(e)=>{
     e.preventDefault()
@@ -622,6 +624,9 @@ app.disableHardwareAcceleration() 禁用硬件加速
 contentTracing:从Chromium收集跟踪数据，以查找性能瓶颈和缓慢的操作
 inAppPurchase:Mac App Store中的应用内购买
 
+powerMonitor 电源监视器
+powerSaveBlocker省电拦截器
+
 ~~~
 
 #### 知识点
@@ -631,6 +636,8 @@ prevent-app-suspension:防止应用程序被挂起。使系统保持活动状态
 应用程序挂起：操作系统中可以定义为暂时被淘汰出内存的进程，机器的资源是有限的，在资源不足的情况下，操作系统对在内存中的程序进行合理的安排，其中有的进程被暂时调离出内存，当条件允许的时候，会被操作系统再次调回内存，重新进入等待被执行的状态即就绪态，
 
 prevent-display-sleep:防止显示器进入睡眠状态。使系统和屏幕保持活动状态。用例示例：播放视频。
+
+RTF的格式文件是：富文本格式或者多文本格式，rtf:rich text format的缩写，丰富的文本格式。在rtf文档中可以嵌入图像等文件，可以用windows自带的“写字板”打开，Word2003、WPS Office、Excel等都可以打开RTF格式的文件
 
 ~~~
 
@@ -696,6 +703,44 @@ dialog.showMessageBox({
     cancelId:1
 })
 
+~~~
+
+#### ipcRenderer常用的方法
+
+~~~css
+ipcRenderer.send(channel,...args)
+ipcRenderer.on(channel,listener)
+ipcRenderer.sendTo(webContentsId,channel,...args)
+ipcRenderer.invoke(channel,...args).then
+~~~
+
+#### remote 在渲染进程中使用主进程模块
+
+~~~css
+remote返回的每个对象（包括函数）表示主进程中的一个对象（我们称为远程对象或远程函数）。调用远程方法或函数时，实际上是在发送同步消息
+remote.getGlobal(name)
+~~~
+
+#### webFrame
+
+~~~css
+该类表示当前BrowserWindow的顶部框架。
+const {webFrame}=require('electron')
+webFrame.setZoomFactor(factor)//1.0，double 缩放比例。
+webFrame.getZoomFactor()
+webFrame.setZoomLevel(level) 
+~~~
+
+#### shell
+
+~~~css
+shell.openItem() api已经废弃了，shell.openPath()
+~~~
+
+#### crashReporter
+
+~~~css
+在渲染进程中已经废除了
 ~~~
 
 

@@ -207,7 +207,21 @@ express
 cros //跨域解决方案
 cherrio//正则插件
 nodemailer//邮箱插件
-
+multer
+crusf
+cookie-parser
+express-session
+connect-redis//需要和redis,express-session配合使用
+	const redis=require('redis')
+	const session=require('express-session')
+	const RedisStore=require('connect-redis')
+	let client=redis.createClient()
+app.use(session({
+    secret:"your secret string",
+    resave:false,
+    saveUninitial....,
+        store:new RedisStore({client:client})
+}))
 
 ~~~
 
@@ -219,7 +233,7 @@ koa-static
 koa-router 
 //router=require('koa-router'();
 //app.use(router.routes());启动路由
-//app.use(router.allowedMethods());allowedMethods处理的业务是当所有路由中间件执行完成之后,若ctx.status为空或者404的时候,丰富response对象的header头.
+//app.use(router.allowedMethods()); 在http请求options方法是 在请求头 allow 会显示所有的路径下所有定义的请求方法（get,post,patch，put,delete）2.错误提示 405（没实现）501（不允许）
 
 art-template
 koa-art-template
@@ -238,6 +252,15 @@ koa-bodyparse
 const bodyParser=require('koa-bodyparser')
 app.use(bodyParser()) 提前使用
 //post提交的信息存储在cxt.request.body中，空时body=｛｝
+koa-body 和koa-bodyparse的区别就是koa-body支持multipart/form-data
+
+koa-json-error 
+jsonError({
+    postFormat:(e,{stack,...rest})=>{
+        return process.env.NODE_EVN==='production'?rest:{stack,...rest}
+    }
+})
+
 
 ~~~
 
@@ -247,6 +270,9 @@ app.use(bodyParser()) 提前使用
 electron-rebuild //编译原生的模块 
 robot.js//智能自动化 控制鼠标、键盘、阅读屏幕
 vkey //根据键值找对应的键盘字母
+mousetrap
+node-ffi
+electron-notification-state 检测是否可以使用通知
 ~~~
 
 ### meta 键

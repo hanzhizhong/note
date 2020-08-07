@@ -89,6 +89,14 @@ limits:{
 > ~~~
 > 
 > ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 
 ### 关于axios请求报错ECONNRESET
 
@@ -797,6 +805,23 @@ weight代表权重 默认为1；数值越大分配到的客户端越多
 
 ### git 
 
+#### git config查询和用户信息设置
+
+~~~css
+git config --list 所有的配置列表
+git config --global --list 用户配置信息列表
+git config user.name 
+git config user.email 
+git config --global user.name ...
+git config --global user.email ...
+git config --global --unset user.name
+
+控制面板/用户账户/管理您的凭据 凭据管理
+
+~~~
+
+
+
 #### 修改和提交
 
 ~~~css
@@ -1054,7 +1079,7 @@ representational state 			transfer
 
 #### 六个限制
 
-##### 1.css架构
+##### 1.cs架构
 
 ~~~css
 关注点分离

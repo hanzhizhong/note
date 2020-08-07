@@ -330,7 +330,7 @@ dialects:方言 配置数据库类型
 1.mysql
 new Sequlize('数据库名'，'用户名','密码',{host:'',dialects:'mysql'})
 2.sqlite
-new Sequelize('数据库名','用户名','密码',{host:'',dialects:"sqlite",storage:'path/to/数据库名.sqlite'})
+new Sequelize({dialects:"sqlite",storage:'path/to/数据库名.sqlite'})
 
 
 ~~~
