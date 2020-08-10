@@ -83,14 +83,18 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->  ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
+> ~~~
 > 
->  ~~~
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 >
 > ~~~
 > 
@@ -250,24 +254,78 @@ axios({})在请求中加上timeout的时间限制  延长>1000（默认值）
 
 + ![image-20191209141236460](assets/image-20191209141236460.png)
 
+### nodejs
 
-### nodejs支持的字符编码
+#### Buffer支持的字符编码
 
-+ 'ascii' - 仅支持 7 位 ASCII 数据。
+~~~js
+'ascii' - 仅支持 7 位 ASCII 数据。
 
-  'utf8' - 多字节编码的 Unicode 字符。
+'utf8' - 多字节编码的 Unicode 字符。
 
-  'utf16le' - 2 或 4 个字节，小端序编码的 Unicode 字符。支持代理对（U+10000 至 U+10FFFF）。
+'utf16le' - 2 或 4 个字节，小端序编码的 Unicode 字符。支持代理对（U+10000 至 U+10FFFF）。
 
-  'ucs2' - 'utf16le' 的别名。
+'ucs2' - 'utf16le' 的别名。
 
-  'base64' - Base64 编码。
+'base64' - Base64 编码。
 
-  'latin1' - 将 Buffer 编码成单字节编码的字符串。
+'latin1' - 将 Buffer 编码成单字节编码的字符串。
 
-  'binary' - 'latin1' 的别名。
+'binary' - 'latin1' 的别名。
 
-  'hex' - 将每个字节编码成两个十六进制字符。
+'hex' - 将每个字节编码成两个十六进制字符。
+
+解码：将Buffer转成字符串  Buffer.toString('...','utf8')//utf8是默认的
+编码：将字符串转成Buffer  Buffer.from('','usc2')
+~~~
+
+#### os
+
+~~~css
+操作系统特定的行末标志。 "\r\n或者\n"
+os.EOL这是属性调用 
+os.platform()
+~~~
+
+#### process
+
+~~~js
+process.stdout.write='';
+process.stdin.on('data',data=>{}) //标准输入和输出可以用 来创建类shell的交互框
+~~~
+
+#### fs四个大类
+
+~~~js
+Watcher ：监听文件夹或者文件的变化，并且打印出变化的内容 参数(err,filename)
+Readable
+Writeable
+Stats 文件或文件夹的属性
+
+//递归删除非空文件夹
+function recursionDelFile(path){
+    try{
+        let statList=fs.readdirSync(path)
+        statList.forEach(item=>{
+            let temp=path+'/'+item;
+            console.log(fs.statSync(temp).isDirectory())
+            if(fs.statSync(temp).isDirectory()){
+                recursionDelFile(temp)
+            }else{
+                fs.unlinkSync(temp)
+            }
+        })
+        fs.rmdirSync(path)
+    }catch(err){
+        console.error('error:',err)
+    }
+
+}
+recursionDelFile('./a')
+
+~~~
+
+
 
 
 ### 代码块的注释方法 （vscode和webstorm编辑器）快捷方法

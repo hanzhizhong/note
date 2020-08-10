@@ -450,6 +450,15 @@ npx sequelize-cli model:generate --name Userinfo --attributes sex:enum,age:integ
 }
 ~~~
 
+### 数据库的索引
+
+~~~js
+select * from users where username="han"
+这需要全表扫描
+如果使用索引将会提升性能：索引就是缩小一张表中需要查询的记录/行 的数目来加快搜索的速度
+索引是一种数据结构
+~~~
+
 
 
 ### RBAC 
