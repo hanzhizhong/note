@@ -381,3 +381,23 @@ pfx既可以导出pfx证书，也可以导出cer证书
 cer证书不能导出pfx证书
 ~~~
 
+#### 生成证书
+
+~~~js
+1.创建私钥
+openssl genrsa -out ca-key.pem 1024
+2.创建证书请求 ：将私钥转成证书
+openssl req -new -out ca-req.csr -key ca-key.pem
+3.将证书请求转成证书
+openssl x509 -req -in ca-req.csr -out ca.cer -signkey ca-key.pem -days 3650
+
+ca.cer ca证书
+~~~
+
+#### 服务端生成正式
+
+~~~js
+server 证书: opsenssl genrsa -out server-key.pem 1-34 
+
+~~~
+

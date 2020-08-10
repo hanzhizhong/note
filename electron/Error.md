@@ -573,6 +573,8 @@ Userland 让用户能够创造和分享一些工具来提额外的功能在这�
 
 webview
 webview标签用于集成guest内容(如外部网页)在你的electron应用内。它们类似于iframe,但是不同的是每个webview运行在独立的进程中。作为页面它拥有不一样的权限并且所有的嵌入内容和你应用之间的交互都将是异步的。这将保证你的应用对于嵌入的内容的安全性
+
+gup:中文翻译为图形处理器，
 ~~~
 
 #### 命令行开关
@@ -646,6 +648,8 @@ RTF的格式文件是：富文本格式或者多文本格式，rtf:rich text for
 ~~~css
 autoHideMenuBar:true时 按Alt键将显示切换menubar
 BrowserWindow的实例中 removeMenu()将删除窗口的菜单栏
+
+-webkit-app-region:drag/no-drag; //app-region 应用区域
 ~~~
 
 #### dialog
@@ -741,6 +745,12 @@ shell.openItem() api已经废弃了，shell.openPath()
 
 ~~~css
 在渲染进程中已经废除了
+~~~
+
+#### app
+
+~~~css
+事件:渲染进程崩溃 renderer-process-crashed
 ~~~
 
 
