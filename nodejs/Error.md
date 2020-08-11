@@ -31,6 +31,22 @@ npm ls //列出当前项目下的所有包 包含开发环境和生产环境的�
 3.npm publish [<tarball>|<folder>] [--tag <tag>]
 ~~~
 
+#### nodejs  的使用方向
+
+~~~css
+GUI
+代表：electron
+CLI:命令行模式
+插件：	  commander
+		inquirer:带有checkbox或radio选择
+		chalk
+Server:web服务端
+~~~
+
+
+
+
+
 ### formidable
 
 > [参考网址][https://www.cnblogs.com/abab301/p/9489000.html]
@@ -87,14 +103,18 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->  ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
+> ~~~
 > 
->  ~~~
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 >
 > ~~~
 > 
@@ -793,6 +813,19 @@ console.log(ret2)//G:\study\html5W2\d9\E:\download\file\01Nodejs+MongoDb
   主机号尾端不为 0 和  1
   
   ~~~
+
+#### 网络的连接方式
+
+~~~css
+网线、 无线、 蓝牙、光、 。。。
+无论哪种方式，都需要在电脑中有对应的硬件设备来处理这些需要 共享 传输 的数据
+
+网线/无线=》网卡(无线网卡)
+蓝牙=>蓝牙模块(硬件)
+这些硬件的作用就是 用来连接和转发数据的
+
+~~~
+
 
 
 ### nginx 部署问题
