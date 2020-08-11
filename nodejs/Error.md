@@ -22,9 +22,13 @@ npx会先检查本地有没有安装某个package，如果没有就去registry�
 npm search -h 查询使用方法
 npm search [packname]
 
-app.update  [bao]@v...
+npm update xxx.xxx.xxx 更新的是当前的版本号不变，最新的包
+npm ls //列出当前项目下的所有包 包含开发环境和生产环境的依赖包
 
-
+自定义包的发布流程
+1、注册 https://www.npmjs.com/signup
+2.npm login //本项目中命令行中 使用
+3.npm publish [<tarball>|<folder>] [--tag <tag>]
 ~~~
 
 ### formidable
@@ -83,11 +87,15 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
+> 
+>  ~~~
+>
 > ~~~
 > 
 > ~~~
@@ -1041,6 +1049,7 @@ process.on('message',msg=>{
 count=0;
 setInterval(()=>{
     count+=1;
+    process.send(count)
     console.log(count)
 },1000)
 ~~~

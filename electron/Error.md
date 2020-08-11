@@ -751,6 +751,7 @@ shell.openItem() api已经废弃了，shell.openPath()
 
 ~~~css
 事件:渲染进程崩溃 renderer-process-crashed
+主进程
 ~~~
 
 
