@@ -156,6 +156,8 @@ User.beforeCreate(user=>{
 	[[sequelize.fn('COUNT',sequelize.col('hats')),'no_hats']]
 select count(hats) as no_hats ...
 
+const Op=Sequelize.Op
+
 [Op.ne]:null	!=null
 [Op.eq]:3		=3
 [Op.is]:null	is null
@@ -345,6 +347,9 @@ Project.findOrCreate({where:{},defaults:{}}) 返回的是数组[{},bool]
 	如果是新建的bool为true,否则为false
 	已经存在的数据不会被修改
 
+Project.update()
+Project.destroy()
+Project.findAll()
 ~~~
 
 
@@ -363,6 +368,12 @@ migrations:包含所有的迁移文件
 seeders:包含所有的种子文件
 
 migrations和seeders是给sequelize-cli用的
+
+models index.js导出的文件格式为：{
+    model:model//模块的名称 在 tableName modelName 注意大小写
+        sequelize:{}//数据库的基本信息
+    Sequelize:{}//实例
+}
 ~~~
 
 ~~~css
@@ -410,6 +421,14 @@ sequelizeMeta中记录和保存的是迁移的文件 XXX.js
 生成迁移文件的结构
 npx sequelize-cli migration:generate --name xxxxx...
 
+~~~
+
+#### 聚合函数
+
+~~~css
+User.count('字段名').then()
+User.max('').then()
+User.min('').then()
 ~~~
 
 

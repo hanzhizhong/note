@@ -290,7 +290,7 @@ super这个关键字，既可以当作函数使用，也可以当作对象使用
 这时的super()相当于 A.prototype.constructor.call(this)
 
 2.super作为对象时，指向父类的原型对象。
-	super().print() 
+	super.print() 
 
 super在使用的时候，必须显示的指定是作为函数还是对象使用，否则会报错
 	console.log(super)//报错

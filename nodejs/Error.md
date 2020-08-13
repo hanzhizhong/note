@@ -103,46 +103,14 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>    ~~~
+>   
+>    ~~~
 
 ### 关于axios请求报错ECONNRESET
 
@@ -351,6 +319,19 @@ function recursionDelFile(path){
 }
 recursionDelFile('./a')
 
+~~~
+
+#### http模块
+
+~~~css
+IP:获取计算机的定位
+tcp:在IP层上的一层封装，加上了端口号
+	包含发送端和接收端的 IP和端口号
+
+有http/ftp/mail都是基于tcp/ip的协议封装后新协议
+http:在IP/tcp的基础上再一层的封装
+ 	短连接
+	无状态
 ~~~
 
 
