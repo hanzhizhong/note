@@ -233,6 +233,7 @@ app.use(session({
         store:new RedisStore({client:client})
 }))
 
+passport：第三方登陆验证
 ~~~
 
 ### nodejs koa框架 插件
@@ -281,7 +282,9 @@ electron-rebuild //编译原生的模块
 robot.js//智能自动化 控制鼠标、键盘、阅读屏幕
 vkey //根据键值找对应的键盘字母
 mousetrap
-node-ffi
+node-ffi//node版本低于10
+ffi-napi //node版本大于10
+electron-is-dev
 electron-notification-state 检测是否可以使用通知
 ~~~
 

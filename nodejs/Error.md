@@ -103,14 +103,26 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->    ~~~
->   
->    ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 
 ### 关于axios请求报错ECONNRESET
 
@@ -273,6 +285,14 @@ axios({})在请求中加上timeout的时间限制  延长>1000（默认值）
 
 解码：将Buffer转成字符串  Buffer.toString('...','utf8')//utf8是默认的
 编码：将字符串转成Buffer  Buffer.from('','usc2')
+
+图片视频以流的方式返回的形式
+let temp_content=Buffer.alloc(0)
+
+req.on('data',(data)=>{
+    Buffer.concat([temp_content,data])//前面的和后面的相连
+})
+
 ~~~
 
 #### os
@@ -288,6 +308,9 @@ os.platform()
 ~~~js
 process.stdout.write='';
 process.stdin.on('data',data=>{}) //标准输入和输出可以用 来创建类shell的交互框
+process.send()//在fork后的子进程中使用才行，否则接收的数据为undefined 
+process.exit()
+
 ~~~
 
 #### fs四个大类
@@ -332,6 +355,44 @@ tcp:在IP层上的一层封装，加上了端口号
 http:在IP/tcp的基础上再一层的封装
  	短连接
 	无状态
+
+~~~
+
+##### 验证码的作用
+
+~~~css
+网站上的验证码都是为了保护网站安全，一般网站都要通过验证码来防止机器大规模注册，机器暴力破解数据密码等危害
+
+手机的短信和语言验证码是要确定这个手机是用户自己的
+~~~
+
+
+
+#####  
+
+##### 消息头类别
+
+~~~css
+general headers:同时适用于请求和响应消息，但与最终消息主体中传输的数据无关的消息头
+request headers:包含更多有关需要获取的资源或客户端本身信息的消息头
+response headers:包含有关响应的消息补充信息，如其位置或服务器本身（名称和版本）的消息
+entity headers:包含有关实体主体的的更多信息，
+~~~
+
+##### 方法或者属性
+
+~~~js
+客户端：请求服务器地址数据信息的方法
+http.request({
+    host:
+    port:
+    ...
+},(ret)=>{
+    ret=>返回的结果
+})
+
+response 响应头
+response.writeHead(301,http.STATUS_CODE[301],{"Location":"/"})重定向 状态码一定是3XX
 ~~~
 
 
@@ -457,7 +518,9 @@ cookie的注意事项：
 
 ~~~css
 session值的注意事项
-
+全局变量：SESSION_SET={}
+SESSION_SET['由cookie处得到的服务器返回的唯一值id']=req.session={}
+两者指向的是同一个对象
 ~~~
 
 
@@ -544,8 +607,6 @@ path - cookie的路径（默认：/）
 
 crsf的错误捕获 err.code==='EBADCSRFTOKEN'
 ~~~
-
-
 
 
 
@@ -1390,6 +1451,17 @@ https://oauth.b.com/token?
 
 这种方式给出的令牌，是针对第三方应用的，而不是针对用户的，即有可能多个用户共享同一个令牌。
 **不管哪种授权方式，第三方应用申请令牌前，都必须到系统进行备案，说明自己的身份,然后拿到 两个识别码 (客户端ID [client ID]) 客户端秘钥(client secret)** 防止令牌被滥用，没有备案过的第三方应用，是不会拿到令牌的的
+~~~
+
+#### 使用第一种方式后redirect_uri的地址设置为
+
+~~~js
+https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=XXXX
+xxxx代表为你自己后台设置的url接口地址
+	一般为：/login/github/callback
+	然后会有github返回的query数据 /login/github/callback?code=........
+    然后获取用户信息
+    注意使用重定向：res.writeHead(302,http.STATUS_CODE[302],{"Location":"获取到数据后重定向的地址"})
 ~~~
 
 

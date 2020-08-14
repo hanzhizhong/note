@@ -214,13 +214,15 @@ video/mp4; codecs="avc1.4d002a"
   下载vs2017的安装工具
   安装2017的社区版 选则 工作负载为 c++的桌面开发
   
+  这是在系统全局环境下的配置，如果出错，还要在个人的环境变量下设置一下配置 查找 .npmrc 文件
+  其中 python的环境变量中一定是全路径 即要包含 python.exe的可执行文件
   npm config set --global python 环境变量的路径
   npm config set --global msvs_version 2017
   
   下面就可以下载c++等库了
-  
-  ~~~
 
+  ~~~
+  
   
 
 ### FFmpeg的使用方法
@@ -751,7 +753,10 @@ shell.openItem() api已经废弃了，shell.openPath()
 
 ~~~css
 事件:渲染进程崩溃 renderer-process-crashed
-主进程
+主进程异常监控：
+process.on('uncaughtException',function(err)=>{
+    console.log('error',err)
+})
 ~~~
 
 
