@@ -103,11 +103,15 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
+> 
+>  ~~~
+>
 > ~~~
 > 
 > ~~~
@@ -718,7 +722,7 @@ var jsonData=pm.response.json();
 pm.globals.set('token',jsonData.token)
 
 后面就可以在 鉴权 Authorization标签页中
-选择Type:Bear Token选项
+选择Type:Bear Token选项 在后端获取token验证的时候是需要去掉 “Bear ”的字符串
 Token中填入 {{token}}
 ~~~
 
@@ -974,8 +978,6 @@ git config --global --unset user.name
 控制面板/用户账户/管理您的凭据 凭据管理
 
 ~~~
-
-
 
 #### 修改和提交
 

@@ -225,6 +225,7 @@ $('input').attr('value')显示的是undefined
 优化高频率执行js代码的方法
 应用场景：上啦加载更多 滚动浏览器滚动条的时候
 
+节流：连续触发的事件，在一定时间内只有第一次触发，其他时间不触发
 ~~~
 
 #### 函数防抖
@@ -232,10 +233,48 @@ $('input').attr('value')显示的是undefined
 ~~~js
 事件保持触发，一定事件内没有触发
 核心：在一定时间内连续的函数调用，只让其执行一次
-
+防抖：连续触发的事件，在一定时间内不触发，到达设定的时间后执行一次，即只有最后一次有效，其他触发没有效果
 应用场景： 搜索框
 用户停止输入的时候才去触发查询的请求，这时候函数防抖可以帮到我们。
 ~~~
+
+#### Symbol 新数据类型
+
+~~~css
+typeof 的结果为 "symbol"
+用法：let n=Symbol('sss')
+这样就定义了一个 Symbol('sss')的常量 
+常用来做 私有变量的 key值
+function Person(name,gender){
+    this.name=name;
+    this[Symbol('gender')]=gender
+}
+let per=new Person('tom','male')
+调用不到gender的属性值
+~~~
+
+#### 字符串模板
+
+~~~css
+unicode的使用方法
+console.log('\u{1F603}') emoji地址：https://unicode.org/emoji/charts/full-emoji-list.html
+或者 console.log(`\u{1f603}`)
+
+~~~
+
+#### Object.defineProperty
+
+~~~js
+let options={title:"sss"}
+Object.defineProperty(options,'title',{
+    configurable:true,//是否可以删除当前属性，默认为false
+    value:'nothing seek,nothing find',
+    writable:true,//value值是否可以改变，默认为false
+    enumerable:true//是否可以用for in Object.keys()等方式遍历
+})
+~~~
+
+
 
 
 
@@ -272,10 +311,6 @@ window.baidu={
     }
 }
 ~~~
-
-
-
-
 
 ### ES6 数组方法
 

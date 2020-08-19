@@ -352,6 +352,17 @@ Project.destroy()
 Project.findAll()
 ~~~
 
+#### scopes的作用
+
+~~~css
+new Sequelize('',{},{
+    scopes:{
+        where:{}
+    }
+})
+相当于预先定义好的每条sql语句都会携带的scopes字段的where查询语句
+~~~
+
 
 
 #### sequelize-cli的命令
