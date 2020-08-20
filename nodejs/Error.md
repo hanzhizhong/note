@@ -127,6 +127,14 @@ limits:{
 > ~~~
 > 
 > ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 
 ### 关于axios请求报错ECONNRESET
 
@@ -1463,7 +1471,11 @@ xxxx代表为你自己后台设置的url接口地址
 	一般为：/login/github/callback
 	然后会有github返回的query数据 /login/github/callback?code=........
     然后获取用户信息
+    将获取到的用户信息保存为文件uesrinfo.json或者存储到数据库中,页面重定向后再次请求这个userinfo.json的文件或者数据库信息
     注意使用重定向：res.writeHead(302,http.STATUS_CODE[302],{"Location":"获取到数据后重定向的地址"})
+    
+**页面在首次登陆的时候就会请求userinfo.json的文件或者数据库信息，大体的格式为
+{}
 ~~~
 
 

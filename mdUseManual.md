@@ -455,3 +455,11 @@ server 证书: opsenssl genrsa -out server-key.pem 1-34
 
 ~~~
 
+### 无线链接的知识点
+
+~~~css
+RSSI:rssi
+received signal strength indication接收的信号强度指示，无线发送层的可选部分，用来判定链接质量，以及是否增大广播发送强度。
+通过接收到的信号强弱测定信号点与接收点的距离，进而根据相应数据进行定位计算的一种定位技术。
+~~~
+
