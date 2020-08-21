@@ -103,14 +103,18 @@ limits:{
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->  ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
+> ~~~
 > 
->  ~~~
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 >
 > ~~~
 > 
@@ -1200,6 +1204,8 @@ cxt.params =>动态路由
 cxt.request.body=>
 	application/x-www-form-urlencoded 数据格式为：{ name: 'han', password: '1234' }
 	application/json   数据格式为：{ name: 'John', password: '1234' }
+
+koa-acl rbac
 ~~~
 
 #### koa-onerror

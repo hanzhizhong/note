@@ -238,6 +238,28 @@ $('input').attr('value')显示的是undefined
 用户停止输入的时候才去触发查询的请求，这时候函数防抖可以帮到我们。
 ~~~
 
+#### 箭头函数和普通函数的区别
+
+~~~js
+1.this的指向不同
+	普通声明式函数的this在定义函数时是不确定是谁的，只有在调用当前的函数时才能知道this是指向谁
+    function show(){
+		console.log(this)
+    }
+	show() //this指向的是window
+	document.onclick=show; //this指向的是doucment
+	
+	箭头函数
+    let fn=()=>{console.log(this)}//this 指向的是fn在创建时的父级上下文环境，而且不会变更，这里指向的是window
+   
+2.箭头函数中是没有arguments这个 函数参数的类数组对象
+3.箭头函数不能用作构造函数
+4.箭头函数不能用作生成器
+  
+~~~
+
+
+
 #### Symbol 新数据类型
 
 ~~~css
@@ -260,11 +282,17 @@ unicode的使用方法
 console.log('\u{1F603}') emoji地址：https://unicode.org/emoji/charts/full-emoji-list.html
 或者 console.log(`\u{1f603}`)
 
+startsWith()
+endsWith()
+repeat()
+includes()
+
 ~~~
 
-#### Object.defineProperty
+#### Object常用方法
 
 ~~~js
+Object.defineProperty()
 let options={title:"sss"}
 Object.defineProperty(options,'title',{
     configurable:true,//是否可以删除当前属性，默认为false
@@ -272,6 +300,42 @@ Object.defineProperty(options,'title',{
     writable:true,//value值是否可以改变，默认为false
     enumerable:true//是否可以用for in Object.keys()等方式遍历
 })
+Object.defineProperty(options,attr,{
+    get(){},//当在调用 options[attr]的时候会自动调用get()的方法
+    set(val){}//设置新值
+})
+
+Object.assign()
+let obj1=Object.create() //是在obj1的__proto__指向的原型对象上增加新的属性和值
+
+Object.is()
+Object.keys()
+Object.values()
+Object.entries()
+~~~
+
+#### 迭代器
+
+~~~js
+迭代协议
+迭代器：
+	是一个对象，通过使用next()方法实现 迭代协议的任何一个对象，方法返回两个属性对象：value这是序列中的next值；done; 如果迭代到最后一个值，则它为true.
+   
+可迭代对象：
+	必须拥有一个 [Symbol.iterator]键的属性
+    
+for ... in 是遍历了对象的可枚举属性
+for ... of..是遍历整个对象
+~~~
+
+#### Math内置对象的常用方法
+
+~~~js
+Math.min()
+Math.max()
+Math.ceil()
+Math.floor()
+
 ~~~
 
 
@@ -321,6 +385,8 @@ arr.filter((item,index,arr)=>{ return ....}) //
 arr.find((item,index,arr)=>{return })//返回最先符合条件的一个
 arr.findIndex()
 Array.from()
+
+arr.reduce((pre,current)=>{},pre0=0) 这里的pre是初始结果，这是由第二个参数pre0指定的，current是arr数组每次的遍历值
 ~~~
 
 ### ES6中的目前只有静态方法没有静态属性

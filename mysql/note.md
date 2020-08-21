@@ -347,6 +347,8 @@ Project.findOrCreate({where:{},defaults:{}}) 返回的是数组[{},bool]
 	如果是新建的bool为true,否则为false
 	已经存在的数据不会被修改
 
+Project.create()//创建
+
 Project.update()
 Project.destroy()
 Project.findAll()
