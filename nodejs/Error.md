@@ -94,6 +94,152 @@ limits:{
 }
 ~~~
 
+### mammoth 将Word文档从docx转换为简单的HTML和Markdown
+
+~~~js
+mammoth.convertToHtml({path:''},options) 
+mammoth.convertToMarkdown(input,options) 将源文件转成markdown
+mammoth.extractRawText(input) //提取文档的原始文本
+
+options={
+    styleMap:,
+    includeEmbeddedStyleMap:
+    includeDefaultStyleMap,
+    convertImage,
+    ignoreEmptyParagraphs
+    idPrefix,
+    transformDocument
+        
+}
+
+~~~
+
+
+
+### accesscontrol：基于角色和属性的访问控制
+
+~~~css
+使用方法
+const {AccessControl}=require("accesscontrol")
+const ac=new AccessControl([角色和访问权限的清单])
+
+profile:配置文件
+video:
+
+~~~
+
+
+
+#### 过滤方法
+
+~~~css
+AccessControl.filter(data,attributes)
+let assets={notebook:"mac",car:{brand:'Ford',model:"Mustang",year:1970,color:"red"}}
+
+let ret1=AccessControl.filter(assets,['*'])
+
+let ret2=AccessControl.filter(assets,['*','!car'])
+
+let ret3=AccessControl.filter(assets,['*','!car','car.model'])
+
+ret1 { notebook: 'mac',
+  car:
+   { brand: 'Ford', model: 'Mustang', year: 1970, color: 'red' } }
+ret2 { notebook: 'mac' }
+ret3 { notebook: 'mac', car: { model: 'Mustang' } }
+
+~~~
+
+#### 角色可能采取的行动 action
+
+~~~css
+AccessContron.Action:[create,delete,read,update]
+create:post请求或者insert数据库操作
+delete:delete请求或者数据库delete
+read:get请求或者数据库select操作
+update:put或者post请求或者数据库的update操作
+~~~
+
+#### 列举一个动作可能拥有的资源 possession:enum
+
+~~~css
+AccessControl.Possession.[any,own]
+any:将（或不）对 任何 资源执行该操作
+own:将(或不)对 当前主题的 自身 资源执行该操作
+
+~~~
+
+#### 检查给定角色和资源是否允许定义的访问 can
+
+~~~css
+AccessControl.can(role)
+role:string|array|
+
+ac=new AccessControl(grants)
+ac.can('admin').createAny('profile');
+ac.can(['admin','user']).createOwn('profile')
+当检查多个角色时，将合并获得的属性
+~~~
+
+#### 拒绝访问给定角色的指定资源 deny
+
+~~~javascript
+AccessControl.deny(role) 
+ac.deny('admin').createAny('profile');
+等价于
+ac.deny().role('admin').createAny('profile')
+等价于
+ac.deny({
+    role:'admin',
+    resource:'profile'
+}).createAny();
+等价于
+ac.deny({
+    role:"admin",
+    resource:'profile',
+    action:'create:any'
+})
+等价于
+ac.deny({
+    role:'admin',
+    resource:"profile",
+    action:'create',
+    possession:"any"
+})
+
+//拒绝为多个角色提供相同的资源:
+ac.deny(['admin','user']).createOwn('profile')
+~~~
+
+#### 使用一个或者多个其他角色的特权扩展给指定的角色 extendRole 
+
+~~~css
+AccessControl.extendRole(roles,extenderRoles)
+roles:string|array 
+要扩展的角色。如果角色不存在，就自动创建
+extenderRoles: string|array 
+要继承的角色。如果要扩展的角色不存在，将抛错
+~~~
+
+~~~css
+session在rbac中可以看做是场景的含义
+user在场景1中对应的角色 场景和角色1多
+
+一个用户最终的拥有的权限= 这个用户拥有的角色对应的权限集合
+PM==>项目管理员，招聘员工
+PG==>开发程序，测试工能够
+admin==> 配置系统参数
+
+zhangsan=PM+admin 角色
+那zhangsan拥有的权限为 PM+admin
+~~~
+
+
+
+
+
+
+
 
 
 ### express 中的路由报错
@@ -108,6 +254,14 @@ limits:{
 >     //在中间件中使用的时候是不需要立即调用的
 >     app.use('/api',userRouter)//userRouter不需要加（）立即调用
 >     ~~~
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
 > ~~~
 > 
 > ~~~
