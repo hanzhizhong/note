@@ -387,6 +387,7 @@ arr.findIndex()
 Array.from()
 
 arr.reduce((pre,current)=>{},pre0=0) 这里的pre是初始结果，这是由第二个参数pre0指定的，current是arr数组每次的遍历值
+arr.reduce((pre,current)=>{},[]) pre初始值为[]
 ~~~
 
 ### ES6中的目前只有静态方法没有静态属性

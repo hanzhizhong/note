@@ -341,7 +341,7 @@ new Sequelize({dialects:"sqlite",storage:'path/to/数据库名.sqlite'})
 
 ~~~css
 find 
-Project.findByPK()
+Project.findByPk() //k是小写
 Project.findOne({})
 Project.findOrCreate({where:{},defaults:{}}) 返回的是数组[{},bool]
 	如果是新建的bool为true,否则为false
@@ -543,5 +543,5 @@ RBAC2 基于rbac0,增加了一些限制，强调在rbac的不同组件中在配�
 RBAC3 统一模型，包含了 rbac1和rbac2，
 ~~~
 
-https://github.com/imba97/js
+
 

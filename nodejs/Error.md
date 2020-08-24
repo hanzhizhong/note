@@ -111,6 +111,9 @@ options={
     transformDocument
         
 }
+convertImage:mammoth.images.eleTarget(function(image){
+    return image.read([编码类型]).then(ret)//编码类型为空时，ret就是Buffer二进制格式，base64时，那就是base64的格式
+})
 
 ~~~
 
@@ -234,14 +237,6 @@ zhangsan=PM+admin 角色
 那zhangsan拥有的权限为 PM+admin
 ~~~
 
-
-
-
-
-
-
-
-
 ### express 中的路由报错
 
 > ![image-20191204100916427](assets/image-20191204100916427.png)
@@ -249,50 +244,11 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
 
 ### 关于axios请求报错ECONNRESET
 
