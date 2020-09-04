@@ -244,11 +244,14 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
+> ~~~
+> 
+> ~~~
 
 ### 关于axios请求报错ECONNRESET
 
@@ -389,6 +392,35 @@ axios({})在请求中加上timeout的时间限制  延长>1000（默认值）
 + ![image-20191209141236460](assets/image-20191209141236460.png)
 
 ### nodejs
+
+#### global 全局变量
+
+~~~css
+console
+__dirname
+__filename
+process
+
+setTimeout()
+setInterval()
+clearTimeout()
+clearInterval()
+
+module
+exports
+require()
+
+URL
+URLSearchParams
+
+
+设置系统的环境变量问题
+set+回车键 会列出当前所有的环境变量
+set key=value 设置一个环境变量
+echo %key% 列出当前环境变量的值
+~~~
+
+
 
 #### Buffer支持的字符编码
 
