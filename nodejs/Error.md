@@ -120,6 +120,9 @@ options={
     transformDocument
         
 }
+convertImage:mammoth.images.eleTarget(function(image){
+    return image.read([编码类型]).then(ret)//编码类型为空时，ret就是Buffer二进制格式，base64时，那就是base64的格式
+})
 
 ~~~
 
@@ -243,14 +246,6 @@ zhangsan=PM+admin 角色
 那zhangsan拥有的权限为 PM+admin
 ~~~
 
-
-
-
-
-
-
-
-
 ### express 中的路由报错
 
 > ![image-20191204100916427](assets/image-20191204100916427.png)
@@ -266,42 +261,6 @@ zhangsan=PM+admin 角色
 >  ~~~
 > 
 >  ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
 >
 > ~~~
 > 
@@ -446,6 +405,35 @@ axios({})在请求中加上timeout的时间限制  延长>1000（默认值）
 + ![image-20191209141236460](assets/image-20191209141236460.png)
 
 ### nodejs
+
+#### global 全局变量
+
+~~~css
+console
+__dirname
+__filename
+process
+
+setTimeout()
+setInterval()
+clearTimeout()
+clearInterval()
+
+module
+exports
+require()
+
+URL
+URLSearchParams
+
+
+设置系统的环境变量问题
+set+回车键 会列出当前所有的环境变量
+set key=value 设置一个环境变量
+echo %key% 列出当前环境变量的值
+~~~
+
+
 
 #### Buffer支持的字符编码
 

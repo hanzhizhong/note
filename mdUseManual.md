@@ -277,7 +277,7 @@ jsonError({
 
 ### electron 插件
 
-~~~css
+~~~js
 electron-rebuild //编译原生的模块 
 robot.js//智能自动化 控制鼠标、键盘、阅读屏幕
 vkey //根据键值找对应的键盘字母
@@ -286,6 +286,7 @@ node-ffi//node版本低于10
 ffi-napi //node版本大于10
 electron-is-dev
 electron-notification-state 检测是否可以使用通知
+
 electron-progressbar 提供了一个易于使用且高度可定制的API来显示和控制电子应用程序的进度条。
 electron-window-state 用于存储和恢复电子应用程序的窗口大小和位置的库
 
@@ -295,9 +296,58 @@ jszip 一个用JavaScript创建、读取和编辑.zip文件的库，带有一个
 lodash Lodash是一个著名的javascript原生库，不需要引入其他第三方依赖。是一个意在提高开发者效率,提高JS原生方法性能的JS库。简单的说就是，很多方法lodash已经帮你写好了，直接调用就行，不用自己费尽心思去写了，而且可以统一方法的一致性。Lodash使用了一个简单的 _ 符号，就像Jquery的 $ 一样，十分简洁。
 pretty-bytes - 将字节转换为一个人类可读的字符串:1337→1.34 kB
 randombytes
+docxtemplater 您将能够使用Word本身来自定义生成的文档。
+remove-markdown 将文本中删除（剥离）markdown格式。
+    const plainText=removeMd(markdownstr,{
+		stripListLeaders:true,//删除列表定义符 设置stripListLeaders为false将保留所有列表字符（*, -, +, (digit).）。
+        listUnicodeChar:"",//要插入的char而不是剥离的列表前导符
+        gfm:true,//GitHub的markdown语法在标准的markdown语法基础上做了扩充，称之为GitHub Flavored Markdown
+        useImgAltText:true	将图像替换成alt-text
+    })
+sax //此种方式可以非常方便的获取行号信息，很容易对XML定位出错，对于前端XML编辑器，对XML数据进行校验，定位到出错行非常方便。
+
+create-torrent//创建种子文件
+semver //semver 是 语义化版本（Semantic Versioning）规范 的一个实现，目前是由 npm 的团队维护，实现了版本和版本范围的解析、计算、比较。
+showdown // html到md格式 或者 md到html格式转换
+
+v-emoji-picker //是一个轻型表情符号选择器，可以在选择器组件中显示原生表情符号
+string-replace-to-array //字符串替换为数组
+	var replace = require('string-replace-to-array')
+	replace('Hello Amy', 'Amy', { name: 'Amy' })
+	// output: ['Hello ', { name: 'Amy' }]	
+
+turndown //使用js方法将html转成markdown
+winston //winston被设计为一个简单且通用的日志库，支持多种传输。传输实质上是日志的存储设备
+application-config//将应用程序配置存储在操作系统希望的位置。
+auto-launch //登录时自动启动您的应用。
+debounce //
+	var debounce = require('debounce');
+    window.onresize = debounce(resize, 200);
+
+    function resize(e) {
+      console.log('height', window.innerHeight);
+      console.log('width', window.innerWidth);
+    }
+
+drag-drop //文本拖拽
+languagedetect //语言检测，返回的是数组 按照分数排序
+music-metadata //用于node.js的基于流和文件的音乐元数据解析器
+network-address//本机地址的网络地址
+run-parallel//并行运行一系列功能
+
+let progressBar=new ProgressBar({
+        indeterminate:false,
+        text:"Preparing data...",
+        detail:"wait...",
+        browserWindow:{
+            webPreferences:{
+                nodeIntegration:true
+            }
+        }
+    })
 ~~~
 
-### meta 键
+### meta 
 
 ~~~css
 如果使用的是windows，那么meta键表示的就是键盘上的win键（及键盘上有窗口图案的键）
@@ -554,11 +604,51 @@ abac是基于任意的属性组合来达到访问控制的目的，是最灵活�
 
 ### 常见的问题知识点
 
+#### doc和docx的区别
+
 ~~~css
 doc和docx的区别：
 doc格式是微软专用格式，兼容性较低。
 docx在microsoft office2007之后版本使用
 ~~~
+
+[每日一课]:https://github.com/imba97/js
+
+[每日一课][https://github.com/imba97/js ]
+
+#### 双因素认证 2FA
+
+~~~css
+一般来说，三种不同类型的证据，可以证明一个人的身份。
+
+秘密信息：只有该用户知道、其他人不知道的某种信息，比如密码。
+个人物品：该用户的私人物品，比如身份证、钥匙。
+生理特征：该用户的遗传特征，比如指纹、相貌、虹膜等等。
+
+这些证据就称为三种"因素"（factor）。因素越多，证明力就越强，身份就越可靠。
+双因素认证就是指，通过认证同时需要两个因素的证据。
+银行卡就是最常见的双因素认证。用户必须同时提供银行卡和密码，才能取到现金。
+~~~
+
+#### fingerprintjs2实现浏览器指纹采集器 获取用户唯一标识码
+
+~~~css
+判断本次请求的用户到底是新用户还是老用户或者是机器人
+
+将设备理解成一个人，像人一样有身份证号和名字（设备序列号等）,没有被串改，没有被假冒（设备账号被盗用、冒用）
+~~~
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
