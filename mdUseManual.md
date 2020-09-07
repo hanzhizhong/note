@@ -286,6 +286,15 @@ node-ffi//node版本低于10
 ffi-napi //node版本大于10
 electron-is-dev
 electron-notification-state 检测是否可以使用通知
+electron-progressbar 提供了一个易于使用且高度可定制的API来显示和控制电子应用程序的进度条。
+electron-window-state 用于存储和恢复电子应用程序的窗口大小和位置的库
+
+highlight.js Web的语法高亮
+js-yaml  是专门用来写配置文件的语言，非常简洁和强大，远比 JSON 格式方便。
+jszip 一个用JavaScript创建、读取和编辑.zip文件的库，带有一个可爱而简单的API。
+lodash Lodash是一个著名的javascript原生库，不需要引入其他第三方依赖。是一个意在提高开发者效率,提高JS原生方法性能的JS库。简单的说就是，很多方法lodash已经帮你写好了，直接调用就行，不用自己费尽心思去写了，而且可以统一方法的一致性。Lodash使用了一个简单的 _ 符号，就像Jquery的 $ 一样，十分简洁。
+pretty-bytes - 将字节转换为一个人类可读的字符串:1337→1.34 kB
+randombytes
 ~~~
 
 ### meta 键

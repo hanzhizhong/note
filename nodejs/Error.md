@@ -43,6 +43,15 @@ CLI:命令行模式
 Server:web服务端
 ~~~
 
+### nvm
+
+~~~css
+nvm install lastest 安装最新版本的node
+nvm install 10.15.3 安装指定版本的node 
+nvm list 
+nvm use 10.15.3
+~~~
+
 
 
 
@@ -249,11 +258,15 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
+> 
+>  ~~~
+>
 > ~~~
 > 
 > ~~~
