@@ -277,7 +277,7 @@ jsonError({
 
 ### electron 插件
 
-~~~css
+~~~js
 electron-rebuild //编译原生的模块 
 robot.js//智能自动化 控制鼠标、键盘、阅读屏幕
 vkey //根据键值找对应的键盘字母
@@ -287,9 +287,57 @@ ffi-napi //node版本大于10
 electron-is-dev
 electron-notification-state 检测是否可以使用通知
 docxtemplater 您将能够使用Word本身来自定义生成的文档。
+remove-markdown 将文本中删除（剥离）markdown格式。
+    const plainText=removeMd(markdownstr,{
+		stripListLeaders:true,//删除列表定义符 设置stripListLeaders为false将保留所有列表字符（*, -, +, (digit).）。
+        listUnicodeChar:"",//要插入的char而不是剥离的列表前导符
+        gfm:true,//GitHub的markdown语法在标准的markdown语法基础上做了扩充，称之为GitHub Flavored Markdown
+        useImgAltText:true	将图像替换成alt-text
+    })
+sax //此种方式可以非常方便的获取行号信息，很容易对XML定位出错，对于前端XML编辑器，对XML数据进行校验，定位到出错行非常方便。
+
+create-torrent//创建种子文件
+semver //semver 是 语义化版本（Semantic Versioning）规范 的一个实现，目前是由 npm 的团队维护，实现了版本和版本范围的解析、计算、比较。
+showdown // html到md格式 或者 md到html格式转换
+
+v-emoji-picker //是一个轻型表情符号选择器，可以在选择器组件中显示原生表情符号
+string-replace-to-array //字符串替换为数组
+	var replace = require('string-replace-to-array')
+	replace('Hello Amy', 'Amy', { name: 'Amy' })
+	// output: ['Hello ', { name: 'Amy' }]	
+
+turndown //使用js方法将html转成markdown
+winston //winston被设计为一个简单且通用的日志库，支持多种传输。传输实质上是日志的存储设备
+application-config//将应用程序配置存储在操作系统希望的位置。
+auto-launch //登录时自动启动您的应用。
+debounce //
+	var debounce = require('debounce');
+    window.onresize = debounce(resize, 200);
+
+    function resize(e) {
+      console.log('height', window.innerHeight);
+      console.log('width', window.innerWidth);
+    }
+
+drag-drop //文本拖拽
+languagedetect //语言检测，返回的是数组 按照分数排序
+music-metadata //用于node.js的基于流和文件的音乐元数据解析器
+network-address//本机地址的网络地址
+run-parallel//并行运行一系列功能
+
+let progressBar=new ProgressBar({
+        indeterminate:false,
+        text:"Preparing data...",
+        detail:"wait...",
+        browserWindow:{
+            webPreferences:{
+                nodeIntegration:true
+            }
+        }
+    })
 ~~~
 
-### meta 键
+### meta 
 
 ~~~css
 如果使用的是windows，那么meta键表示的就是键盘上的win键（及键盘上有窗口图案的键）
