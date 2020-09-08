@@ -414,6 +414,14 @@ electron-json-storage
 electron-store
 humanization-duration//人性化的显示时间 如12000=》 12秒
 normalize.css //CSS重置的现代替代方法
+adm-zip//解析zip和从新压缩zip文件
+baron//小型，快速，跨浏览器自定义滚动条。
+dompurify //DOMPurify清理HTML并防止XSS攻击。
+electron-notarize //-save-dev 为macOS无缝地对您的Electron应用进行公证
+mocha //mocha是一个功能丰富的javascript测试框架
+node-stream-zip //用于读取和提取ZIP存档的node.js库。
+pikaday// 轻量级的 javascript日期选择器 
+prettier//Prettier的中文意思是“漂亮的、机灵的”，也是一个流行的代码格式化工具的名称，它能够解析代码，使用你自己设定的规则来重新打印出格式规范的代码。
 ~~~
 
 ### meta 
