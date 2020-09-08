@@ -320,7 +320,7 @@ turndown //使用js方法将html转成markdown
 winston //winston被设计为一个简单且通用的日志库，支持多种传输。传输实质上是日志的存储设备
 application-config//将应用程序配置存储在操作系统希望的位置。
 auto-launch //登录时自动启动您的应用。
-debounce //
+debounce //重新渲染函数
 	var debounce = require('debounce');
     window.onresize = debounce(resize, 200);
 
@@ -334,17 +334,86 @@ languagedetect //语言检测，返回的是数组 按照分数排序
 music-metadata //用于node.js的基于流和文件的音乐元数据解析器
 network-address//本机地址的网络地址
 run-parallel//并行运行一系列功能
-
-let progressBar=new ProgressBar({
-        indeterminate:false,
-        text:"Preparing data...",
-        detail:"wait...",
-        browserWindow:{
-            webPreferences:{
-                nodeIntegration:true
+electron-progressBar //进度条
+    let progressBar=new ProgressBar({
+            indeterminate:false,
+            text:"Preparing data...",
+            detail:"wait...",
+            browserWindow:{
+                webPreferences:{
+                    nodeIntegration:true
+                }
             }
-        }
+        })
+    
+winston //简单通用的日志库
+electron-debug //在生产环境下 按F12可以直接打开控制台
+javascript-state-machine//状态模式的一个模型，在日常开发中很多具有多种状态的对象，都可以用有限状态机模型来模拟
+	应用场景：红绿灯
+    const StateMachine = require('javascript-state-machine');
+    var fsm = new StateMachine({
+        init: 'green',
+        transitions: [
+          { name: 'warn',  from: 'green',  to: 'yellow' },
+          { name: 'panic', from: 'yellow', to: 'red'    },
+          { name: 'calm',  from: 'red',    to: 'yellow' },
+          { name: 'clear', from: 'yellow', to: 'green'  }
+        ]，
+        methods: {
+          onWarn: function() {},
+          onBeforeWarn: function() {},
+          onLeaveWarn: function() {},
+          onEnterYellow: function() {},
+          onLeaveYellow: function() {},
+          //...
+        }   
     })
+    有限状态机
+    优点:
+        一个状态状态对应行为，封装在一个类里，更直观清晰，增改方便
+        状态与状态间，行为与行为间彼此独立互不干扰
+        避免事物对象本身不断膨胀，条件判断语句过多
+        每次执行动作不用走很多不必要的判断语句，用哪个拿哪个
+        
+jsonfile//在Node.js中轻松读取/写入JSON文件。注意：该模块不能在浏览器中使用。
+open//可以替换掉本地的 shell.openPath()
+parse-filepath //文件路径转成对象
+mime//紧凑的MIME类型模块。
+glob //glob是shell使用的路径通配符,类似于正则表达式,但是与正则表达式不完全相同,在linux操作中如文件匹配等等已经使用了glob通配符;
+deep-equal//深度对比 是否相等
+    var equal = require('deep-equal');
+    console.dir([
+        equal(
+            { a : [ 2, 3 ], b : [ 4 ] },
+            { a : [ 2, 3 ], b : [ 4 ] }
+        ),
+        equal(
+            { x : 5, y : [6] },
+            { x : 5, y : 6 }
+        )
+    ]);
+
+deep-extend//和Object.assign相同的作用，不同是深度合并
+
+codemirror //在线支持语法高亮的代码编辑器
+
+chokidar//监视文件或文件夹 chokidar将在指定路径范围内的所有内容上递归启动监视程序
+celldown.js //快速创建表格
+ioredis //redis的超级 有发布订阅功能
+xterm //Xterm.js是一个用TypeScript编写的前端组件，它允许应用程序在浏览器中为用户提供功能齐全的终端。它被VS Code，Hyper和Theia等热门项目所使用。
+fs-extra//fs的超级
+ora//使用Node.js制作命令行工具时，您可能会使用Vorpal或commander之类的东西。当您想与用户交流时，她需要等待，您可以做很多事情。您可以显示一个进度条
+howler//一个现代音频库，支持 Web Audio API 和 HTML5 Audio 的回退机制。该项目致力于简化与使用 JavaScript 开发跨平台音频相关的开发工作。
+siriwave//使用Canvas API在纯Javascript中复制了“ Apple Siri”波形。
+shortid//简短的非顺序url友好型唯一ID生成器。  JJrieEfeJ
+annyang//一个很小的javascript SpeechRecognition库，可让您的用户通过语音命令控制您的网站。
+cheerio//Cheerio实现了核心jQuery的子集。
+electron-settings
+electron-storage
+electron-json-storage
+electron-store
+humanization-duration//人性化的显示时间 如12000=》 12秒
+normalize.css //CSS重置的现代替代方法
 ~~~
 
 ### meta 
