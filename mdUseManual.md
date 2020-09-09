@@ -422,6 +422,13 @@ mocha //mocha是一个功能丰富的javascript测试框架
 node-stream-zip //用于读取和提取ZIP存档的node.js库。
 pikaday// 轻量级的 javascript日期选择器 
 prettier//Prettier的中文意思是“漂亮的、机灵的”，也是一个流行的代码格式化工具的名称，它能够解析代码，使用你自己设定的规则来重新打印出格式规范的代码。
+nprogress//页面加载进度条
+ansi-to-html//终端格式/颜色代码转成html的库
+numeral//数字可以格式化成货币、百分比、时间，甚至是带有小数点、千分位和缩写。
+	numeral(1000).format('0,0') 1,000
+request-progress//跟踪与请求一起发出的请求的下载进度，从而洞察各种指标，包括进度百分比，下载速度和剩余时间。
+filesize//提供了一种简单的方法来从数字（浮点数或整数）或字符串中获取人类可读的文件大小字符串。
+walker//一个nodejs目录遍历器。
 ~~~
 
 ### meta 
