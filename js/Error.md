@@ -326,6 +326,23 @@ Object.entries()
     
 for ... in 是遍历了对象的可枚举属性
 for ... of..是遍历整个对象
+
+四种数据结构：map,set, 数组，对象
+凡是具有Symbol.iterator属性的数据结构都是可迭代的对象
+
+凡是可迭代的对象都具有的方法：
+	解构赋值	let [x,y]=new Set(['a','b'])
+    扩展运算符 ...
+
+遍历的方法为 for...of 
+
+可以调用可迭代对象的Symbol.iterator的属性进行 一步一步的遍历
+let set=new Set(['a','b','c'])
+let itSet=set[Symbol.iterator]();
+console.log(itSet.next())//{value:'a',done:false}
+	
+   	
+
 ~~~
 
 #### Math内置对象的常用方法
