@@ -429,6 +429,11 @@ numeral//数字可以格式化成货币、百分比、时间，甚至是带有�
 request-progress//跟踪与请求一起发出的请求的下载进度，从而洞察各种指标，包括进度百分比，下载速度和剩余时间。
 filesize//提供了一种简单的方法来从数字（浮点数或整数）或字符串中获取人类可读的文件大小字符串。
 walker//一个nodejs目录遍历器。
+ssejson//使用sse协议连接是 服务器向浏览器发送的数据格式解析
+htmltable
+csv-parser//解析.csv的文件格式数据
+log-rotate//日志切割
+through//快速创建一个双向流，相比stream模块 through更方便
 ~~~
 
 ### meta 
@@ -720,6 +725,52 @@ docx在microsoft office2007之后版本使用
 判断本次请求的用户到底是新用户还是老用户或者是机器人
 
 将设备理解成一个人，像人一样有身份证号和名字（设备序列号等）,没有被串改，没有被假冒（设备账号被盗用、冒用）
+~~~
+
+#### SSE 服务器发送事件 server-sent-events
+
+~~~css
+所谓的sse，就是浏览器向服务器发送一个http请求，然后服务器不断单向的向浏览器推送信息。这种信息在格式上很简单，就是“信息”加上前缀“data:”，然后以“\n\n”结尾
+
+sse和websocket功能相似，都是用来建立浏览器和服务器之间的通信渠道。
+区别在于：
+	websocket是全双工通道，sse是单向通道，只能服务器向浏览器端发送信息
+	websocket需要服务器端支持，sse部署在http协议之上，现有的服务器软件都支持
+	sse是轻量级的协议，websocket是一种较重
+	sse一般只用来传递文本，二进制数据需要编码后传输；websocket默认支持二进制传输
+	sse默认支持断线重连；websocket需要自己实现
+	sse支持自定义发送的数据类型
+
+~~~
+
+##### 使用方法
+
+~~~js
+//客户端
+var source=new EventSource(url);
+/*
+	当跨域时，指定第二个参数
+	new EventSource(url,{withCredentials:true})
+*/
+
+source.addEventListener('open',function(e){},false)
+source.addEventListener('message',function(e){},false)
+source.addEventListener('error',function(e){},false)
+source.close()
+
+//服务端实现
+Content-Type:text/event-stream 
+Cache-Control:no-cache 
+Connection:keep-alive
+
+~~~
+
+
+
+#### .csv的文件格式
+
+~~~css
+是一种通用的、相对简单的文件格式，被用户、商家和科学广泛应用。最广泛的应用是在程序之间转移表格数据。
 ~~~
 
 

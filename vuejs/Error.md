@@ -11,6 +11,10 @@
 ~~~css
 大概的意思是：通过props传递给子组件的 属性值，不能在子组件内部修改props中的 属性值。
 需要通过 this.$emit的方式 事件触发机制，让父组件自己改变 属性值
+
+子组件模板上 this.$emit('事件名-自定义的','需要的发送到父组件中改变的值')
+在父组件中的 插入的子组件名标签
+<sub-component :props对应的名="传递的属性名" @事件名-自定义的="对应父组件中的事件方法"></sub-component>
 ~~~
 
 
@@ -528,7 +532,7 @@ const MyComponent={
 </body>
 注意：script需要放在vue.min.js之下
 const MyComponent={
-    template:'[模板的id标识符]',
+    template:'#[模板的id标识符]',//注意#不能漏掉
         data(){
             return {}
     }

@@ -341,7 +341,8 @@ let set=new Set(['a','b','c'])
 let itSet=set[Symbol.iterator]();
 console.log(itSet.next())//{value:'a',done:false}
 	
-   	
+for循环跳过当次的循环进入下一个循环 使用continue;
+
 
 ~~~
 
