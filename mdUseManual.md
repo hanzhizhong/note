@@ -434,6 +434,23 @@ htmltable
 csv-parser//解析.csv的文件格式数据
 log-rotate//日志切割
 through//快速创建一个双向流，相比stream模块 through更方便
+getport//找一个开放的端口监听
+passport//express兼容身份验证中间件。目的是对请求进行身份验证，通过策略插件来完成，策略可扩展
+minimist//用来解析命令行选项的库
+fstream//像FS流一样，但是带有统计信息，并支持目录和符号链接以及普通文件
+tar//
+carto//CartoCSS简称Carto是一种地图设计语言。语法与css相似
+progress-stream//查看或阅读流的进度
+electron-in-page-search//使用chrome的页内搜索功能
+rc//读取全局的配置模块
+user-home//获取用户主目录的路径
+tree-kill//杀死进程树中的进程，包括根进程。
+adbkit//android debug dridge 安卓平台调试桥，是连接android手机和pc端的桥梁，通过adb可以管理、操作模拟和设备，如安装软件、查看设备软硬件参数、系统升级、运行shell命令等。adbkit具有上面大多数的功能外，并添加了一些附加功能，例如能够生成触摸/按键事件和截图。
+node-notifier//跨平台本地通知
+tildify//绝对路径转成波浪线路径
+sfx//在节点程序中的声音效果提供一个简单，一致，跨平台的api.想要在节点程序完成执行时发出通知吗？您的程序遇到错误时会发出蜂鸣声吗？您是否曾经想过读出您的错误消息？node-sfx是给你的。
+bitcrusher//使用Web Audio API实现位压缩效果。
+
 ~~~
 
 ### meta 
