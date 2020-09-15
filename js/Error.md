@@ -356,6 +356,7 @@ Math.floor()
 
 ~~~
 
+<<<<<<< HEAD
 #### async/await并行和串行
 
 ~~~css
@@ -379,6 +380,35 @@ let ret=[name1,name2].map(item=>getValue(item))
 for(let tmp of ret){
     await tmp;
 }
+=======
+#### async/await
+
+~~~js
+函数执行分为：并行和串行
+//async/await并行的方法
+async function getValue(){}
+
+(async function(){//并行的方法
+    let ret1=getValue()
+    let ret2=getValue();
+    
+    let result1=await ret1;
+    let result2=await ret2;
+    console.log(result1,result2)
+})();
+
+//串行的方法
+(async function(){
+    let ret1=await getValue()
+    let ret2=await getValue();
+    console.log(ret1,ret2)
+})();
+
+//并行的方法
+let []=await promise.all([getValue(),getValue()])
+for...of 的并行方法
+for(let temp of promise对象){}//这里的promise是函数调用后返回值是promise类型的数据
+>>>>>>> refs/remotes/origin/master
 ~~~
 
 
