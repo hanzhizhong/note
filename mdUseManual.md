@@ -434,6 +434,27 @@ htmltable
 csv-parser//解析.csv的文件格式数据
 log-rotate//日志切割
 through//快速创建一个双向流，相比stream模块 through更方便
+array-union//从输入的数组中创建一个唯一值不重复的数组 arrayUnion （[ 1 ，1 ，2 ，3 ] ，[ 2 ，3 ] ） =>[1,2,3]
+brace//在HTML页面中构建不同类型的编辑器（javascript/json/coffee）
+bulk-require//加载文件的列表输出
+decibels//音量分贝之间来回转换值
+insert-css//将css字符串插入<head>
+json-query//从json对象检索值以进行数据绑定。提供参数、嵌套查询，深层查询，自定义化简/过滤函数和简单的布尔逻辑
+ncp//异步递归文件和目录复制
+notevil//与内建类似eval，将返回最后一个表达式的结果
+	const safeEval=require('notevil')
+    let ret=safeEval('1+f(2,3)+x',{
+        x:100,
+        f:function(a,b){
+            return a*b
+        }
+    })
+pseudo-audio-param//模拟预定的audioiParam值
+pull-cat
+pull-stream//从源流的顺序列表构造一个新的源流，依次从每个流中读取直到结束，然后依次读取
+readable-blob-stream//read w3c Blob & File objects as a Node stream
+scroll-into-view//滚动到视图
+strftime//时间日期格式化
 ~~~
 
 ### meta 

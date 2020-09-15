@@ -356,6 +356,31 @@ Math.floor()
 
 ~~~
 
+#### async/await并行和串行
+
+~~~css
+await getValue(name1)
+await getValue(name2)
+
+for(let tmp of [name1,name2]){
+    await getValu(tmp)
+}
+上面是串行模式
+
+并行模式
+let ret1=getValue(name1)
+let ret2=getValue(name2)
+await ret1;
+await ret2;
+
+await Promise.all([getValue(name1),getValue(name2)])
+
+let ret=[name1,name2].map(item=>getValue(item))
+for(let tmp of ret){
+    await tmp;
+}
+~~~
+
 
 
 
