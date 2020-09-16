@@ -471,7 +471,7 @@ node-notifier//跨平台本地通知
 tildify//绝对路径转成波浪线路径
 sfx//在节点程序中的声音效果提供一个简单，一致，跨平台的api.想要在节点程序完成执行时发出通知吗？您的程序遇到错误时会发出蜂鸣声吗？您是否曾经想过读出您的错误消息？node-sfx是给你的。
 bitcrusher//使用Web Audio API实现位压缩效果。
-
+dotenv//将环境变量从 .env文件加载到process.env。
 ~~~
 
 ### meta 

@@ -253,14 +253,18 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->  ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
+> ~~~
 > 
->  ~~~
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 >
 > ~~~
 > 
@@ -526,6 +530,13 @@ tcp:在IP层上的一层封装，加上了端口号
 http:在IP/tcp的基础上再一层的封装
  	短连接
 	无状态
+http协议
+1.请求时数据传递的格式
+	请求行 request line
+	请求头 request header
+	请求体 reqeust body
+2.响应时返回的数据格式
+3.
 
 ~~~
 
