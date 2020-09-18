@@ -382,6 +382,17 @@ for(let tmp of ret){
 
 ~~~
 
+### WebAPI
+
+#### URL
+
+~~~css
+new URL().searchParams 
+返回 URLSearchParams对象 可迭代 的
+获取结果需要遍历 for of 
+扩展运算符
+~~~
+
 
 
 

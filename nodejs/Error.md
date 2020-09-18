@@ -269,13 +269,14 @@ zhangsan=PM+admin 角色
 > ~~~
 > 
 > ~~~
-
-### 关于axios请求报错ECONNRESET
-
-~~~css
-econnreset
-axios({})在请求中加上timeout的时间限制  延长>1000（默认值）
-~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 
 
 
@@ -531,14 +532,56 @@ http:在IP/tcp的基础上再一层的封装
  	短连接
 	无状态
 http协议
+
+消息头：客户端和服务端通过request和response传递附加信息。请求头由 名称（不区分大小写）冒号[:] 后面根据具体的值（不带换行符）组成
+
 1.请求时数据传递的格式
-	请求行 request line
+	请求行 request line 
+		[method(get,post,put...) path-to-resource(请求的资源路径，url) http/version-number(表示当前的http协议版本，主流是1.1,最新为2.0)]
+		如：GET / 1.1
 	请求头 request header
 	请求体 reqeust body
 2.响应时返回的数据格式
-3.
+服务端在返回相应的数据外，还会返回一些额外的数据，这些数据都包装在响应头部分，客户端会根据接收到的响应头以及头信息中对应的字段来做出不同的解析行为
+	响应行 response Line
+		[http/version-number(http协议版本号) status-code(状态码) message(状态码对应的描述)]
+	响应头 response header
+	响应体 response body
+3.传输相应的数据
 
+//创建的服务端
+const http=require('http')
+const server=http.createServer()
+server.on('request',(req,res)=>{
+    req=》request的本质是net.socket+http协议增加的部分
+    是客户端请求的对象，保存了与当前请求相关的客户端信息
+    req.socket=net.socket
+    
+    res=>服务器输出的对象，提供了服务端输出（或者说响应）有关的一些方法 res.end()结束服务端输出，不然客户端接收不了
+})
+
+//创建的客户端
+const http=require('http')
+const client=http.request({
+    host:
+    protocol
+    port
+},(res)=>{
+    let str=''
+    res.on('data',data=>{
+        str+=data
+    })
+    res.on('end',()=>{
+        console.log(str)
+    })
+})
+client.write('需要传递的参数')
+client.end()
 ~~~
+
+![image-20200917085817157](assets/image-20200917085817157.png)
+
+![image-20200917091813405](assets/image-20200917091813405.png)
 
 ##### 验证码的作用
 
@@ -598,12 +641,40 @@ extended: true：表示使用第三方模块qs来处理
 
 ~~~
 
-### 用axios调用后台接口时,baseurl自己变成了localhost,怎么改呢
+### axios 使用注意点
+
+~~~css
+params //是search 路径中传参方式 ?.... 格式必须是 无格式对象或 URLSearchParams对象
+URLSearchParams对象用于处理URL中查询字符串，即？之后的部分。
+var paramsString = 'q=URLUtils.searchParams&topic=api';
+var searchParams = new URLSearchParams(paramsString);
+
+`data` 是作为请求主体被发送的数据
+  // 只适用于这些请求方法 'PUT', 'POST', 和 'PATCH'
+  // 在没有设置 `transformRequest` 时，必须是以下类型之一：
+  // - string, plain object, ArrayBuffer, ArrayBufferView, URLSearchParams
+  // - 浏览器专属：FormData, File, Blob
+  // - Node 专属： Stream
+data:{}或者 data:"title=nothing seek,nothing find"
+~~~
+
+
+
+#### 用axios调用后台接口时,baseurl自己变成了localhost,怎么改呢
 
 ~~~css
 不在后端设置完整的路径
 在前端调用时 baseURL+文件名称 可以解决baseURL变成localhost
 ~~~
+
+#### 关于axios请求报错ECONNRESET
+
+~~~css
+econnreset
+axios({})在请求中加上timeout的时间限制  延长>1000（默认值）
+~~~
+
+
 
 ### express中 重新定义html静态文件的文件夹名称
 
@@ -1315,6 +1386,7 @@ setInterval(()=>{
 cxt 上下文环境
 next是异步函数 返回的是promise类型
 await next() 才能执行下一步
+cxt.state 用户数据存储空间
 ~~~
 
 #### koa使用到的中间件

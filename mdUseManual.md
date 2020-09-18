@@ -741,6 +741,21 @@ abac是基于任意的属性组合来达到访问控制的目的，是最灵活�
 
 ### 常见的问题知识点
 
+#### 百度在线将文字转成语音
+
+~~~css
+http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&spd=5&text=
+~~~
+
+#### plain object 无格式对象
+
+~~~css
+无格式对象:就是通过对象字面量或者new Object()创建的对象
+简单来说就是可枚举
+~~~
+
+
+
 #### doc和docx的区别
 
 ~~~css
