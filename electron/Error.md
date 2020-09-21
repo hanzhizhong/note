@@ -759,6 +759,31 @@ process.on('uncaughtException',function(err)=>{
 })
 ~~~
 
+### 开发项目实践
+
+~~~js
+配置程序启动的快捷路径
+开始菜单=》程序中
+	app.getPath('appData') //C:\Users\Administrator\AppData\Roaming
+	程序路径
+    	Roaming/Microsoft/Windows/Start Menu/Programs
+桌面菜单=》
+	app.getPath('home')//c://Users//Administrator
+	程序路径 
+    	Administrator/Desktop
+附到【开始】菜单快捷路径
+	app.getPath('appData')
+	程序路径
+    	Roaming/Microsoft/Internet Explorer/Quick Launch/User Pinned/StartMenu/
+
+升级文件的启动路径
+	process.execPath=>返回的是 electron.exe的文件路径
+
+app.getData('userData')//获取到的是在 c://Users//Administrator//AppData//Roaming//+当前应用的名称 文件夹下 有日志和一些缓存数据
+
+设置应用程序用户模型ID
+~~~
+
 
 
 ### UML 统一建模语言
