@@ -393,7 +393,106 @@ new URL().searchParams
 扩展运算符
 ~~~
 
+#### Worker 开启多线程
 
+~~~css
+html5中新增了Worker函数，来开启额外的线程，相当于多个线程协作
+~~~
+
+#### web audio api
+
+~~~css
+1.创建音频上下文
+var oCtx=new AudioContext();
+2.创建源对象，输入流（mp3文件）
+var audioSrc=oCtx.createMediaElementSource(mp3文件选择器)//
+3.加工源对象，创建效果节点（3d环绕， 重音，混响...）
+var analyser=oCxt.createAnalyser()
+4.输出音频，为音频选择有一个目的地（耳机，扬声器）
+oCxt.destination
+5.连接源对象到效果器，对目的地进行效果播放
+
+
+~~~
+
+#### Worker
+
+~~~css
+Worker是构造函数，开启额外的线程。相当于过线程操作，在同一个时间内执行多个任务
+
+new Worker('执行的js文件') 
+如果报错：不支持跨域
+
+需要开启服务才能使用
+~~~
+
+#### Worker中 数据传递和接收
+
+~~~js
+worker多线程中的 this指向和正常的js文件中指向window 不同，多线程中this指向 ：DedicatedWorkerGlobalScope
+woker函数的全局
+
+//dedicatedWorkerGlobalScope中传递数据的方法
+全局对象中有一个 postMessage的方法
+使用 postMessage（"传递的数据"）传递数据
+
+主进程中获取额外线程传递的数据
+var wk=new Worker('.js文件')
+使用wk实例对象来接收数据
+wk.onmessage=function(){
+    
+}
+
+~~~
+
+#### EventSource 服务端主动向客户端发送数据信息
+
+~~~js
+var es=new EventSource('/path')//请求服务器的路径
+es.onmessage
+~~~
+
+#### 拖拽
+
+~~~js
+ondrag:拖拽	
+ondragenter	//拖拽进入
+ondragleave	//拖拽离开
+ondragstart	//拖拽开始
+ondragend 	//拖拽结束
+ondragover 	//悬浮
+ondrop		//丢弃事件 有一个bug需要配合 ondragover 阻止默认事件
+
+原型对象中有 getData()和 setData()的函数
+setData(key,value)
+getData(key)
+
+
+~~~
+
+#### history
+
+~~~js
+history.length
+
+history.go()
+history.back()
+history.forword()
+history.pushState()
+history.replaceState()
+
+history.pushState(obj,title,url) //向历史记录中添加新的历史记录
+obj:添加的数据是一个对象
+title:'新的网页标题,一般省略了'
+url:"新网页的网址"
+
+history.replaceState(obj,title,url)//替换当前的历史记录
+
+监听histtory的改变
+window.onpopstate=function(e){
+    e.state//只有通过前进或者后退箭头或者history.back() history.forword() history.go()方法操作才能获得传递的数据
+}
+~~~
 
 
 
