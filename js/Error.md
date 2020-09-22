@@ -393,12 +393,6 @@ new URL().searchParams
 扩展运算符
 ~~~
 
-#### Worker 开启多线程
-
-~~~css
-html5中新增了Worker函数，来开启额外的线程，相当于多个线程协作
-~~~
-
 #### web audio api
 
 ~~~css
@@ -418,7 +412,7 @@ oCxt.destination
 #### Worker
 
 ~~~css
-Worker是构造函数，开启额外的线程。相当于过线程操作，在同一个时间内执行多个任务
+html5中新增了Worker函数,Worker是构造函数，开启额外的线程。相当于过线程操作，在同一个时间内执行多个任务
 
 new Worker('执行的js文件') 
 如果报错：不支持跨域

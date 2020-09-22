@@ -253,11 +253,15 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
+> 
+>  ~~~
+>
 > ~~~
 > 
 > ~~~
@@ -577,6 +581,12 @@ const client=http.request({
 })
 client.write('需要传递的参数')
 client.end()
+
+//使用管道的方式直接返回数据时 结尾是不需要使用res.end()的方法的
+
+let readStream=fs.createReadStream(fs地址)
+readStream.pipe(res) //绑定可写流到可读流,可以在单个可读流上绑定多个可写流即 pipe可以链式调用
+
 ~~~
 
 ![image-20200917085817157](assets/image-20200917085817157.png)

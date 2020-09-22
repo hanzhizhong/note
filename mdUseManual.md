@@ -499,6 +499,7 @@ sfx//在节点程序中的声音效果提供一个简单，一致，跨平台的
 bitcrusher//使用Web Audio API实现位压缩效果。
 dotenv//将环境变量从 .env文件加载到process.env。
 mkdirp//递归创建目录
+univeral-analytics//通用分析插件，结合 google analytics(分析)提供的各种API，帮助你收集、配置及报告用户与您的网络内容进行互动的数据
 ~~~
 
 ### meta 
