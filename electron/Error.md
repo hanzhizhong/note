@@ -784,6 +784,68 @@ app.getData('userData')//获取到的是在 c://Users//Administrator//AppData//R
 设置应用程序用户模型ID
 ~~~
 
+#### 插件的使用
+
+##### baron 设置scrollbar的样式
+
+~~~html
+//css样式引用的部分
+<link rel="stylesheet" href="../../node_modules/baron/baron.css">
+<link rel="stylesheet" href="../../node_modules/baron/skins/styles.css">
+<style>
+	//自定义的部分
+    ::-webkit-scrollbar{
+        width:0;
+    }
+    #container{
+        height:100%;
+        width:100%;
+    }
+    .wrapper-inside{
+        height:2000px;
+        background-color:cornsilk;
+    }
+    .baron {
+        height:500px;
+        width:300px;
+        border:1px solid brown;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        overflow: hidden;
+        margin: 20px;
+        background: #fff;
+    }
+</style>
+//标签部分中 样式名不可改变
+<div class="baron baron__root bar__clipper _macosx"> //还有三种样式 _winxp _ubuntu12 _simple
+    <div class="baron__scroller">
+        <div id="container"> 
+            <div class="wrapper-inside"></div>
+        </div>
+    </div>
+    <div class="baron__track">
+        <div class="baron__control baron__up">▲</div>
+        <div class="baron__free">
+            <div class="baron__bar"></div>
+        </div>
+        <div class="baron__control baron__down">▼</div>
+    </div>
+</div>
+<script src="../../node_modules/baron/baron.min.js"></script>
+<script>
+    window.onload=function(){
+        baron({
+            root:".baron",
+            scroller:".baron__scroller",
+            bar:".baron__bar",
+            scrollingCls:"_scrolling",
+            draggingCls:"_dragging"
+        })
+    }
+</script>
+~~~
+
 
 
 ### UML 统一建模语言

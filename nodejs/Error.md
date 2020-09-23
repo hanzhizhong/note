@@ -253,14 +253,18 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->  ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
+> ~~~
 > 
->  ~~~
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 >
 > ~~~
 > 
@@ -1074,6 +1078,8 @@ let ret=path.resolve(__dirname,'E:\\download\\file\\01Nodejs+MongoDb')
 console.log(ret)//返回 E:\download\file\01Nodejs+MongoDb
 let ret2=path.join(__dirname,'E:\\download\\file\\01Nodejs+MongoDb')
 console.log(ret2)//G:\study\html5W2\d9\E:\download\file\01Nodejs+MongoDb
+
+path.normalize(pathname[string])//对应不同系统下规范路径
 ~~~
 
 ### 网络通信
