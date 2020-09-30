@@ -447,13 +447,18 @@ win.flashFrame(true)
 win=new BrowserWindow()
 win.setOverlayIcon()
 
-//缩略图工具栏
+//缩略图工具栏 一般是音乐应用时显示的任务栏缩略图效果
 win.setThumbarButtons([])
 win.setThumbarButtons()
 
 弹出列表 弹出列表 弹出列表弹出列表 弹出列表 
 弹出列表
 app.setUserTasks()
+
+win.setProgressBar(progress[,options])
+progress //双精度浮点数 dobule 还有一种单精度浮点数float 两种的区别是：dobule 8字节64位 float:4字节32位
+options //object=> {mode:'none'|'normal'|'indeterminate'(不确定的)|'error'|'paused'}
+当进度值小于0时不显示进度
 ~~~
 
 #### 快捷键

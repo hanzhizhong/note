@@ -548,6 +548,7 @@ arr.sort((item1,item2)=>{
 ~~~css
 即只支持 static 方法（）{}
 而类的静态属性
+constructor(){}//不可以添加async 的异步方法
 ~~~
 
 #### 类中的extends super
