@@ -440,7 +440,7 @@ npm root -g 查看npm 全局安装目录
 设置python路径（根据自己的实际情况设置）
 npm config set python .....
 npm cache clean -f 删除缓存
-
+npm config list -l
 清除所有的npm配置项
 C:\Users\Administrator 找到.npmrc，打开删除文本内容
 本地用户  C:\Users\Administrator 找到 .npmrc 
@@ -702,40 +702,13 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
-> ~~~
-> 
-> ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
 >
-> ~~~
 > 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
-
-
 
 ### art-template 
 
@@ -1034,6 +1007,12 @@ const client=http.request({
 })
 client.write('需要传递的参数')
 client.end()
+
+//使用管道的方式直接返回数据时 结尾是不需要使用res.end()的方法的
+
+let readStream=fs.createReadStream(fs地址)
+readStream.pipe(res) //绑定可写流到可读流,可以在单个可读流上绑定多个可写流即 pipe可以链式调用
+
 ~~~
 
 ![image-20200917085817157](assets/image-20200917085817157.png)
@@ -1517,10 +1496,19 @@ server服务端需要考虑的有：
 path.join(__dirname,'') //前面的__dirname和后面的路径进行拼接  当前文件的根路径和后面的输入路径拼接
 path.resolve(__dirname,'') //不管后面的路径是哪个，返回的都是 绝对路径
 
+//将路径或路径片段的序列解析为绝对路径
+//给定的路径会从右到左进行处理，后面的每个path会追加到前面，直到构造出绝对路径
 let ret=path.resolve(__dirname,'E:\\download\\file\\01Nodejs+MongoDb')
 console.log(ret)//返回 E:\download\file\01Nodejs+MongoDb
+
 let ret2=path.join(__dirname,'E:\\download\\file\\01Nodejs+MongoDb')
 console.log(ret2)//G:\study\html5W2\d9\E:\download\file\01Nodejs+MongoDb
+
+path.normalize(pathname[string])//对应不同系统下规范路径
+
+path.sep//平台提供的特定的路径片段分隔符 
+	windows：\
+	posix:/
 ~~~
 
 ### 网络通信

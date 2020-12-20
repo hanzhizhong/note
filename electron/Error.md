@@ -447,13 +447,18 @@ win.flashFrame(true)
 win=new BrowserWindow()
 win.setOverlayIcon()
 
-//缩略图工具栏
+//缩略图工具栏 一般是音乐应用时显示的任务栏缩略图效果
 win.setThumbarButtons([])
 win.setThumbarButtons()
 
 弹出列表 弹出列表 弹出列表弹出列表 弹出列表 
 弹出列表
 app.setUserTasks()
+
+win.setProgressBar(progress[,options])
+progress //双精度浮点数 dobule 还有一种单精度浮点数float 两种的区别是：dobule 8字节64位 float:4字节32位
+options //object=> {mode:'none'|'normal'|'indeterminate'(不确定的)|'error'|'paused'}
+当进度值小于0时不显示进度
 ~~~
 
 #### 快捷键
@@ -757,6 +762,93 @@ shell.openItem() api已经废弃了，shell.openPath()
 process.on('uncaughtException',function(err)=>{
     console.log('error',err)
 })
+~~~
+
+### 开发项目实践
+
+~~~js
+配置程序启动的快捷路径
+开始菜单=》程序中
+	app.getPath('appData') //C:\Users\Administrator\AppData\Roaming
+	程序路径
+    	Roaming/Microsoft/Windows/Start Menu/Programs
+桌面菜单=》
+	app.getPath('home')//c://Users//Administrator
+	程序路径 
+    	Administrator/Desktop
+附到【开始】菜单快捷路径
+	app.getPath('appData')
+	程序路径
+    	Roaming/Microsoft/Internet Explorer/Quick Launch/User Pinned/StartMenu/
+
+升级文件的启动路径
+	process.execPath=>返回的是 electron.exe的文件路径
+
+app.getData('userData')//获取到的是在 c://Users//Administrator//AppData//Roaming//+当前应用的名称 文件夹下 有日志和一些缓存数据
+
+设置应用程序用户模型ID
+~~~
+
+#### 插件的使用
+
+##### baron 设置scrollbar的样式
+
+~~~html
+//css样式引用的部分
+<link rel="stylesheet" href="../../node_modules/baron/baron.css">
+<link rel="stylesheet" href="../../node_modules/baron/skins/styles.css">
+<style>
+	//自定义的部分
+    ::-webkit-scrollbar{
+        width:0;
+    }
+    #container{
+        height:100%;
+        width:100%;
+    }
+    .wrapper-inside{
+        height:2000px;
+        background-color:cornsilk;
+    }
+    .baron {
+        height:500px;
+        width:300px;
+        border:1px solid brown;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        overflow: hidden;
+        margin: 20px;
+        background: #fff;
+    }
+</style>
+//标签部分中 样式名不可改变
+<div class="baron baron__root bar__clipper _macosx"> //还有三种样式 _winxp _ubuntu12 _simple
+    <div class="baron__scroller">
+        <div id="container"> 
+            <div class="wrapper-inside"></div>
+        </div>
+    </div>
+    <div class="baron__track">
+        <div class="baron__control baron__up">▲</div>
+        <div class="baron__free">
+            <div class="baron__bar"></div>
+        </div>
+        <div class="baron__control baron__down">▼</div>
+    </div>
+</div>
+<script src="../../node_modules/baron/baron.min.js"></script>
+<script>
+    window.onload=function(){
+        baron({
+            root:".baron",
+            scroller:".baron__scroller",
+            bar:".baron__bar",
+            scrollingCls:"_scrolling",
+            draggingCls:"_dragging"
+        })
+    }
+</script>
 ~~~
 
 
