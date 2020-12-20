@@ -317,12 +317,15 @@ electron-progressbar //提供了一个易于使用且高度可定制的API来显
 electron-window-state //用于存储和恢复电子应用程序的窗口大小和位置的库
 
 highlight.js //Web的语法高亮
+	hljs.initHighlightingOnLoad();
+	hljs.highlightBlock(DOM节点)
 js-yaml  //是专门用来写配置文件的语言，非常简洁和强大，远比 JSON 格式方便。
 jszip //一个用JavaScript创建、读取和编辑.zip文件的库，带有一个可爱而简单的API。
 lodash //Lodash是一个著名的javascript原生库，不需要引入其他第三方依赖。是一个意在提高开发者效率,提高JS原生方法性能的JS库。简单的说就是，很多方法lodash已经帮你写好了，直接调用就行，不用自己费尽心思去写了，而且可以统一方法的一致性。Lodash使用了一个简单的 _ 符号，就像Jquery的 $ 一样，十分简洁。
 pretty-bytes //- 将字节转换为一个人类可读的字符串:1337→1.34 kB
 randombytes
-docxtemplater //您将能够使用Word本身来自定义生成的文档。
+docxtemplater //您将能够使用Word本身来自定义生成的文档。 收费的
+docx-templates //为Node和浏览器创建基于模板的docx报告
 remove-markdown //将文本中删除（剥离）markdown格式。
     const plainText=removeMd(markdownstr,{
 		stripListLeaders:true,//删除列表定义符 设置stripListLeaders为false将保留所有列表字符（*, -, +, (digit).）。
@@ -498,6 +501,7 @@ tildify//绝对路径转成波浪线路径
 sfx//在节点程序中的声音效果提供一个简单，一致，跨平台的api.想要在节点程序完成执行时发出通知吗？您的程序遇到错误时会发出蜂鸣声吗？您是否曾经想过读出您的错误消息？node-sfx是给你的。
 bitcrusher//使用Web Audio API实现位压缩效果。
 dotenv//将环境变量从 .env文件加载到process.env。
+jimp //javascript图像处理程序
 ~~~
 
 ### meta 

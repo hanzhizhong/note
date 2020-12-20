@@ -13,8 +13,6 @@ arr=[
 
 ~~~
 
-
-
 ### 秒转时分秒
 
 #### toUTCString() toGMTString() toString()
@@ -124,8 +122,16 @@ s=s>=10?s:'0'+s
 $ git pull 
 ~~~
 
-
 ### ECMA 语法
+
+#### [].slice.call
+
+~~~js
+[].slice.call() 常用来将类数组转化为真正的数组
+[].slice() === Array.prototype.slice() //true
+~~~
+
+
 
 #### switch case 使用范围的方法
 
