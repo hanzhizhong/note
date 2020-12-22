@@ -39,7 +39,7 @@ const userSchema=new schema({
 })
 
 //生成模型 数据库的操作都是使用这个模行
-module.exports=model('User',userSchema) User是数据库中的collection名
+module.exports=model('User',userSchema) User是数据库中的collection(集合)名 
 
 个人资料的schema
 
@@ -85,5 +85,11 @@ Boolean,
 Mixed,
 ObjectId,
 Array 
+~~~
+
+#### populate(填充)的作用
+
+~~~css
+populate('字段名') 可以用别的集合中关联的数据替换当前查询结果中的显示结果 //一般查询结果中需要替换的为[_id，。。。]的查询集，需要显示完全查询结果时，可以使用populate方法
 ~~~
 

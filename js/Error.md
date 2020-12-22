@@ -1,3 +1,12 @@
+### AMD/CMD/CommonJS/ES6的对比
+
+~~~css
+都是在js代码模块化中使用的，AMD、CMD、Commonjs是ES5中提供的模块化编程方案，import/export是ES6中定义新增的
+AMD-异步模块定义 requireJS脚步语言中对模块定义的规范化
+CMD-是 SeaJS在推广过程中对模块定义的规范，Seajs是CMD概念的一个实现，由淘宝团队开发的js框架
+CommonJS规范---是通过module.exports定义的，Nodejs端是使用CommonJS规范的，前端浏览器一般使用AMD、CMD、ES6等定义模块化开发的
+~~~
+
 
 
 ### Octal literals are not allowed in strict mode

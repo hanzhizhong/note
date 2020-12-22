@@ -126,6 +126,31 @@ convertImage:mammoth.images.eleTarget(function(image){
 
 ~~~
 
+### 日志模块 winston
+
+~~~css
+const winston=require('winston')
+let logger=winston.createLogger({
+    level:"info",
+    format:winston.format.json(),
+    defaultMeta:{service:"user-service"},
+    transports:[
+        new winston.transports.File({
+            filename:"error.log",
+            level:"error"
+            
+        }),
+        new winston.transports.File({
+            filename:"combined.log"
+        })
+    ]
+})
+logger.log('info','nothing seek,nothing find')
+logger.log('warn','warning! NO SMOKING')
+logger.log('error','this is error event')
+logger.log('info','{uername:"han",age:23}')
+~~~
+
 
 
 ### accesscontrol：基于角色和属性的访问控制
@@ -253,11 +278,15 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
+> 
+>  ~~~
+>
 > ~~~
 > 
 > ~~~

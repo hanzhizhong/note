@@ -1,3 +1,9 @@
+### 提交的数据验证
+
+~~~css
+post，put:提交的数据需要验证 koa-parameter 
+~~~
+
 ### 查询操作
 
 ~~~css
@@ -396,7 +402,7 @@ npx sequelize-cli model:generate --name User --attributes firstname:string,email
 ~~~
 
 ~~~css
-执行迁移
+执行迁移 链接数据库并创建表
 npx sequelize-cli db:migrate
 
 撤销迁移
