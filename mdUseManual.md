@@ -562,6 +562,14 @@ bois页面中 virtualization Technology  启用
 windows+x ->程序和功能 ->启用或关闭windows功能 ->Hyper 前的钩取消掉
 ~~~
 
+### 串口、COM口
+
+~~~css
+串口、COM口一般指物理接口形式。 TTL\RS-232\RS-485是指电平标准(电信号)
+串行通信端口，简称串口，区别于usb的通用串行总线和硬盘的 sata
+串口标准一般有两种：D型9针 4针杜邦
+~~~
+
 
 
 ### ftp win7系统服务器远程的链接方法

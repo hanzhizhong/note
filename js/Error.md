@@ -140,6 +140,21 @@ $ git pull
 [].slice() === Array.prototype.slice() //true
 ~~~
 
+#### [].shift.call(arguments)
+
+~~~js
+取出数组中第一元素
+
+~~~
+
+#### fn&&fn()和typeof fn==="function"&&fn()
+
+~~~css
+都是表示 fn不存在就什么都不做，不会报错，fn存在才尝试执行fn
+但是第一中情况中有错误： fn存在，但是它可能不是function类型，执行fn()就会报错。
+所以 正确的写法为 typeof fn==='function'&&fn()
+~~~
+
 
 
 #### switch case 使用范围的方法
