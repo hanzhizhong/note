@@ -729,14 +729,18 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->  ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
+> ~~~
 > 
->  ~~~
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 
 ### art-template 
 
@@ -1718,6 +1722,21 @@ weight代表权重 默认为1；数值越大分配到的客户端越多
 ~~~
 
 ### git 
+
+#### git 进入到命令行的模式后
+
+~~~
+1.保存并退出：
+
+（1）按 Esc 键退出编辑模式，英文模式下输入 :wq ，然后回车(write and quit)。
+（2）按 Esc 键退出编辑模式，大写英文模式下输入 ZZ ，然后回车。
+
+2.不保存退出：
+　　按 Esc 键退出编辑模式，英文模式下输入 :q! ，然后回车。
+　　按 Esc 键退出编辑模式，英文模式下输入 :qa! ，然后回车。
+~~~
+
+
 
 #### git config查询和用户信息设置
 
