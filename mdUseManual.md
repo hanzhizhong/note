@@ -596,6 +596,62 @@ regedit
 
 ### 服务器ubuntu
 
+#### coturn 安装
+
+~~~css
+coturn服务器完整实现了stun/turn/ice协议，支持p2p穿透防火墙技术。主要用于webrtc点对点音视频通道
+
+sudo apt-get update
+sudo apt-get install coturn
+
+//cert 和 pkey 这两个是配置如果要进行安全SSL连接用到的证书。
+
+//https://www.cnblogs.com/lglh/p/12822179.html 具体步骤
+listening-ip=内网地址
+relay-ip=内网地址
+external-ip=外网地址
+server-name=外网地址
+realm=外网地址
+2、编辑/etc/turnserver.conf文件：
+
+listening-port=3478
+TURN为TLS的侦听器端口(默认: 5349)。
+tls-listening-port=5349
+
+listening-ip=192.168.1.230
+
+external-ip=47.104.19.243（NAT必须）
+
+lt-cred-mech
+
+user=tcp:123456（必须）
+realm=example.com（必须）
+
+3、编辑/etc/default/coturn文件：
+TURNSERVER_ENABLED=1（必须）
+//重启coturn
+service coturn restart
+//测试ice的地址
+https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/
+~~~
+
+#### coturn turnserver.config的默认配置
+
+~~~css
+listening-port=3478
+external-ip=172.17.13.14
+cert=/etc/turn_server_cert.pem
+pkey=/etc/turn_server_pkey.pem
+min-port=49152
+max-port=65535
+user=admin:123456
+cli-password:123456
+realm=172.17.13.14
+
+~~~
+
+
+
 #### firewall-cmd的操作方法
 
 ~~~css

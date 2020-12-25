@@ -729,11 +729,14 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
+> 
+>  ~~~
 
 ### art-template 
 
@@ -1595,9 +1598,42 @@ path.sep//平台提供的特定的路径片段分隔符
 
 ### nginx 部署问题
 
+#### ubuntu安装nginx
+
+~~~css
+apt-get install build-essential
+apt-get install libtool
+apt-get install libpcre3 libpcre3-dev
+apt-get install zlib1g-dev
+apt-get install openssl
+apt-get install libssl-dev 
+~~~
+
+#### nginx.conf配置
+
+~~~css
+user root;(由nobody修改而成)//这样可以使用用户自己定义的路径文件路径
+~~~
+
+
+
+#### 使用apt install nginx
+
+~~~css
+nginx文件安装完成之后的文件位置：
+
+/usr/sbin/nginx：主程序
+/etc/nginx：存放配置文件
+/usr/share/nginx：存放静态文件
+/var/log/nginx：存放日志
+/usr/local
+~~~
+
+#### 使用文件压缩包的方式
+
 ~~~css
 nginx的目录
-/usr/local
+
 启动 注意是以root权限操作
 /usr/local/nginx/sbin   ./nginx 
 停止
