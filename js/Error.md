@@ -131,6 +131,151 @@ s=s>=10?s:'0'+s
 $ git pull 
 ~~~
 
+### 游戏框架 Phaser.js
+
+~~~css
+专门用于桌面和移动端HTML5 2D游戏开发框架，基于浏览器可支持自由切换
+~~~
+
+|                      | Game                                                         | 游戏                                                         |
+| -------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| core核心             | Group<br />World<br />Loader<br />Time<br />Camera<br />StateManger<br />TweenManger<br />SoundManger<br />InputManger<br />ScaleManger | 组<br />世界<br />载入器<br />时间<br />摄像机<br />状态管理器<br />补间动画管理器<br />声音管理器<br />输入管理器<br />缩放管理器 |
+| Game Objects游戏对象 | Factory(game.add)<br />Creator(game.make)<br />Sprite<br />Image<br />Sound<br />Emitter<br />Partical<br />Text<br />Tween<br />BitmapText<br />Tilemap<br />BitmapData<br />RetroFont<br />Button<br />Animation<br />Graphics<br />RenderTexture<br />TileSprite | 工厂<br />创建者<br />精灵<br />图像<br />声音<br />发射器<br />粒子<br />文本<br />补间动画<br />位图文字<br />瓦片地图<br />位图数据<br />复古字体<br />按钮<br />动画<br />图形<br />渲染纹理<br />瓦片精灵 |
+| Gemotry几何图形      | Circle<br />Rectangle<br />Point<br />Line<br />Ellipse<br />Polygon | 圆<br />矩形<br />点<br />线<br />椭圆<br />多边形           |
+| Physics物理引擎      | Aracde Physics<br />Body<br />P2 Physics<br />Spring<br />CollisionGroup<br />ContactMaterial<br />Ninja Physics | Arcade（拱廊）物理引擎<br />刚体<br />P2<br />弹簧<br />碰撞组<br />接触物质<br />Ninja物理引擎 |
+| Input输入            | Input Handler<br />Pointer<br />Mouse<br />Keyboard<br />Key<br />Gamepad | 输入处理<br />指针<br />鼠标<br />键盘<br />按键<br />游戏手柄 |
+
+#### 核心 core
+
+~~~css
+Game
+Game是游戏的核心，提供一个快速调用公共函数和处理启动过程的渠道
+
+Group
+Group（组）用于显示各种对象（包括Sprites和Images）的容器
+Group 将 显示/场景图 组成了逻辑树的结构，应用到Group上的变化会应用到它的子对象上。
+如：当Group旋转、缩放、移动时，所有的子对象同时也会移动、旋转、缩放
+此外，Group也提供了对快速移动对象池和对象回收的支持
+Group可以显示对象，同时也可以作为其他组的子对象。
+
+World
+一个游戏只拥有一个World。Wrold是一个抽象空间，所有的游戏对象都生存在World中。可以是任意尺寸的大小，不受舞台边界的限制。可以通过相机查看世界。所有的游戏对象都以基于世界的坐标而生存与world。默认情况下world和舞台尺寸一致
+
+Loader
+Loader加载器 用于处理所有外部内容的加载，例如图像、声音、纹理图集和数据文件
+它把iamge载入和XMLHttpRequest对象集合在一起，提供了载入进度显示和载入完成的回调功能
+
+Time
+核心内部游戏时钟
+维护了一个消逝时间，计算消逝时间值。用于游戏对象的运动、补间动画，还处理一个标准的定时器池。
+要创建一个普通的定时事件，可使用Phaser.Timer.
+
+Camera
+Camera摄像机 观察游戏世界的视野。有一个确定的位置和大小，并且只渲染在它视野范围内的对象。游戏启动的时候，会自动创建一个跟舞台相同大小的摄像机。通过改变Phaser.Camera.x/y的值可以在世界中移动摄像机
+
+State Manager
+状态管理器负责载入，设置、切换游戏状态。
+
+Tween Manager
+Phaser.Game维护了一个单一的TweenManager实例，所有补间动画对象都是由它创建和更新的。补间被钩入游戏时钟中，使系统暂停，并根据游戏状态而调整。
+
+Sound Manager
+声音管理器负责通过传统的html音频标签或者web音频来播放音频
+
+Input Manager 
+Phaser.Input是所有输入设备的管理器，包括鼠标、键盘、触摸和MSPointer. 输入管理器在游戏主循环中会自动被更新。
+
+Scale Manager
+ScaleManager对象控制了缩放、大小变化和游戏大小与显示画布之间的对齐操作
+游戏大小是游戏的逻辑尺寸，显示画布作为HTML元素也有自己的尺寸
+~~~
+
+#### 游戏对象 Game objects
+
+~~~css
+Factory(game.add)
+GameObjectFactory是一个使用game.add来创建很多常见游戏对象的快速方法。
+创建出来的对象会自动被添加到适当的管理器、世界、或者用户指定的组中
+
+Creator game.make
+GameObjectCreator是一个创建游戏对象的快速方法，但是并不会把对象添加到游戏世界中。对象可以被game.make访问
+
+Sprite
+精灵是游戏的生命体，几乎可用于所有的可视化物体。
+基本上，精灵是有一套坐标和渲染在画布上的纹理所组成。
+
+Image
+图像是一个轻量级对象，你可以使用它来显示任何不需要物理引擎或者动画的任务东西。它可以旋转、缩放、剪切、并接收输入事件。可以完美的用于标识、背景、简单按钮和其他非精灵类图形
+
+Emitter
+Emitter是一个使用Arcade物理引擎的轻量级粒子发射器。它可用于一次性的爆炸，或者像雨、火那样的连续性效果。它所有真正做的就是在设定的时间间隔里发射出 Particle（粒子）对象，并相应的修正他们的位置和速度。
+
+Particle
+粒子是精灵的扩展类，由粒子发射器(Phaser.Particles.Arcade.Emitter)发射出去。
+
+Tween
+补间 允许你在一个指定的时间周期内更改一个目标对象的一个或多个属性。
+
+Button
+按钮是一个特殊类型的精灵，他能自动建立对指针事件的处理。
+四种按钮相应的状态 over out down up
+
+~~~
+
+#### 物理引擎 Physics
+
+~~~css
+Arcade
+Arcade引擎包含了一些碰撞、重叠、运动等函数。
+
+Body
+刚体是一个单一的精灵，所有的物理操作都是针对这个刚体，而不是这个精灵本身。如：你设置的速度、加速度、边界值都是针对的刚体
+
+P2 
+P2物理引擎可以用来创建材料、监听事件、在物理仿真中添加刚体
+
+Spring
+创建一根线性的链接两个刚体的弹簧。弹簧有静止长度、阻力、刚度等属性。
+
+Ninja Physics
+Ninja物理引擎作用于Flash
+~~~
+
+
+
+
+
+### Mock.js的使用方法
+
+#### 1.mock.js假数据文件的创建
+
+~~~js
+//方法
+function login(){
+    return Mock.mock({'username':'hell'})
+}
+//拦截的ajax的请求路径
+Mock.mock('/login','post',login)
+~~~
+
+#### 2.调用方法
+
+~~~js
+//先引用上面的mock的假数据js文件
+<button onclick="loginIn()"></button>
+async function loginIn(){
+    try{
+        let ret=await axios.post('/login')
+        console.log(ret.data)
+    }catch(err){
+        console.error(err)
+    }
+}
+
+~~~
+
+
+
 ### ECMA 语法
 
 #### [].slice.call
@@ -414,6 +559,109 @@ for(let tmp of ret){
 
 ### WebAPI
 
+#### wbRTC
+
+##### 基础知识点
+
+~~~css
+DTLS:datagram transport level security即数据报安全传输协议，提供了UDP传输场景下的安全解决方案，能防止消息窃听，篡改，身份冒充等问题
+
+RTSP:real-time-stream-protocol协议——作为一个应用的协议层，提供了一个可扩展的框架，是的流媒体的受控和点播成为可能。具体控制具有实时特性数据的发送，单其本身不用于传输流媒体数据，依赖下层协议（RTP/RTCP）
+
+RTMP:real-time-messaging-protocol实时消息传输协议：基于tcp
+目前最流行的流媒体传输协议，广泛用于直播领域，绝大数的直播产品都是这个协议。 RTMP使用设计用来进行实时数据通信的网络协议
+
+webRTC：web-real-time communication网页即时通信，网页浏览器实时语音对话或视频对话的API
+~~~
+
+##### webRTC和RTMP
+
+~~~css
+rtmp是客户端到服务器（peer-to-server）,webRTC是客户端到客户端的技术，peer-to-peer.
+如果一个服务端实现了webRTC客户端的能力，那么它也可以被认为是一个peer，与用户端的浏览器创建链接，获得客户端推送过来的媒体数据，就完成了peer-to-server的转换
+~~~
+
+##### webrtc直播方案
+
+~~~css
+主播与连麦 用户采用 P2P 方式进行交互，然后在主播端进行混流，然后在 CDN 上进行混流，发送到观众端。
+~~~
+
+##### webrtc的视频会议方案
+
+~~~css
+1. 网状模型
+A,B,C三人会议
+A和B链接，B和C链接 A和C链接
+三人会议就需要建立三条链接 ：3*(3-1)/2
+人数和链接数的关系: n*(n-1)/2
+
+星型模型
+分为两种：1.通过某一个终端转发 2.通过服务器合成转发
+1.A，B，C参加会议
+	A和B链接
+	B和C链接
+	B转发A的音视频给C，B转发C的音视频给A
+	这就是需要终端B的性能非常高
+2.通过服务合成转发
+每个人都将自己采集到的音视频发送到服务端，经过服务器的合成，分发给每个参加会议的人
+	A,B,C都和服务器建立链接
+	A，B，C把采集到的数据都发送到服务器
+	服务器把A，B，C发过来的视频合成后发送给A，B，C
+	有个问题是：服务器不应该把A发送到服务器的数据再发送给A
+~~~
+
+##### MCU / SFU 的区别
+
+~~~css
+MCU：multipoint control unit 多点控制单元
+SFU:selective forwarding unit 选择性转发单元
+
+~~~
+
+##### 创建一个新的RTCPeerConnection并且配置bundlePolicy
+
+~~~js
+bundlePolicy：max-compat最大限度的兼容性，同时优化网络使用。
+const config={
+    iceServers:[
+        {url:"turn.turn.172.17.13.14"}
+    ],
+    bundlePolicy:'max-compat'
+}
+~~~
+
+#### webRTC Api
+
+~~~css
+new RTCPeerConnection()
+new RTCPeerSessionDescription({
+    type,
+    sdp
+})
+new RTCDataChannel()
+~~~
+
+
+
+~~~js
+let client_peer=new RTCPeerConnection(config)
+//事件
+client_peer.onaddstream=function(){
+    
+}
+client_peer.onremovestream=function(){
+    
+}
+//方法
+client_peer.createOffer({offerToReceiveVideo:true,offerToReceiveAudio:true})//promise offer描述
+client_peer.addStream()
+client_peer.setLocalDescription(offer)
+client_peer.setRemoveDescription(answer)
+~~~
+
+
+
 #### URL
 
 ~~~css
@@ -572,6 +820,10 @@ arr.sort((item1,item2)=>{
     return item1.localeCompare(item2,'zh')
 })
 ~~~
+
+### ES6 中new Map()
+
+
 
 ### ES6中的目前只有静态方法没有静态属性
 
