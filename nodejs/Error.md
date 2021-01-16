@@ -489,6 +489,158 @@ nvm use 10.15.3
 
 
 
+### browserify插件
+
+~~~css
+browserify可以让你使用类似于commonjs的方式加载js代码
+就是node的require()的方式来组织浏览器端的javascript代码
+~~~
+
+### socket.io
+
+#### 服务端
+
+~~~css
+npm install socket.io
+io=require('socket.io')
+io.on('connection',socket=>{
+    socket.on('msg',(from,msg)=>{
+        
+    })
+    socket.on('disconnect',()=>{
+        
+    })
+    socket.join(rooms[,callback])
+    io.to(room)
+    
+    socket.on('disconnecting')
+    
+    socket.on('event',(data,callback)=>{
+       	callback(调用的方法)//立即执行
+    })
+})
+io.on()
+
+//请求路径中的携带查询参数 如：io('http://localhost?token=abc')
+socket.handshake.query.token;
+
+~~~
+
+##### 命名空间
+
+~~~js
+const io=require('socket.io')
+const chat=io.of('/chat').on('connection',socket=>{
+    socket.on('event',(from,msg)=>{})
+    socket.emit();
+    chat.emit()//在chat中的所有人
+})
+const video=io.of('/video').on('connection',socket=>{
+    socket.on('event',(from,msg)=>{})
+    socket.emit()
+})
+
+//客户端
+const chat=io.connect('http://localhost:8000/chat')
+const video=io.connect('http://localhost:8000/video');
+
+chat.on('connect',()=>{})
+video.on('connect',()=>{
+    
+})
+
+~~~
+
+
+
+##### 广播
+
+~~~js
+//要将事件发送给每个人 使用io.emit()
+io.emit('event',{msg})
+//发送给除特定socket外的其他用户(除自己) 用broadcast标志
+socket.broadcast.emit('event',{msg})
+~~~
+
+
+
+#### 客户端连接
+
+~~~css
+<script src="socket.io/socket.io.js"></script> //这样就加载了socket.io-client. socket.io-client暴露了一个io全局变量.
+<script>
+	socket=io('http://localhost:8000/path')
+</script>
+
+vue.js 
+const io = require('socket.io-client');
+// or with import syntax
+import io from 'socket.io-client';
+~~~
+
+
+
+
+
+### ws
+
+#### ws和wss的区别
+
+~~~css
+wss使用了安全协议层 https 需要ssl证书和ssl秘钥
+~~~
+
+#### 使用ws链接
+
+~~~js
+//服务端
+const express=require('express')
+const app=express()
+const http=require('http')
+const server=http.createServer(app)
+const WebSocket=require('ws')
+//const wss=new WebSocket.Server(options)
+//options的配置 https://github.com/websockets/ws/blob/HEAD/doc/ws.md#new-websocketserveroptions-callback
+
+//options 常用配置 
+//host {String}绑定服务器的主机名。
+//port {Number}绑定服务器的端口。
+//backlog {Number}挂起的连接队列的最大长度。
+//server {http.Server | https.Server}预先创建的Node.js HTTP / S服务器。
+//verifyClient{Function}可用于验证传入连接的功能。请参阅下面的说明。（不鼓励使用：请参阅 问题＃337）
+//handleProtocols{Function}可用于处理WebSocket子协议的函数。请参阅下面的说明。
+//path {String}仅接受与此路径匹配的连接。
+//noServer {Boolean}不启用服务器模式。
+//clientTracking {Boolean}指定是否跟踪客户端。
+//perMessageDeflate {Boolean | Object}启用/禁用permessage-deflate。
+//maxPayload {Number}允许的最大邮件大小（以字节为单位）。
+const wss=new WebSocket.Server({server})
+wss.on('connection',function connection(ws,req){
+    ws.on('message',callback)
+    ws.on('error',callback)
+    ws.on('close',callback)
+    
+})
+app.get('/',(req,res)=>{})
+server.listen(8000,()=>{
+    
+})
+
+//客户端
+直接使用websocket 浏览器支持
+//const wss=new WebSocket(url)
+const wss=new WebSocket('ws://localhost:8000/server')
+
+wss.addEventListener('open',()=>{})
+//或者
+wss.onopen=function(){}
+wss.onmessage=function(){}
+wss.onerror=function(){}
+wss.onclose=function(){}
+wss.send()
+
+~~~
+
 
 
 ### formidable
@@ -741,6 +893,62 @@ zhangsan=PM+admin 角色
 > ~~~
 > 
 > ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 
 ### art-template 
 
@@ -949,7 +1157,26 @@ process.stdin.on('data',data=>{}) //标准输入和输出可以用 来创建类s
 process.send()//在fork后的子进程中使用才行，否则接收的数据为undefined 
 process.exit()
 
+process.cwd()//当前主进程的工作目录
+process.version //返回的是nodejs的版本
+process.versions //返回的是对象
+
 ~~~
+
+##### process和pipe管道的相关操作
+
+~~~css
+process.stdin.pipe(process.stdout) 管道将输入定位到输出
+输入输出可以是控制台或文件或http请求
+process.stdin.pipe(fs.createWriteStream(path))
+fs.createReadStream(path).pipe(process.stdout)
+
+http.createServer((req,res)=>{
+    req.pipe(res)
+})
+~~~
+
+
 
 #### fs四个大类
 
@@ -982,7 +1209,88 @@ recursionDelFile('./a')
 
 ~~~
 
+#### net模块
+
+~~~css
+net和http模块都是可以搭建客户端和服务端的node核心模块，以响应和发送请求
+
+服务端
+const net=require('net')
+const server=net.createServer(socket=>{
+    socket.on('connect',(c)=>{
+        console.log('connection',c)
+    })
+    socket.on('data',data=>{
+        console.log('data',data.toString())
+        socket.write('server to client:ha ha ha')
+    })
+    socket.on('end',()=>{
+        console.log('end')
+    })
+    socket.on('error',(err)=>{
+        console.log('server close')
+        server.close();
+    })
+})
+
+server.listen(8999,()=>{
+    console.log('server is running at port 8999')
+})
+
+//客户端
+const net =require('net')
+const client=net.createConnection({port:8999},socket=>{
+    console.log('client:connect',socket)
+
+})
+client.on('data',data=>{
+    console.log('client',data.toString())
+})
+client.on('connect',(c)=>{
+    console.log('client:csss',c)
+})
+client.write('hello nothing seek,nothing find')
+client.on('end',()=>{
+    console.log('client:end')
+})
+client.on('error',()=>{
+    client.unref()
+})
+~~~
+
+##### 什么是IPC
+
+~~~css
+ipc(internet process connection internet进程链接) 是共享命名管道的资源，是为了让进程间通信而开放的命名管道，可以通过验证用户名和密码获得相应的权限，在远程管理计算机和查看计算机的共享资源时使用
+
+在 Windows 上，本地域通过命名管道实现。路径必须是以 \\?\pipe\ 或 \\.\pipe\ 为入口
+net.createServer().listen(
+  path.join('\\\\?\\pipe', process.cwd(), 'myctl'));
+~~~
+
+#### http2模块
+
+~~~css
+同一个域名下只需要占用一个tcp链接，头部压缩了headers
+1.http2是一个复用协议
+2.是二进制协议
+3.压缩了headers
+4.允许服务器在客户端缓存填充数据，通过一个叫服务器推送的机制来提前请求
+5.对alt-svc的支持允许了给定资源的位置和资源鉴定，允许了更智能的CDN缓冲机制
+6.client-hints的引入允许浏览器或客户端主动交流它的需要，或者是硬件约束的信息给服务端。
+7.在cookie头中引入安全相关的前缀，保证一个安全的cookie没有被改动过
+
+~~~
+
+
+
 #### http模块
+
+~~~css
+http模块的四种请求类型
+~~~
+
+
 
 ~~~css
 IP:获取计算机的定位
@@ -1058,10 +1366,6 @@ readStream.pipe(res) //绑定可写流到可读流,可以在单个可读流上�
 
 手机的短信和语言验证码是要确定这个手机是用户自己的
 ~~~
-
-
-
-#####  
 
 ##### 消息头类别
 
@@ -1140,6 +1444,105 @@ data:{}或者 data:"title=nothing seek,nothing find"
 ~~~css
 econnreset
 axios({})在请求中加上timeout的时间限制  延长>1000（默认值）
+~~~
+
+#### axios的封装
+
+~~~js
+const request=axios.create({
+    baseURL:"",
+    timeout:6000
+})
+
+//错误处理器
+const errorHandler=(error)=>{
+    if(error.response){
+       /*
+       {
+    "data": "",
+    "status": 405,
+    "statusText": "Method Not Allowed",
+    "headers": {
+        "access-control-allow-credentials": "true",
+        "access-control-allow-origin": "http://127.0.0.1:5500",
+        "allow": "GET, HEAD, OPTIONS",
+        "connection": "keep-alive",
+        "content-length": "0",
+        "date": "Wed, 06 Jan 2021 09:01:49 GMT",
+        "vary": "Origin"
+    },
+    "config": {
+        "url": "login",
+        "method": "post",
+        "headers": {
+            "Accept": "application/json, text/plain, \*\/\*"
+        },
+        "transformRequest": [
+            null
+        ],
+        "transformResponse": [
+            null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1
+    },
+    "request": {
+        "custom": {
+            "events": {},
+            "requestHeaders": {},
+            "responseHeaders": {},
+            "method": "POST",
+            "url": "login",
+            "async": true,
+            "options": {
+                "url": "login",
+                "type": "POST",
+                "body": null
+            },
+            "timeout": 66,
+            "xhr": {}
+        },
+        "readyState": 4,
+        "responseURL": "http://127.0.0.1:5500/Node/express-01/login",
+        "status": 405,
+        "statusText": "Method Not Allowed",
+        "responseType": "",
+        "response": "",
+        "responseText": "",
+        "responseXML": null,
+        "timeout": 0
+    }
+}*/
+       const token=localStorage.getItem('token');
+        if(error.response.status===403){
+            //没有权限的信息提示
+        }
+        if(error.response.status===401 && !data.isLogin){
+            //token 认证失败的新提示
+            if(token){
+                //提出登录
+            }
+        }
+    }
+    return Promise.reject(error)
+}
+
+//拦截器的配置
+request.interceptors.request.use(config=>{
+    const token=localStorage.getItem('token')
+    if(token){
+        config.headers['Access-Token']=token;
+    }
+    return config
+},errorHandler)
+request.interceptors.response.use(config=>{
+    reutrn config.data;
+},errorHandler)
+
+export default request;
 ~~~
 
 
@@ -1260,6 +1663,8 @@ let credential={}
 credential.key=fs.readFileSync('private.pem')
 credential.cert=fs.readFileSync('file.crt')
 https=require('https').createServer(credential,app)
+
+//生成RSA密钥=》使用密钥生成自签名证书crt=》使用密钥生成csr签名请求=》请求签发证书进行签发，生成 x509证书(csr=>crt)
 ~~~
 
 + openssl证书的生成的方法
@@ -1530,6 +1935,9 @@ path.resolve(__dirname,'') //不管后面的路径是哪个，返回的都是 �
 
 //将路径或路径片段的序列解析为绝对路径
 //给定的路径会从右到左进行处理，后面的每个path会追加到前面，直到构造出绝对路径
+在解析中，重右向左，当遇到'/'开头的字符是，立即停止解析，直接返回解析号的路径
+console.log(path.resolve('a','b'))未解析到 / 所以使用到当前工作目录 即返回的
+
 let ret=path.resolve(__dirname,'E:\\download\\file\\01Nodejs+MongoDb')
 console.log(ret)//返回 E:\download\file\01Nodejs+MongoDb
 
@@ -1601,6 +2009,19 @@ path.sep//平台提供的特定的路径片段分隔符
 
 
 ### nginx 部署问题
+
+#### nginx 转发websocket报400错误
+
+~~~css
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection "upgrade";
+
+第一行告诉nginx使用http/1.1协议，这是websocket必须要使用的协议
+第二和第三行告诉nginx，当它要使用websocket时，响应http升级请求
+~~~
+
+
 
 #### ubuntu安装nginx
 
@@ -1720,6 +2141,80 @@ weight代表权重 默认为1；数值越大分配到的客户端越多
     autoindex on;*****重要的事情说三遍 audoindex on audoindex on autoindex on autoindex autoindex autoindex autoindex autoindex autoindex autoindex autoindex on 
 }
 ~~~
+
+### node-rtmp-module 
+
+#### rtsp推送方式
+
+~~~css
+ffmpeg -rtsp_transport tcp -i 'rtsp://admin:admin1234@192.168.112.252:554/cam/realmonitor?channel=1&subtype=0' -stimeout '3000000' -vcodec copy -acodec copy -f flv -y 'rtmp://localhost:1935/hls/test'
+
+~~~
+
+#### nginx.conf配置说明
+
+##### rtmp配置
+
+~~~css
+rtmp{
+    listen 1935;
+    chunk_size 4000;
+    application play{
+        play /home/study/Desktop/html/play;
+    }
+    application hls{
+        live on;
+        hls on;
+        hls_path /home/study/Desktop/html/hls;
+        hls_fragment 1s;
+        hls_playlist_length 4s;
+    }
+    application live{
+        live on;
+    }
+}
+
+play位视频播放配置，静态文件播放
+hls为通过推送的方式，保存视频片段ts文件，通过m3u8来播发。
+live就是单纯的视频流推送
+
+hls_fragment 1s;
+hls_playlist_lenth 4s;
+主要涉及延时优化的功能
+~~~
+
+##### html的配置
+
+~~~css
+http{
+    include mime.types;
+    default_type application/octet-stream;
+    sendfile on;
+    keepalive_timeout 65
+    server{
+        listen 8000;
+        location /stat{
+            rtmp_stat all;
+            rtmp_stat_stylesheet stat.xsl;
+        }
+        location /stat.xsl{
+            root /usr/local/nginx-rtmp-module
+        }
+        location /hls{
+            types{
+                application/vnd.apple.mpegurl m3u8;
+                video/mp2t ts;
+            }
+            root /home/study/Desktop/html;
+            add_header Cache-Control no-cache;
+        }
+    }
+}
+stat和stat.xsl主要访问视频推送概况，注意目录指向
+hls主要是配置视频流的访问
+~~~
+
+
 
 ### git 
 

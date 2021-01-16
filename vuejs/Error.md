@@ -1,3 +1,13 @@
+### eslintrc.js的配置
+
+~~~css
+主要作用就是检测代码的合法性、代码格式化
+代码合法性范围（JavaScript、JSX、ES6、Html、JSDoc、posts、vue、React、AngularJS、React Native、mocha）
+eslint配置详细介绍：https://blog.csdn.net/q3254421/article/details/86477502
+~~~
+
+
+
 ### Vue-component
 
 #### Component template should contain exactly one root element.
