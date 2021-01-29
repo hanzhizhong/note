@@ -560,7 +560,25 @@ for(let tmp of ret){
 
 ### WebAPI
 
-#### wbRTC
+#### webRTC
+
+##### 编码器
+
+~~~css
+软件编码：x264
+	用CPU进行编码
+	稳定，质量好。
+硬件编码：NVENC
+	用显卡进行编码
+	稳定性相对较低，对cpu要求低
+~~~
+
+##### 音频比特率
+
+~~~css
+比特率越高，每秒传送的数据就越多，音质就越清晰。
+
+~~~
 
 ##### 基础知识点
 
@@ -659,6 +677,7 @@ client_peer.createOffer({offerToReceiveVideo:true,offerToReceiveAudio:true})//pr
 client_peer.addStream()
 client_peer.setLocalDescription(offer)
 client_peer.setRemoveDescription(answer)
+
 ~~~
 
 
