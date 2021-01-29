@@ -494,6 +494,9 @@ mousetrap() 库 高级的按键检测库
 ~~~css
 使用 html5自带的api 
 navigator.onLine =>true/false
+//使用 online\offline来监听网络状态变化
+window.addEventListener('online',...)
+window.addEventListener('offline',...)
 ~~~
 
 #### 原生文件拖放事件
@@ -762,6 +765,11 @@ shell.openItem() api已经废弃了，shell.openPath()
 process.on('uncaughtException',function(err)=>{
     console.log('error',err)
 })
+
+添加最近使用的文档：
+app.addRecentDocument(path)
+//清除最近文档列表
+app.clearRecentDocuments()
 ~~~
 
 ### 开发项目实践

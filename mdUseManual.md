@@ -732,6 +732,10 @@ firewall-cmd --list-all
 
 ~~~
 
+#### 免费的SSL证书Certbot 
+
+![image-20210119095815017](assets/image-20210119095815017.png)
+
 ### OpenSSL是一个开放源代码的软件包库
 
 ~~~css

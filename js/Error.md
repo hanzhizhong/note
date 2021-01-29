@@ -468,16 +468,17 @@ includes()
 
 ~~~js
 Object.defineProperty()
-let options={title:"sss"}
+let title='sss'
+let options={}
 Object.defineProperty(options,'title',{
     configurable:true,//是否可以删除当前属性，默认为false
     value:'nothing seek,nothing find',
     writable:true,//value值是否可以改变，默认为false
     enumerable:true//是否可以用for in Object.keys()等方式遍历
 })
-Object.defineProperty(options,attr,{
-    get(){},//当在调用 options[attr]的时候会自动调用get()的方法
-    set(val){}//设置新值
+Object.defineProperty(options,'title',{
+    get(){return title},//当在调用 options[attr]的时候会自动调用get()的方法
+    set(val){ title=val}//设置新值
 })
 
 Object.assign()

@@ -5,13 +5,18 @@
 ENOENT 没有这样的文件或目录路径名中的目录不存在或是无效的符号连接
 ~~~
 
-#### node-gyp
+#### 平方和亩的换算
 
 ~~~css
-npm install -g node-gyp node-pre-gyp 或$sudo npm install -g node-gyp node-pre-gyp
-
-npm install --unsafe-perm
+平方=>亩
+	加半左移3位小数点
+	128m*m + 64m*m=192m*m => 0.192亩
+亩=>平方
+	除三加倍右移三
+	5亩=> 5/3 *2=3.3333 => 3333.3m*m
 ~~~
+
+
 
 #### Linux中使用gulp报 “Error:watch error ---ENOSPC”
 
