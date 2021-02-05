@@ -487,6 +487,24 @@ nvm list
 nvm use 10.15.3
 ~~~
 
+### PM2进程守护
+
+~~~css
+1.保证服务器端服务的稳定的性，在服务崩溃、错误是自动重启
+2.多进程
+3.自定义日志
+
+常用方法：
+	pm2 start app.js/或者配置文件.json
+	pm2 restart [appName|id]
+	pm2 stop [appName|id]
+	pm2 delete [appName|id]
+	pm2 info [appName,id]
+	pm2 log [appName,id]
+	pm2 list
+	pm2 monit
+~~~
+
 
 
 ### browserify插件
@@ -881,78 +899,11 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->  ~~~
-> 
->  ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
->
-> ~~~
-> 
-> ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
 
 ### art-template 
 

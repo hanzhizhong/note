@@ -96,6 +96,12 @@ Vue.filter('turn2CurrentWord',(val)=>{
 
 ### 单击和双击的时间间隔设定为200ms
 
+~~~css
+解决方法为：将单击是的时间延长
+~~~
+
+
+
 ### Duplicate keys detected: '0'.
 
 > 错误原因是在使用v-for的时候，都要加上一个唯一的key值，但是在这里写了两个for循环，尽管都加上了key值，但是又将key值写成一样的了，所以就会导致报错

@@ -16,6 +16,16 @@ ENOENT 没有这样的文件或目录路径名中的目录不存在或是无效�
 	5亩=> 5/3 *2=3.3333 => 3333.3m*m
 ~~~
 
+#### 异或交换定律
+
+~~~css
+如果：a^b=c
+那么: a^c=b
+
+a^b=c
+A^b^b=a
+~~~
+
 
 
 #### Linux中使用gulp报 “Error:watch error ---ENOSPC”

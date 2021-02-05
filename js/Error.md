@@ -22,6 +22,28 @@ arr=[
 
 ~~~
 
+### iframe的常用方法
+
+~~~js
+//设置iframe高度
+iframe.height=iframe.contentWindow.document.body.offsetHeight;
+//获取iframe中的元素
+iframe.contentWindow.document.getElementById('div1').style.color="red"//兼容
+iframe.contentDocument.getElementById('div1').style.background='red'//ie6,ie7不兼容
+~~~
+
+#### window.parent,window.top,window.self详解
+
+~~~css
+当页面中有frameset或者iframe的页面时，parent就是父窗口,top就是最顶端父窗口，self就是当前窗口,opener使用open打开当前的窗口
+
+window.top 顶层窗口，就是浏览器窗口
+window.parent 返回父窗口
+window.self 	返回窗口自身 
+~~~
+
+
+
 ### 秒转时分秒
 
 #### toUTCString() toGMTString() toString()
