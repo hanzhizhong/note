@@ -277,6 +277,16 @@ Ninja Physics
 Ninja物理引擎作用于Flash
 ~~~
 
+### 百度AI开放平台
+
+#### 支持的音频格式
+
+~~~css
+支持音频格式：pcm、wav、amr、m4a
+~~~
+
+
+
 
 
 

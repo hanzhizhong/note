@@ -904,6 +904,13 @@ zhangsan=PM+admin 角色
 >     //在中间件中使用的时候是不需要立即调用的
 >     app.use('/api',userRouter)//userRouter不需要加（）立即调用
 >     ~~~
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 
 ### art-template 
 
@@ -2203,6 +2210,18 @@ git config --global --unset user.name
 
 ~~~
 
+#### .gitignore文件添加的文件名或者类型没有起到忽略效果的原因
+
+~~~css
+原因：新建的文件在git中会有缓存，如果某些文件已经被纳入了版本管理中，就算是在.gitignore中已经声明了忽略路径也是不起作用的，这时候我们就应该先把本地缓存删除，然后再进行git的push，这样就不会出现忽略的文件了。
+
+git rm -r --cached .
+
+//然后重新的add commit 操作
+~~~
+
+
+
 #### 修改和提交
 
 ~~~css
@@ -2257,10 +2276,13 @@ git reset HEAD [file] 暂存区撤销掉
 git reflog 记录你所有的操作
 
 git remote 查看远程仓库
-
+git reset --hard HEAD^ 版本回退
 **HEAD^ 上一个版本
 HEAD^^  上上个版本
 HEAD~n  到上n的版本
+
+或者
+git reset --hard [1094a] //reflog记录的ID
 
 打包 tag 一定要先将本地的代码提交到远程仓库先
 Git tag 查看当前的标签号 
