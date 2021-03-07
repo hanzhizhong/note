@@ -1,3 +1,17 @@
+### clientHeight,clientTop,offsetHeight等等...
+
+~~~css
+clientHeight=> width+padding的值
+clientTop => border-top-width 的值
+offsetHeight=> width+padding+border
+offsetTop => 返回一个指向最近的包含该元素的定位元素,它返回当前元素相对于其 offsetParent 元素的顶部的距离。
+scrollHeight=>的高度就是 子元素在不隐藏自动撑开父级容器后的高度值 即 zi的clientHeight + fu的padding值
+
+scrollTop =>子元素相对父容器向上走了多少距离
+~~~
+
+
+
 ### AMD/CMD/CommonJS/ES6的对比
 
 ~~~css
@@ -296,6 +310,40 @@ async function loginIn(){
 
 ~~~
 
+### FFmpeg的用法
+
+#### 音频格式转换
+
+##### wav文件转 16k 16bits位速的单声道pcm文件
+
+~~~css 
+ffmpeg -y -i 16.wav -acodec pcm_s16le -f s16le -ac 1 -ar 16000 16k.pcm
+~~~
+
+##### 44100 采样率 单声道 16bits pcm文件转 16000采样率 16bits位速的单声道文件
+
+~~~css 
+ffmpeg -y -f s16le -ac 1 -ar 44100 -i test44.pcm  -acodec pcm_s16le -f s16le -ac 1 -ar 16000 16k.pcm
+~~~
+
+##### mp3 文件转 16K 16bits 位深的单声道 pcm文件
+
+~~~css
+ffmpeg -y  -i aidemo.mp3  -acodec pcm_s16le -f s16le -ac 1 -ar 16000 16k.pcm
+
+// -acodec pcm_s16le pcm_s16le 16bits 编码器
+// -f s16le 保存为16bits pcm格式
+// -ac 1 单声道
+//  -ar 16000  16000采样率
+~~~
+
+##### 输出pcm音频
+
+~~~css 
+-f s16le -ac 1 -ar 16000 16k.pcm
+// 单声道 16000 采样率 16bits编码 pcm文件
+~~~
+
 
 
 ### ECMA 语法
@@ -581,6 +629,42 @@ for(let tmp of ret){
 ~~~
 
 ### WebAPI
+
+#### Audio
+
+![](assets/yinp.png)
+
+##### 音频采样
+
+~~~css
+系统将一连串的声波波形转换成二进制数据来显现原始声音的，使用的设备是模/数据转换器 它以每秒上万次的速率对声波进行采集 每秒中所采集的数目称为采样频率或采率，单位HZ
+
+要理解音频采样分为采样的位速和采样的频率
+~~~
+
+##### 采样频率（音频采样级别）
+
+~~~css
+采样频率是指录音设备在一秒钟内对声音信号的采样次数，采样频率越高声音的还原就越真实越自然。
+
+5kHz的采样率仅能达到人们讲话的声音质量。
+11kHz的采样率是播放小段声音的最低标准，是CD音质的四分之一。
+22kHz采样率的声音可以达到CD音质的一半，目前大多数网站都选用这样的采样率。
+44kHz的采样率是标准的CD音质，可以达到很好的听觉效果。
+
+48KHz则更加精确一些。对于高于48KHz的采样频率人耳已无法辨别出来了，所以在电脑上没有多少使用价值。
+~~~
+
+##### 码率 就是比特率的另一种叫法，也叫位速
+
+~~~css
+比特是二进制单位，就是字节，8位二进制位1比特。
+位速是指在一个数据流中每秒钟能够通过的信息量
+
+需要了解的重要一点是，位速越高，信息量越大，对这些信息进行解码的处理量就越大，文件需要占用的空间也就越多。
+~~~
+
+
 
 #### webRTC
 
