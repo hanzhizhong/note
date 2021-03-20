@@ -528,6 +528,23 @@ devServer:{
 }
 ~~~
 
+##### 查看打包后的文件大小分析
+
+~~~js
+chainWebpack: (config) => {
+    if (process.env.NODE_ENV==='production') {
+        config
+            .plugin('webpack-bundle-analyzer')
+            .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+    }
+},
+    
+    
+   package.json =>加入 --report
+~~~
+
+
+
 #### 自定义的组件中template的模板可以分开写
 
 ~~~css
