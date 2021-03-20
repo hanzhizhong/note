@@ -644,10 +644,21 @@ Arduino没有操作系统，树莓派可以跑Linux
 接入方式：
 	1.直接接入：本身具备联网能力
 	2.网关接入：本身不具备联网能力，需要在本地组网后，需要统一通过网关再接入到网络。 常用到的本地无线组网技术：Zigbee,Lora,BLE MESH,sub-1GHZ等。
+serial:串口
+lora:LoRa是semtech公司创建的低功耗局域网无线标准
+NBIoT:Narrow Band Internet of Things，窄带物联网，是一种专为万物互联打造的蜂窝网络连接技术。
+z-wave
 
 物联网设备里面，物联网网关一是个非常重要的角色。一个处在本地局域网与外部接入网之间的智能设备。主要功能就是网络隔离，协议转化/适配以及数据网内外传输
 
 ROTS 实时多任务操作系统
+
+物到云
+	协议：tcp/ip 
+	modbus rtu：传感器 
+	RTSP 流媒体
+	VoIP 语音
+	MQTT/Restful api
 ~~~
 
 #### 智能网关逻辑
