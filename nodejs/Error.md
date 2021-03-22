@@ -903,11 +903,15 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
+> 
+>  ~~~
+>
 > ~~~
 > 
 > ~~~
@@ -2259,7 +2263,7 @@ git branch -d [name] 删除name分支
 
 切换分支这个动作，用switch更科学。因此，最新版本的Git提供了新的git switch命令来切换分支：
 git switch -c [name] 创建新的分支
-git switch [name] 切换分支
+git switch [name] 切换分支    
 ~~~
 
 #### 本地操作
