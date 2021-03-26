@@ -485,6 +485,16 @@ npx sequelize-cli model:generate --name Userinfo --attributes sex:enum,age:integ
   underscored: true,
 ~~~
 
+#### 返回的数据样式修剪
+
+~~~js
+//多对多的关系时，显示的数据连城一块饼的问题是 ：raw:true 的使用了，去掉
+
+//多对多 怎样去掉关系表的字段数据：through:{attributes:[]} 
+~~~
+
+
+
 #### .sequelizerc配置文件
 
 ~~~css

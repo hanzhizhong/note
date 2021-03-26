@@ -927,6 +927,14 @@ zhangsan=PM+admin 角色
 > ~~~
 > 
 > ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 
 ### art-template 
 
@@ -1260,12 +1268,15 @@ net.createServer().listen(
 
 ~~~
 
-
-
 #### http模块
 
 ~~~css
-http模块的四种请求类型
+http模块的发起请求时数据传输的形式和区别
+application/x-www-form-urlencoded
+application/json
+区别：
+	x-www...是键值对的字符串形式 key1=value1&key2=value2
+	json:是json格式的
 ~~~
 
 
@@ -1515,10 +1526,10 @@ request.interceptors.request.use(config=>{
         config.headers['Access-Token']=token;
     }
     return config
-},errorHandler)
+},errorHandler)//一般请求错误的 http的错误提示有 4开头 401:超时 404:not found 没有找到接口
 request.interceptors.response.use(config=>{
     reutrn config.data;
-},errorHandler)
+},errorHandler) //响应的错误处理有：5开头： 500：系统错误，502:系统重启
 
 export default request;
 ~~~
@@ -2453,7 +2464,7 @@ cxt.query  =>得到{ name: 'han', password: '1234' }
 cxt.querystring => 得到 name=han&password=1234
 cxt.params =>动态路由
 cxt.request.body=>
-	application/x-www-form-urlencoded 数据格式为：{ name: 'han', password: '1234' }
+	application/x-www-form-urlencoded 数据格式为：name= 'han'&password='1234' 的键值对形式
 	application/json   数据格式为：{ name: 'John', password: '1234' }
 
 koa-acl rbac
