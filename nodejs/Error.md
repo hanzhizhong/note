@@ -903,11 +903,23 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
+> 
+>  ~~~
+>
+> ~~~
+> 
+> ~~~
+>
+> ~~~
+> 
+> ~~~
+>
 > ~~~
 > 
 > ~~~
@@ -1256,12 +1268,15 @@ net.createServer().listen(
 
 ~~~
 
-
-
 #### http模块
 
 ~~~css
-http模块的四种请求类型
+http模块的发起请求时数据传输的形式和区别
+application/x-www-form-urlencoded
+application/json
+区别：
+	x-www...是键值对的字符串形式 key1=value1&key2=value2
+	json:是json格式的
 ~~~
 
 
@@ -1511,10 +1526,10 @@ request.interceptors.request.use(config=>{
         config.headers['Access-Token']=token;
     }
     return config
-},errorHandler)
+},errorHandler)//一般请求错误的 http的错误提示有 4开头 401:超时 404:not found 没有找到接口
 request.interceptors.response.use(config=>{
     reutrn config.data;
-},errorHandler)
+},errorHandler) //响应的错误处理有：5开头： 500：系统错误，502:系统重启
 
 export default request;
 ~~~
@@ -2259,7 +2274,7 @@ git branch -d [name] 删除name分支
 
 切换分支这个动作，用switch更科学。因此，最新版本的Git提供了新的git switch命令来切换分支：
 git switch -c [name] 创建新的分支
-git switch [name] 切换分支
+git switch [name] 切换分支    
 ~~~
 
 #### 本地操作
@@ -2449,7 +2464,7 @@ cxt.query  =>得到{ name: 'han', password: '1234' }
 cxt.querystring => 得到 name=han&password=1234
 cxt.params =>动态路由
 cxt.request.body=>
-	application/x-www-form-urlencoded 数据格式为：{ name: 'han', password: '1234' }
+	application/x-www-form-urlencoded 数据格式为：name= 'han'&password='1234' 的键值对形式
 	application/json   数据格式为：{ name: 'John', password: '1234' }
 
 koa-acl rbac
