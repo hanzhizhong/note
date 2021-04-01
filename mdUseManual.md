@@ -778,6 +778,45 @@ firewall-cmd --list-all
 
 ![image-20210119095815017](assets/image-20210119095815017.png)
 
+### vscode nodejs launch调试配置方式
+
+~~~js
+ 		{
+            "type": "node",
+            "request": "launch",
+            "name": "启动程序",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "env":{
+                "PORT":"8100"  //在这里可以配置 和cross-env中一样的配置项 包括：NODE_ENV
+            },
+            "program": "${workspaceFolder}\\eeg_report\\index.js"
+		},
+~~~
+
+### vscode 在electron 中的调试
+
+~~~css
+1.在package.json的文件中
+scripts的脚本中添加
+	electron --inspect-brk=5858 .
+--inspect-brk的作用是在你按调试键后会自动触发
+还需要手动配置launch.json的项
+{
+            "name":"attach",
+            "type":"node",
+            "request": "attach",
+            "port":5858,
+            "sourceMaps":  true,
+            "address": "localhost"
+        }
+
+先启动 scripts中脚步命令 然后开始 在vscode中调试按钮按下
+~~~
+
+
+
 ### OpenSSL是一个开放源代码的软件包库
 
 ~~~css
