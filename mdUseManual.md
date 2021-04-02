@@ -878,6 +878,98 @@ scripts的脚本中添加
 
 ### OpenSSL是一个开放源代码的软件包库
 
+#### windows系统环境下部署开发环境下的https方法
+
+##### 1.根ssl证书
+
+~~~css
+创建根安全套接字层（secure sockets layer --ssl）证书。然后可以使用此根证书对任意数量的独立域名的证书进行签名。 
+生成 RAS-2048密钥
+openssl genras -des3 -out rootCA.key 2048
+根据生成的密钥创建新的根ssl证书。保存为 xxx.pem的文件。
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem
+
+~~~
+
+##### 2.信任根ssl证书
+
+~~~css
+在使用新创建的根ssl证书开始颁发域名证书之前，还有必选的步骤。你需要告诉你的计算机信任你的根证书ssl，由它所发布的所有证书都是可信的。
+Mac机 ：密钥链接访问，进入系统密钥链中的证书类别。 
+Window系统：window+r 打开certlm.msc 或者 certlmgr.msc
+	certlm.msc需要管理员权限
+	certlmgr.msc 当前用户
+~~~
+
+##### 3.域ssl证书
+
+~~~css
+现在可以使用ssl证书专门为localhost的本地开发环境颁发证书了。
+创建新的openssl配置文件 server.csr.cnf 方便在创建证书的时候导入这些设置，而不是手动在命令行输入
+
+[req]
+default_bits = 2048
+prompt = no
+default_md = sha256
+distinguished_name = dn
+
+[dn]
+C=CN
+ST=RandomState
+L=RandomCity
+O=RandomOrganization
+OU=RandomOrganizationUnit
+emailAddress=hello@example.com
+CN = localhost
+~~~
+
+~~~css
+创建v3.ext 文件以创建一个 x509 v3的证书。 作用是chrome中指定 subjectAltName
+
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = localhost
+~~~
+
+~~~css
+使用server.csr.cnf中的配置 为本机创建证书密钥。
+openssl req -new -sha256 -nodes -out server.csr -newkey rsa:2048 -keyout server.key -config ./server.csr.cnf
+
+~~~
+
+~~~css
+证书签名请求通过前面创建的根ssl证书发布，方便localhost创建域证书。
+openssl x509 -req -in server.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out server.crt -days 500 -sha256 -extfile v3.ext
+
+~~~
+
+##### 4.使用新的ssl证书
+
+~~~css
+现在可以使用https保护本机了，移动server.key和server.crt文件到服务器上可访问的位置，并在服务器启动时包含它们。
+
+
+var path = require('path')
+var fs = require('fs')
+var express = require('express')
+var https = require('https')
+
+var certOptions = {
+  key: fs.readFileSync(path.resolve('build/cert/server.key')),
+  cert: fs.readFileSync(path.resolve('build/cert/server.crt'))
+}
+
+var app = express()
+
+var server = https.createServer(certOptions, app).listen(443)
+~~~
+
+
+
 ~~~css
 应用程序可以使用这个包进行安全通信，避免窃听，同时确认另一端连接人的身份
 参考地址：

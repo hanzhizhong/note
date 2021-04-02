@@ -491,6 +491,18 @@ nvm list
 nvm use 10.15.3
 ~~~
 
+### nrm
+
+~~~css
+1. 运行`npm i nrm -g`全局安装`nrm`包；
+
+2. 使用`nrm ls`查看当前所有可用的镜像源地址以及当前所使用的镜像源地址；
+
+3. 使用`nrm use npm`或`nrm use taobao`切换不同的镜像源地址；
+~~~
+
+
+
 ### PM2进程守护
 
 ~~~css
@@ -903,14 +915,18 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->    const express=require('express')
->    const router=express.Router(); //注意是Router()
->    //在中间件中使用的时候是不需要立即调用的
->    app.use('/api',userRouter)//userRouter不需要加（）立即调用
->    ~~~
->  ~~~
+>     const express=require('express')
+>     const router=express.Router(); //注意是Router()
+>     //在中间件中使用的时候是不需要立即调用的
+>     app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>     ~~~
+> ~~~
 > 
->  ~~~
+> ~~~
+>
+> ~~~
+> 
+> ~~~
 >
 > ~~~
 > 
