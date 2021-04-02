@@ -151,6 +151,14 @@ ORM
 
 ~~~
 
+#### 查询的结果中怎么去掉关联的中间表的显示
+
+~~~css
+User.findAll({include:[{model:Role,through:{attributes:[]/*一定要使用空的属性*/}}]}) 
+~~~
+
+
+
 #### 要点
 
 ~~~css

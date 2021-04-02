@@ -198,8 +198,8 @@ ___
 #### 生成的文件名 统一命名方法
 
 ~~~css
-文件名-作用-作用.[扩展名]
-文件夹：大类别的使用 名词 【单个】
+文件名-作用-作用.[扩展名] 驼峰式
+文件夹：大类别的使用 名词 【单个】短横线连接
 嵌套的文件夹使用 文件的名称方式 配合-
 ~~~
 
@@ -652,10 +652,21 @@ Arduino没有操作系统，树莓派可以跑Linux
 接入方式：
 	1.直接接入：本身具备联网能力
 	2.网关接入：本身不具备联网能力，需要在本地组网后，需要统一通过网关再接入到网络。 常用到的本地无线组网技术：Zigbee,Lora,BLE MESH,sub-1GHZ等。
+serial:串口
+lora:LoRa是semtech公司创建的低功耗局域网无线标准
+NBIoT:Narrow Band Internet of Things，窄带物联网，是一种专为万物互联打造的蜂窝网络连接技术。
+z-wave
 
 物联网设备里面，物联网网关一是个非常重要的角色。一个处在本地局域网与外部接入网之间的智能设备。主要功能就是网络隔离，协议转化/适配以及数据网内外传输
 
 ROTS 实时多任务操作系统
+
+物到云
+	协议：tcp/ip 
+	modbus rtu：传感器 
+	RTSP 流媒体
+	VoIP 语音
+	MQTT/Restful api
 ~~~
 
 #### 智能网关逻辑
@@ -825,6 +836,45 @@ firewall-cmd --list-all
 #### 免费的SSL证书Certbot 
 
 ![image-20210119095815017](assets/image-20210119095815017.png)
+
+### vscode nodejs launch调试配置方式
+
+~~~js
+ 		{
+            "type": "node",
+            "request": "launch",
+            "name": "启动程序",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "env":{
+                "PORT":"8100"  //在这里可以配置 和cross-env中一样的配置项 包括：NODE_ENV
+            },
+            "program": "${workspaceFolder}\\eeg_report\\index.js"
+		},
+~~~
+
+### vscode 在electron 中的调试
+
+~~~css
+1.在package.json的文件中
+scripts的脚本中添加
+	electron --inspect-brk=5858 .
+--inspect-brk的作用是在你按调试键后会自动触发
+还需要手动配置launch.json的项
+{
+            "name":"attach",
+            "type":"node",
+            "request": "attach",
+            "port":5858,
+            "sourceMaps":  true,
+            "address": "localhost"
+        }
+
+先启动 scripts中脚步命令 然后开始 在vscode中调试按钮按下
+~~~
+
+
 
 ### OpenSSL是一个开放源代码的软件包库
 
