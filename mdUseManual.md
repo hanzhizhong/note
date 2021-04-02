@@ -182,6 +182,14 @@ ___
 
 ###### 六级标题及
 
+### 在windows下查看文件的编码格式
+
+~~~css
+使用记事本打开文件后，另存为可以查看当前的编码
+~~~
+
+
+
 ### 生成项目的目录结构图方法
 
 + cd 到当前的项目根目录下
@@ -689,6 +697,57 @@ regedit
 ![image-20200707165214192](assets/image-20200707165214192.png)
 
 ### 服务器ubuntu
+
+#### 使用 acme.sh 安装配置SSL 
+
+~~~css
+服务器系统中需要有安装了：socat curl 
+1.安装 acme.sh 
+https://github.com/acmesh-official/acme.sh 
+	注意下载使用tar.gz版本的包
+	解压
+2. 配置域名服务商的AccessKey 
+	下图是腾讯云的创建accesskey的方法 注意需要加入当前的服务器IP地址到白名单中
+	
+	创建好的秘钥：
+	根据不同类型的域名服务商，我们选择对应的DNS API：https://github.com/acmesh-official/acme.sh/wiki/dnsapi
+	如：腾讯云的：使用创建的秘钥ID和key代替下面的值
+		export DP_Id="1234" 
+		export DP_Key="sADDsdasdgdsf"
+3. 到服务器的配置项
+	sudo vim /etc/profile
+	在末尾添加上上面的accessKey
+		`export DP_Id="1234" 
+		export DP_Key="sADDsdasdgdsf"`
+	source /etc/profile
+4.生成证书
+	**也要根据域名服务商的类型选择对应的 DNS API** https://github.com/acmesh-official/acme.sh/wiki/dnsapi
+	在acme.sh的项目文件夹下执行
+	如：腾讯云：
+		./acme.sh --issue --dns dns_dp -d example.com -d *.example.com
+
+5.证书生成后，配置证书到Apache/Nginx或其他服务器
+	https://github.com/acmesh-official/acme.sh 
+./acme.sh --install-cert -d example.com --key-file /path/to/keyfile/in/nginx/key.pem --fullchain-file /path/to/keyfile/in/nginx/cert.pem
+
+	会在/path/to/keyfile/in/nginx 路径下生成两个文件
+6.到nginx.conf中配置https
+
+nginx 可能汇报错
+	“the "ssl" parameter requires ngx_http_ssl_module in /usr/local/nginx/conf/nginx.conf:102”
+	第一步：/usr/local/nginx/sbin/nginx -V
+	查看configure的配置项有没有ssL的模块，没有的话就按照下面的操作步骤做
+需要到到安装的源码包中执行如下命令
+	./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_modul
+	完成后 make
+	到这步后可以新开一个窗口，到/usr/local/nginx/conf/将原先的nginx.conf复制一份备份
+		cp nginx nginx.bak
+	cp ./objs/nginx /usr/local/nginx/sbin/
+
+成功后nginx重启
+~~~
+
+![]()![image-20210330133331829](assets/image-20210330133331829.png)
 
 #### coturn 安装
 
