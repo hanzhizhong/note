@@ -915,11 +915,15 @@ zhangsan=PM+admin 角色
 > + 解决的方法是： 
 >
 >   + ~~~javascript
->     const express=require('express')
->     const router=express.Router(); //注意是Router()
->     //在中间件中使用的时候是不需要立即调用的
->     app.use('/api',userRouter)//userRouter不需要加（）立即调用
->     ~~~
+>    const express=require('express')
+>    const router=express.Router(); //注意是Router()
+>    //在中间件中使用的时候是不需要立即调用的
+>    app.use('/api',userRouter)//userRouter不需要加（）立即调用
+>    ~~~
+>  ~~~
+> 
+>  ~~~
+>
 > ~~~
 > 
 > ~~~
@@ -2573,6 +2577,18 @@ router.allowedMethod()的作用：
 	运行时错误（500服务器本身）
 	逻辑错，找不到(404) 先决条件失败（412）
 ~~~
+
+#### 符合restful api的批量删除
+
+~~~css
+有两种：
+1.http:delete 在url中使用，分隔 /files/id1,id2
+2.将一系列需要删除的id放在 请求体中，但是没有这样的标准（delete请求）
+因为我们删除操作，肯定使用DELETE请求，但是奈何我们并不建议在DELETE请求里放body体，原因在于：根据RFC标准文档，DELETE请求的body在语义上没有任何意义。事实上一些网关、代理、防火墙在收到DELETE请求后，会把请求的body直接剥离掉。
+
+~~~
+
+
 
 #### 软件架构的风格
 

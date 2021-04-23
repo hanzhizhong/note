@@ -157,6 +157,16 @@ ORM
 User.findAll({include:[{model:Role,through:{attributes:[]/*一定要使用空的属性*/}}]}) 
 ~~~
 
+#### destroy 删除数据
+
+~~~css
+如果想清除所有的数据 即清空表
+db.User.destroy({ 
+    where: {}, 
+    truncate: true 
+})
+~~~
+
 
 
 #### 要点
